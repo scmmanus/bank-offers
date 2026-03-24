@@ -4,1057 +4,905 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>澳門銀行信用卡優惠報告 - 2026年03月24日</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f0f4f8; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
-        .header { background: linear-gradient(135deg, #002060, #0050a0); color: #fff; padding: 35px 25px; text-align: center; }
-        .header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
-        .header p { margin: 8px 0 0; font-size: 13px; opacity: 0.85; }
-        .bank-section { padding: 20px 25px; border-bottom: 2px solid #f0f0f0; }
-        .bank-name { color: #002060; font-size: 18px; font-weight: bold; border-left: 5px solid #FFD700; padding-left: 12px; margin-bottom: 18px; }
-        .offer-card { display: flex; margin-bottom: 16px; border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden; background: #fafafa; }
-        .offer-image { width: 130px; min-height: 110px; max-height: 160px; object-fit: cover; flex-shrink: 0; }
-        .offer-image-placeholder { width: 130px; min-height: 110px; background: linear-gradient(135deg, #e8edf2, #d0d8e4); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #8a9ab0; font-size: 11px; text-align: center; }
-        .offer-content { padding: 12px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .offer-title { font-weight: bold; font-size: 14px; margin-bottom: 6px; color: #222; line-height: 1.4; }
-        .offer-desc { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 8px; flex-grow: 1; }
-        .offer-period { font-size: 11px; color: #e67e22; margin-bottom: 10px; font-weight: 500; }
-        .btn { display: inline-block; background: #FFD700; color: #002060; padding: 7px 14px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold; }
-        .footer { background: #f8f9fa; padding: 20px; text-align: center; font-size: 11px; color: #aaa; }
+        /* === Smartcard Macao 品牌色系 === */
+        :root {
+            --brand-primary: #89216b;       /* 主品牌色：深紫紅 */
+            --brand-primary-light: rgba(137, 33, 107, 0.11); /* 淡紫紅背景 */
+            --brand-primary-hover: #6e1a56; /* 深一階 hover 色 */
+            --text-dark: #212121;           /* 標題深色 */
+            --text-body: #5b5b5b;           /* 正文灰色 */
+            --text-muted: #999;             /* 次要文字 */
+            --bg-page: #f5f5f5;             /* 頁面背景 */
+            --bg-card: #fffaf4;             /* 卡片暖米白 */
+            --bg-white: #fff;
+            --border-light: #eeeeee;        /* 分隔線淺灰 */
+            --accent-orange: #e67e22;       /* 日期橙色 */
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Rubik', 'Helvetica Neue', Helvetica, Arial, sans-serif; background: var(--bg-page); margin: 0; padding: 20px 16px; color: var(--text-body); font-size: 16px; line-height: 1.6; }
+        .container { max-width: 980px; margin: 0 auto; background: var(--bg-white); border-radius: 4px; overflow: hidden; box-shadow: 0 2px 12px rgba(137,33,107,0.08); }
+        /* === Header === */
+        .header { background: var(--brand-primary); color: #fff; padding: 32px 28px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 0.5px; }
+        .header p { margin: 10px 0 0; font-size: 14px; opacity: 0.88; font-weight: 400; }
+        /* === Navigation Bar === */
+        .nav-bar { background: var(--bg-white); padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid var(--border-light); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(137,33,107,0.07); }
+        .nav-btn { background: transparent; color: var(--brand-primary); padding: 5px 16px; border-radius: 4px; border: 2px solid var(--brand-primary); text-decoration: none; font-size: 12px; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+        .nav-btn:hover { background: var(--brand-primary); color: #fff; }
+        /* === Bank Section === */
+        .bank-section { padding: 28px 24px; border-bottom: 2px solid var(--border-light); }
+        .bank-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+        .bank-name { color: var(--text-dark); font-size: 18px; font-weight: 800; border-left: 5px solid var(--brand-primary); padding-left: 12px; }
+        .more-btn { background: transparent; color: var(--brand-primary); padding: 5px 16px; border-radius: 4px; border: 2px solid var(--brand-primary); text-decoration: none; font-size: 12px; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+        .more-btn:hover { background: var(--brand-primary); color: #fff; }
+        /* === Offers Grid === */
+        .offers-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 16px; width: 100%; }
+        @media screen and (max-width: 640px) { .offers-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media screen and (max-width: 400px) { .offers-grid { grid-template-columns: 1fr !important; } }
+        /* === Offer Card === */
+        .offer-card { border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden; background: var(--bg-card); transition: box-shadow 0.2s, border-color 0.2s; min-width: 0; }
+        .offer-card:hover { box-shadow: 0 4px 18px rgba(137,33,107,0.13); border-color: rgba(137,33,107,0.3); }
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .card-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--brand-primary-light); display: flex; align-items: center; justify-content: center; }
+        .offer-image { width: 100%; height: 100%; object-fit: cover; }
+        .offer-image-placeholder { font-size: 32px; color: var(--brand-primary); opacity: 0.5; }
+        .card-body { padding: 12px 14px; }
+        .offer-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text-dark); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .offer-desc { font-size: 12px; color: var(--text-body); line-height: 1.55; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .offer-period { font-size: 11px; color: var(--accent-orange); font-weight: 500; }
+        .no-offers { color: var(--text-muted); font-style: italic; padding: 10px 0; grid-column: 1/-1; font-size: 14px; }
+        /* === Footer === */
+        .footer { background: var(--brand-primary-light); padding: 22px; text-align: center; font-size: 12px; color: var(--text-muted); border-top: 2px solid var(--border-light); }
+        .footer a { color: var(--brand-primary); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏦 澳門銀行信用卡優惠報告 (完整版)</h1>
+            <h1>💳 澳門銀行信用卡優惠報告</h1>
             <p>2026年03月24日</p>
         </div>
-        <div class="bank-section"><div class="bank-name">🏦 BCM澳門商業銀行</div>
+        <div class="nav-bar">
+            <a href="#boc" class="nav-btn">中國銀行 (澳門)</a><a href="#icbc" class="nav-btn">工銀澳門</a><a href="#bnu" class="nav-btn">大西洋銀行 (BNU)</a><a href="#bcm" class="nav-btn">BCM澳門商業銀行</a><a href="#hsbc" class="nav-btn">滙豐澳門</a><a href="#ocbc" class="nav-btn">華僑銀行澳門</a><a href="#boci" class="nav-btn">澳門大豐銀行</a><a href="#upi" class="nav-btn">銀聯國際</a><a href="#visa" class="nav-btn">Visa香港</a><a href="#mastercard" class="nav-btn">Mastercard Priceless</a><a href="#amex" class="nav-btn">美國運通香港</a><a href="#asiamiles" class="nav-btn">亞洲萬里通</a>
+        </div>
+        <div class="bank-section" id="boc"><div class="bank-header"><div class="bank-name">🏦 中國銀行 (澳門)</div><a href="https://offers.bocmacau.com/cms/index" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
         <div class="offer-card">
-            <img src="https://www.bcm.com.mo/admin/upload/1tc_20251117221237.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">美國證券買賣服務</div>
-                    <div class="offer-desc">推廣期內首月$0佣金，助您輕鬆致勝千里之外!</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260319/195d2d8efbdf4eb8b44fa392fb8cb0d6.jpg" class="offer-image" alt="2026澳門國際美食之都嘉年華" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">2026澳門國際美食之都嘉年華</div>
+                    <div class="offer-desc">有機會享MOP5元立減優惠</div>
+                    <div class="offer-period">📅 2026/03/20-2026/03/29</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=343" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <img src="https://www.bcm.com.mo/admin/upload/1tc_20260311115203.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">信用卡 - 積分禮遇 限時驚喜</div>
-                    <div class="offer-desc">憑指定信用卡積分即可換取熱選旅遊裝備!</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20241024/74eb1aa0cab8417c8de7878c7f527817.png" class="offer-image" alt="澳門航空指定航線" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">澳門航空指定航線</div>
+                    <div class="offer-desc">雙人出行享尊屬往返機票優惠，每人票價低至MOP500</div>
+                    <div class="offer-period">📅 2026/03/18-2026/03/31</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=351" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <img src="https://www.bcm.com.mo/admin/upload/1tc_202404291714363544.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">美元高息定存賞</div>
-                    <div class="offer-desc">尊享美元定期存款利率高達3.90%!</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260128/eadc7095b61644a79c239e36343af7bb.jpg" class="offer-image" alt="中銀Visa信用卡澳門星皓廣場周五、六及日享5倍積分" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">中銀Visa信用卡澳門星皓廣場周五、六及日享5倍積分</div>
+                    <div class="offer-desc">澳門星皓廣場周五、六及日享5倍積分</div>
+                    <div class="offer-period">📅 2026/01/30-2026/06/28</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=271" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <img src="https://www.bcm.com.mo/admin/upload/1tc_202306141686706844.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">港幣高息定存賞</div>
-                    <div class="offer-desc">全新創富理財客戶存入新資金開立定期存款即享特優年利率3%！</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260114/83ed9111bc6d4c5e8908a1c79feca0f2.jpg" class="offer-image" alt="中國台灣、日本、韓國回贈 (活動已額滿)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">中國台灣、日本、韓國回贈 (活動已額滿)</div>
+                    <div class="offer-desc">銀聯信用卡7%回贈</div>
+                    <div class="offer-period">📅 2026/01/01-2026/03/31</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=237" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">信用卡 - 迎新禮遇</div>
-                    <div class="offer-desc">立即申請信用卡享豐富迎新禮遇！</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260225/9573b75a03b94609a0d0453ab04a721c.jpg" class="offer-image" alt="澳門新濠影滙W酒店" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">澳門新濠影滙W酒店</div>
+                    <div class="offer-desc">消費禮遇</div>
+                    <div class="offer-period">📅 2026/01/30-2026/06/30</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=144" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">基金投資交易推廣</div>
-                    <div class="offer-desc">專業理財團隊用心管理，為您緊貼市場動向，把握全球投資機遇！</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260105/43758237a40648f6b6a4e783370cf53f.jpg" class="offer-image" alt="中銀淘寶卡多重禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">中銀淘寶卡多重禮遇</div>
+                    <div class="offer-desc">無論淘寶、日常消費、旅行，讓您消費從此樂而無憂！</div>
+                    <div class="offer-period">📅 2026/01/01-2026/12/31</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=308" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">信用卡 - 分期服務特優手續費</div>
-                    <div class="offer-desc">立即網上快捷申請! 簽賬慢慢分期還!</div>
-                    <div class="offer-period">📅 請參考連結頁面</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/2de6e79f6a8942c88e34e7f825293275.png" class="offer-image" alt="澳門文華東方酒店-御苑餐廳" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">澳門文華東方酒店-御苑餐廳</div>
+                    <div class="offer-desc">8折餐飲優惠</div>
+                    <div class="offer-period">📅 2025/04/14-2026/03/31</div>
                 </div>
-                <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=25" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 LUSO澳門國際銀行</div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Luso Pay加掛信用卡支付送積分</div>
-                    <div class="offer-desc">使用Luso Pay加掛信用卡進行支付，即可獲贈積分。</div>
-                    <div class="offer-period">📅 即日起至2026-01-30</div>
-                </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026013015461663317/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">2026年信用卡迎新獎賞</div>
-                    <div class="offer-desc">新客戶成功申請信用卡，可享2026年迎新獎賞。</div>
-                    <div class="offer-period">📅 即日起至2026-01-08</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/c1db34a540ff4fff9d7845eba52f9b8d.png" class="offer-image" alt="澳門文華東方酒店-大堂酒廊" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">澳門文華東方酒店-大堂酒廊</div>
+                    <div class="offer-desc">8折餐飲優惠</div>
+                    <div class="offer-period">📅 2025/04/14-2026/03/31</div>
                 </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026010809203347189/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">App Store 中國澳門地區使用銀聯信用卡支付優惠</div>
-                    <div class="offer-desc">在App Store 中國澳門地區使用銀聯信用卡支付滿7美元立減1美元。</div>
-                    <div class="offer-period">📅 即日起至2026-02-01</div>
+            <a href="https://offers.bocmacau.com/cms/index" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/117a968ad1f24b94a9435d564b19e4b0.png" class="offer-image" alt="澳門文華東方酒店-御苑酒廊" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">澳門文華東方酒店-御苑酒廊</div>
+                    <div class="offer-desc">8折餐飲優惠</div>
+                    <div class="offer-period">📅 2025/04/01-2026/03/31</div>
                 </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026012909380918610/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
+            </a>
+        </div></div></div><div class="bank-section" id="icbc"><div class="bank-header"><div class="bank-name">🏦 工銀澳門</div><a href="https://www.icbc.com.mo/ICBC/%E6%B5%B7%E5%A4%96%E5%88%86%E8%A1%8C/%E5%B7%A5%E9%93%B6%E6%BE%B3%E9%97%A8/tc/%E9%8A%80%E8%A1%8C%E5%8D%A1/%E5%B7%A5%E9%8A%80%E5%8D%A1%E6%8E%A8%E5%BB%A3/%E6%8E%A8%E5%BB%A3%E6%B4%BB%E5%8B%95/%E6%8E%A8%E5%BB%A3%E6%B4%BB%E5%8B%95.htm" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">2026年簽賬獲贈環亞機場貴賓室服務權益</div>
-                    <div class="offer-desc">2026年簽賬達到指定金額，即可獲贈環亞機場貴賓室服務權益。</div>
-                    <div class="offer-period">📅 即日起至2025-12-31</div>
-                </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2025123115140668370/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">銀聯信用卡中國大陸精選商戶消費優惠</div>
-                    <div class="offer-desc">使用銀聯信用卡在中國大陸精選商戶消費，可享特別優惠。</div>
-                    <div class="offer-period">📅 即日起至2025-08-14</div>
-                </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2025081410141679093/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">銀聯高端卡持卡人消費權益：香港迪士尼樂園 1 日門票</div>
-                    <div class="offer-desc">銀聯高端卡持卡人可享香港迪士尼樂園 1 日門票優惠。</div>
-                    <div class="offer-period">📅 即日起至2026-02-20</div>
-                </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026022015093780362/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">一機在手分期無憂</div>
-                    <div class="offer-desc">信用卡分期服務，讓您輕鬆管理大額消費，分期無憂。</div>
-                    <div class="offer-period">📅 即日起至2025-04-29</div>
-                </div>
-                <a href="https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2025042917531778945/index.shtml" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 Mastercard Priceless</div>
-        <div class="offer-card">
-            <img src="https://specials.priceless.com/ps_dist/img/hk-english.80cd8f8.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Mastercard 禮遇</div>
-                    <div class="offer-desc">發掘與別不同的體驗，讓每個瞬間彌足珍貴。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://specials.priceless.com/zh-hk/benefits?issuerId=&productId=" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://specials.priceless.com/ps_dist/img/Travel_home.1b25bf8.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">旅遊禮遇</div>
-                    <div class="offer-desc">Mastercard 提供 20 項旅遊相關禮遇，讓您的旅程更精彩。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://specials.priceless.com/zh-hk/categories/Travel?Cid=201811010001&issuerId=&productId=" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://specials.priceless.com/mastercard/images/505c757b-39dd-4913-a79a-bc64bc5e2c541541089288514.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">美饌禮遇</div>
-                    <div class="offer-desc">Mastercard 為您帶來 8 項精選美饌禮遇，品味生活每一刻。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://specials.priceless.com/zh-hk/categories/Culinary?Cid=201811010002&issuerId=&productId=" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://specials.priceless.com/mastercard/images/f034e96b-0a2c-470d-9b1c-2f68a43e4a1f1541089288514.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">運動禮遇</div>
-                    <div class="offer-desc">探索 3 項 Mastercard 運動禮遇，享受活力人生。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://specials.priceless.com/zh-hk/categories/Sports?Cid=201811010004&issuerId=&productId=" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://specials.priceless.com/ps_dist/img/Shopping_home.56c40b7.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">購物禮遇</div>
-                    <div class="offer-desc">Mastercard 提供 11 項購物優惠，讓您盡情享受購物樂趣。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://specials.priceless.com/zh-hk/categories/Shopping?Cid=201811010005&issuerId=&productId=" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 Visa香港</div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。</div>
-                    <div class="offer-desc">Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/accor-hotels/171926?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">透過 Agoda 預訂酒店，享高達7%折扣優惠</div>
-                    <div class="offer-desc">透過 Agoda 預訂酒店，Visa 持卡人可享高達7%折扣優惠。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/agoda/174464?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">預訂任何 Avalon Waterways 河船行程可享郵輪票價 95 折優惠。</div>
-                    <div class="offer-desc">預訂任何 Avalon Waterways 河船行程，Visa 持卡人可享郵輪票價 95 折優惠。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/avalon-waterways-travel-resources/169360?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">成功投保 AXA 指定合資格保單，享 HK$100 電子購物禮券</div>
-                    <div class="offer-desc">成功投保一份指定合資格保單，並以Visa卡線上支付首年年度化保費達 HK$10,000 或以上，即可享 HK$100 電子購物禮券一張。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/axa/174678?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Banyan Group 酒店住宿 8 折優惠及專屬禮遇</div>
-                    <div class="offer-desc">尊享全球參與酒店最少 2 晚住宿，即可解鎖最佳可訂房價 8 折優惠，並享有專屬禮遇。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/banyan-group/172676?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">ClassPass 訂閱享額外 10% 積分</div>
-                    <div class="offer-desc">ClassPass 訂閱可享額外 10% 積分。</div>
-                    <div class="offer-period">📅 不適用</div>
-                </div>
-                <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/classpass/153497?locale=zh_HK" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 中國銀行 (澳門)</div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260319/195d2d8efbdf4eb8b44fa392fb8cb0d6.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">2026 Macao International Cities of Gastronomy Festival</div>
-                    <div class="offer-desc">may enjoy an instant discount of MOP5</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20241024/74eb1aa0cab8417c8de7878c7f527817.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Designated routes in AirMacau</div>
-                    <div class="offer-desc">Enjoy exclusive round-trip air tickets offer when travel for two, starting from MOP500 per person</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260128/eadc7095b61644a79c239e36343af7bb.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">BOC Visa Local Spending Rewards! 5X bonus points Rewards at Nova Mall</div>
-                    <div class="offer-desc">5X bonus points for Fridays, Saturdays and Sundays shopping at Nova Mall</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260114/83ed9111bc6d4c5e8908a1c79feca0f2.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Rebate from Taiwan China, Japan and Korea (quota is full)</div>
-                    <div class="offer-desc">UnionPay Credit Card 7% rebate</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260225/9573b75a03b94609a0d0453ab04a721c.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">W Macau - Studio City</div>
-                    <div class="offer-desc">Special Privileges</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260105/43758237a40648f6b6a4e783370cf53f.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Enjoy fabulous offers with BOC Taobao Card</div>
-                    <div class="offer-desc">Rewards is at your fingertips for Taobao, daily spending or travelling with BOC Taobao Card</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/2de6e79f6a8942c88e34e7f825293275.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Mandarin Oriental, Macau-Vida Rica Restaurant</div>
-                    <div class="offer-desc">20% off Exclusive Dining Offer</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/c1db34a540ff4fff9d7845eba52f9b8d.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Mandarin Oriental, Macau-Lobby Lounge</div>
-                    <div class="offer-desc">20% off Exclusive Dining Offer</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240318/117a968ad1f24b94a9435d564b19e4b0.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Mandarin Oriental, Macau-Vida Rica Bar</div>
-                    <div class="offer-desc">20% off Exclusive Dining Offer</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260102/5d47eec601684f5e98ba0234d1e60520.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Mandarin Oriental, Macau-The Mandarin Cake Shop</div>
-                    <div class="offer-desc">20% off Exclusive Dining Offer</div>
-                    <div class="offer-period">📅 最新優惠</div>
-                </div>
-                <a href="https://offers.bocmacau.com/cms/index" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 大西洋銀行 (BNU)</div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/WhatsOn-Trip.com-Winter.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">Trip.com</div>
-                    <div class="offer-desc">酒店94折及機票高達 $200立減。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/bnu-trip.com" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/spaaaa.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">水療中心 - 澳門雅辰酒店</div>
-                    <div class="offer-desc">所有水療護理85折優惠。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/artyzen_grand_lapa" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Grand%20Coloane%20Resort%20-%20Exterior%20-%20Evening.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">鷺環海天度假酒店</div>
-                    <div class="offer-desc">85折餐飲優惠。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/grand-coloane-resorts" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400%20futago.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大阪燒肉</div>
-                    <div class="offer-desc">豁免服務費，高端卡戶更享贈飲。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/pages/futago_yakiniku_2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Picture1.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">德利醫療中心(Dali Clinic)</div>
-                    <div class="offer-desc">高達75折優惠。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/beauty_cosmetic_personal%20care" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大西洋銀行Visa信用卡：衣食住行，精彩隨行！</div>
-                    <div class="offer-desc">享多種優惠。</div>
-                    <div class="offer-period">📅 至: 2026-06-29</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/pages/BNU_visa_card_offers" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/C42.18%20What's%20on%20square.jpg" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大西洋銀行 x 新八佰伴 春日消費大獎賞</div>
-                    <div class="offer-desc">可享高達 MOP168 新八佰伴電子現金券。</div>
-                    <div class="offer-period">📅 至: 2026-04-29</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/BNU_NYH_Spring_Rewards_Campaign" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400_stepforward-01.png" class="offer-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">陽明物理治療中心</div>
-                    <div class="offer-desc">優惠高達88折。</div>
-                    <div class="offer-period">📅 至: 2026-12-30</div>
-                </div>
-                <a href="https://www.bnu.com.mo/zh-hant/pages/Step%20Forward%20Physiotherapy%20Centre" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 工銀澳門</div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=20251201overseas" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/20251201overseas.jpg" class="offer-image" alt="【工銀e支付】線上線下新花城超級市場購物賞！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀e支付】線上線下新花城超級市場購物賞！</div>
                     <div class="offer-desc">線上線下新花城超級市場購物賞！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCSLLD2025" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=visatravel202602" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/visatravel202602.jpg" class="offer-image" alt="【工銀銀聯雙幣信用卡】搭乘澳門公共巴士日減高達MOP4！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀銀聯雙幣信用卡】搭乘澳門公共巴士日減高達MOP4！</div>
                     <div class="offer-desc">搭乘澳門公共巴士日減高達MOP4！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=202601MastercardLD" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCJYX2026" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/ICBCJYX2026.jpg" class="offer-image" alt="【工銀金悅軒餐飲銀聯雙幣信用卡】於金悅餐飲集團旗下餐飲刷卡累積消費享回贈高達MOP1,000！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀金悅軒餐飲銀聯雙幣信用卡】於金悅餐飲集團旗下餐飲刷卡累積消費享回贈高達MOP1,000！</div>
                     <div class="offer-desc">於金悅餐飲集團旗下餐飲刷卡累積消費享回贈高達MOP1,000！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upSA202509" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=epaysunsco2026" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/epaysunsco2026.jpg" class="offer-image" alt="【工銀銀聯雙幣信用卡】馬年豐衣足食! 專享澳門W酒店津津自助餐買一送一優惠！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀銀聯雙幣信用卡】馬年豐衣足食! 專享澳門W酒店津津自助餐買一送一優惠！</div>
                     <div class="offer-desc">馬年豐衣足食! 專享澳門W酒店津津自助餐買一送一優惠！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=GMPOINT2024" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=HUILAUSHAN2403" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/HUILAUSHAN2403.jpg" class="offer-image" alt="【工銀Visa卡】指定電子支付外遊消費賞回贈高達MOP880！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀Visa卡】指定電子支付外遊消費賞回贈高達MOP880！</div>
                     <div class="offer-desc">指定電子支付外遊消費賞回贈高達MOP880！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=visaoverseas2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCCL2025" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/ICBCCL2025.jpg" class="offer-image" alt="【工銀Visa卡】於指定線上旅遊平台消費享現金回贈高達MOP880！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀Visa卡】於指定線上旅遊平台消費享現金回贈高達MOP880！</div>
                     <div class="offer-desc">於指定線上旅遊平台消費享現金回贈高達MOP880！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCEC2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCEC2026" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/ICBCEC2026.jpg" class="offer-image" alt="【工銀e支付】CHILL班馬賀歲市集專享掃碼領紅包！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀e支付】CHILL班馬賀歲市集專享掃碼領紅包！</div>
                     <div class="offer-desc">CHILL班馬賀歲市集專享掃碼領紅包！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=2026NY0129" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=visaoverseas2026" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/visaoverseas2026.jpg" class="offer-image" alt="【工銀銀聯雙幣信用卡】尊享澳門美高梅「寶雅座」法式經典早午餐買一送一！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀銀聯雙幣信用卡】尊享澳門美高梅「寶雅座」法式經典早午餐買一送一！</div>
                     <div class="offer-desc">尊享澳門美高梅「寶雅座」法式經典早午餐買一送一！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=2026chillcny" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upguangzhou202511" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/upguangzhou202511.jpg" class="offer-image" alt="【工銀信用卡】MOP88尊享30分鐘Tennis One網球體驗！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【工銀信用卡】MOP88尊享30分鐘Tennis One網球體驗！</div>
                     <div class="offer-desc">MOP88尊享30分鐘Tennis One網球體驗！</div>
                     <div class="offer-period">📅 最新優惠</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upcardlocal2025" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
+        </div></div></div><div class="bank-section" id="bnu"><div class="bank-header"><div class="bank-name">🏦 大西洋銀行 (BNU)</div><a href="https://www.bnu.com.mo/zh-hant/bnu-life-offers" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/bnu-trip.com" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/WhatsOn-Trip.com-Winter.jpg" class="offer-image" alt="Trip.com" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">Trip.com</div>
+                    <div class="offer-desc">酒店94折及機票高達 $200立減。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
+                </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀卡】“馬”上有禮，工銀卡陪您喜迎好年！</div>
-                    <div class="offer-desc">“馬”上有禮，工銀卡陪您喜迎好年！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/artyzen_grand_lapa" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/spaaaa.png" class="offer-image" alt="水療中心 - 澳門雅辰酒店" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">水療中心 - 澳門雅辰酒店</div>
+                    <div class="offer-desc">所有水療護理85折優惠。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=limitadjustment" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀澳門銀河信用卡】再度登場! 尊享星際酒店丹桂軒自助海鮮火鍋買三送一優惠！</div>
-                    <div class="offer-desc">再度登場! 尊享星際酒店丹桂軒自助海鮮火鍋買三送一優惠！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/grand-coloane-resorts" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Grand%20Coloane%20Resort%20-%20Exterior%20-%20Evening.jpg" class="offer-image" alt="鷺環海天度假酒店" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">鷺環海天度假酒店</div>
+                    <div class="offer-desc">85折餐飲優惠。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=transitQRC23" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀Visa卡或工銀萬事達卡】尊享澳門環亞優逸庭星級體驗！</div>
-                    <div class="offer-desc">尊享澳門環亞優逸庭星級體驗！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/pages/futago_yakiniku_2026" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400%20futago.png" class="offer-image" alt="大阪燒肉" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大阪燒肉</div>
+                    <div class="offer-desc">豁免服務費，高端卡戶更享贈飲。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upapple202512" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀信用卡】客戶專享英皇戲院（澳門葡京人）貴賓影院半價優惠！</div>
-                    <div class="offer-desc">客戶專享英皇戲院（澳門葡京人）貴賓影院半價優惠！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/beauty_cosmetic_personal%20care" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Picture1.png" class="offer-image" alt="德利醫療中心(Dali Clinic)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">德利醫療中心(Dali Clinic)</div>
+                    <div class="offer-desc">高達75折優惠。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upAW202411" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀萬事達卡】勁抽驚喜彩蛋，簽賬即獲抽獎機會贏HKD388,888簽賬額！</div>
-                    <div class="offer-desc">勁抽驚喜彩蛋，簽賬即獲抽獎機會贏HKD388,888簽賬額！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/pages/BNU_visa_card_offers" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400.png" class="offer-image" alt="大西洋銀行Visa信用卡：衣食住行，精彩隨行！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大西洋銀行Visa信用卡：衣食住行，精彩隨行！</div>
+                    <div class="offer-desc">享多種優惠。</div>
+                    <div class="offer-period">📅 至: 2026-06-29</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCHKTVMALLJ2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀信用卡】專享HKTVmall限時優惠禮遇！</div>
-                    <div class="offer-desc">專享HKTVmall限時優惠禮遇！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/BNU_NYH_Spring_Rewards_Campaign" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/C42.18%20What's%20on%20square.jpg" class="offer-image" alt="大西洋銀行 x 新八佰伴 春日消費大獎賞" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大西洋銀行 x 新八佰伴 春日消費大獎賞</div>
+                    <div class="offer-desc">可享高達 MOP168 新八佰伴電子現金券。</div>
+                    <div class="offer-period">📅 至: 2026-04-29</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ctmcard202509" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀Visa卡或工銀萬事達卡】尊享冬季外遊賞高達MOP380！</div>
-                    <div class="offer-desc">尊享冬季外遊賞高達MOP380！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bnu.com.mo/zh-hant/pages/Step%20Forward%20Physiotherapy%20Centre" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400_stepforward-01.png" class="offer-image" alt="陽明物理治療中心" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">陽明物理治療中心</div>
+                    <div class="offer-desc">優惠高達88折。</div>
+                    <div class="offer-period">📅 至: 2026-12-30</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCJYX2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
+        </div></div></div><div class="bank-section" id="bcm"><div class="bank-header"><div class="bank-name">🏦 BCM澳門商業銀行</div><a href="https://www.bcm.com.mo/tc/index.php" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=343" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_20251117221237.jpg" class="offer-image" alt="美國證券買賣服務" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美國證券買賣服務</div>
+                    <div class="offer-desc">推廣期內首月$0佣金，助您輕鬆致勝千里之外!</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀銀聯雙幣信用卡】於App Store 中國澳門地區支付滿額享立減優惠！</div>
-                    <div class="offer-desc">於App Store 中國澳門地區支付滿額享立減優惠！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=351" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_20260311115203.jpg" class="offer-image" alt="信用卡 - 積分禮遇 限時驚喜" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">信用卡 - 積分禮遇 限時驚喜</div>
+                    <div class="offer-desc">憑指定信用卡積分即可換取熱選旅遊裝備!</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=icbctennisone2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀銀聯雙幣信用卡】尊享廣州專屬禮遇！</div>
-                    <div class="offer-desc">尊享廣州專屬禮遇！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=271" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_202404291714363544.jpg" class="offer-image" alt="美元高息定存賞" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美元高息定存賞</div>
+                    <div class="offer-desc">尊享美元定期存款利率高達3.90%!</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upRCode2026" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀銀聯雙幣信用卡】尊享cdf購物禮遇及現金回贈高達MOP268！</div>
-                    <div class="offer-desc">尊享cdf購物禮遇及現金回贈高達MOP268！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=237" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_202306141686706844.jpg" class="offer-image" alt="港幣高息定存賞" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">港幣高息定存賞</div>
+                    <div class="offer-desc">全新創富理財客戶存入新資金開立定期存款即享特優年利率3%！</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=ICBCCL2025" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【工銀銀聯雙幣信用卡】尊享本地簽帳奬賞高達MOP388！</div>
-                    <div class="offer-desc">尊享本地簽帳奬賞高達MOP388！</div>
-                    <div class="offer-period">📅 最新優惠</div>
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=144" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_20250604163107.jpg" class="offer-image" alt="信用卡 - 迎新禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">信用卡 - 迎新禮遇</div>
+                    <div class="offer-desc">立即申請信用卡享豐富迎新禮遇！</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=CPC2501" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 滙豐澳門</div>
+            </a>
+        </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=265" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_20250219105332.jpg" class="offer-image" alt="BCM私人貸款服務 - 靈活貸款 保障隨行" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">BCM私人貸款服務 - 靈活貸款 保障隨行</div>
+                    <div class="offer-desc">提供靈活的私人貸款服務，讓您資金周轉更輕鬆。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.bcm.com.mo/tc/campaign.php?p_id=215" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.bcm.com.mo/admin/upload/1tc_202404291714363544.jpg" class="offer-image" alt="外幣高息定存賞" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">外幣高息定存賞</div>
+                    <div class="offer-desc">不論新舊資金敘做外幣定期存款，可享超靚息優惠!</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div></div></div><div class="bank-section" id="hsbc"><div class="bank-header"><div class="bank-name">🏦 滙豐澳門</div><a href="https://www.hsbc.com.mo/zh-mo/offers/" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/16-9/10712-closeup-of-a-coins-the-jar-with-plants-growing-up-889X500.jpg" class="offer-image" alt="澳門元及港元儲蓄優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">澳門元及港元儲蓄優惠</div>
                     <div class="offer-desc">儲蓄同時賺取額外獎賞。</div>
-                    <div class="offer-period">📅 受推廣條例及細則約束。</div>
+                    <div class="offer-period">📅 受推廣條例及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/16-9/10712-closeup-of-a-coins-the-jar-with-plants-growing-up-889X500.jpg" class="offer-image" alt="定期存款優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">定期存款優惠</div>
                     <div class="offer-desc">以新資金開立定期存款尊享優惠年利率。</div>
-                    <div class="offer-period">📅 受條款及細則約束。</div>
+                    <div class="offer-period">📅 受條款及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/foreign-currency/tile-16-9/8990-h238184-pws-paraglider-899x500.png" class="offer-image" alt="外幣兌換及定期存款優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">外幣兌換及定期存款優惠</div>
                     <div class="offer-desc">兌換指定外幣並同時開立該貨幣之定期存款，可享特惠定存年利率。</div>
                     <div class="offer-period">📅 受條款與細則約束。貨幣兌換涉及風險。</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/credit-cards/offers/year-round-offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/sg/images/16-9/shopping-496085831.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg" class="offer-image" alt="滙豐信用卡全年優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">滙豐信用卡全年優惠</div>
                     <div class="offer-desc">尊享餐飲、購物、旅遊以及更多尊尚折扣優惠。</div>
-                    <div class="offer-period">📅 </div>
+                    <div class="offer-period">📅 全年有效</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/credit-cards/16-9/9961-woman-on-the-beach-and-boat-899x500.jpg" class="offer-image" alt="滙豐銀聯信用卡海外消費優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">滙豐銀聯信用卡海外消費優惠</div>
                     <div class="offer-desc">憑滙豐銀聯信用卡於海外熱門商戶簽賬尊享禮遇。</div>
-                    <div class="offer-period">📅 </div>
+                    <div class="offer-period">📅 受條款及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/banking/business-man-and-woman-at-the-airport-pwsimg-dcm-49661.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg" class="offer-image" alt="旅遊萬全保" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">旅遊萬全保</div>
                     <div class="offer-desc">申請旅遊萬全保可享高達8折優惠。</div>
-                    <div class="offer-period">📅 受條款及細則約束。</div>
+                    <div class="offer-period">📅 受條款及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/insurance/tile-16-9/friends-gathering-pwsimg-5133.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg" class="offer-image" alt="完成財富分析，專享澳門幣200元現金券" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">完成財富分析，專享澳門幣200元現金券</div>
                     <div class="offer-desc">預約會面並完成財富分析，即可獲得澳門幣200元購物現金券。</div>
-                    <div class="offer-period">📅 受條款及細則約束。</div>
+                    <div class="offer-period">📅 受條款及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.hsbc.com.mo/zh-mo/offers/" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/insurance/tile-16-9/family-present-pwsimg-2489.jpeg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg" class="offer-image" alt="客戶推薦推廣活動" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">客戶推薦推廣活動</div>
                     <div class="offer-desc">登記成為推薦人，成功推薦可享價值澳門幣400元的金樹禮品。受薦人亦可享合資格醫療保險計劃高達25%首年保費折扣優惠。</div>
-                    <div class="offer-period">📅 受條款及細則約束。</div>
+                    <div class="offer-period">📅 受條款及細則約束</div>
                 </div>
-                <a href="https://www.hsbc.com.mo/zh-mo/offers/" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 澳門大豐銀行</div>
+            </a>
+        </div></div></div><div class="bank-section" id="ocbc"><div class="bank-header"><div class="bank-name">🏦 華僑銀行澳門</div><a href="https://www.ocbc.com.mo/personal-banking/zh/cards/latest-offer.html" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡 x 特選客戶尊享高達MOP300簽賬額獎賞</div>
-                    <div class="offer-desc">大豐信用卡特選客戶可享高達MOP300的簽賬額獎賞，回饋您的消費。</div>
-                    <div class="offer-period">📅 2026年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260302_1.pdf" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡 x 全年超過450間港澳商戶優惠</div>
-                    <div class="offer-desc">憑大豐信用卡，全年可在港澳超過450間商戶享受獨家優惠，涵蓋多種消費類型。</div>
-                    <div class="offer-period">📅 全年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260302_2.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐銀聯雙幣信用卡跨境簽賬高達MOP1500簽賬額回贈 + 大豐信用卡 x 長榮航空機票低至8折</div>
-                    <div class="offer-desc">使用大豐銀聯雙幣信用卡進行跨境簽賬，最高可獲MOP1500簽賬額回贈，同時享有長榮航空機票低至8折優惠。</div>
-                    <div class="offer-period">📅 2026年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_1.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡 x 豐澤簽賬回贈最高MOP180</div>
-                    <div class="offer-desc">在大豐信用卡指定商戶豐澤簽賬消費，最高可獲得MOP180的簽賬回贈。</div>
-                    <div class="offer-period">📅 2026年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_2.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡 x 空中饗宴訂購套餐高達85折優惠 + Trip.com高達94折優惠</div>
-                    <div class="offer-desc">憑大豐信用卡預訂空中饗宴套餐可享高達85折優惠，並在Trip.com預訂可享高達94折優惠。</div>
-                    <div class="offer-period">📅 2026年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_3.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐銀聯信用卡 x 內地各城市臻選優惠</div>
-                    <div class="offer-desc">使用大豐銀聯信用卡在中國內地各城市消費，可享多項精選優惠。</div>
-                    <div class="offer-period">📅 2026年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_4.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡 - 尊享澳門喜粵8號85折禮遇！</div>
-                    <div class="offer-desc">憑大豐信用卡在澳門喜粵8號用餐，可尊享85折的特別禮遇。</div>
-                    <div class="offer-period">📅 2025年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2025/Merchant%20Offers/MBPM-250605_4.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡碼上支付通行全球享高達5%現金回贈</div>
-                    <div class="offer-desc">使用大豐信用卡進行碼上支付，無論身在何處，均可享高達5%的現金回贈。</div>
-                    <div class="offer-period">📅 2023年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2023/Merchant%20Offers/MBPM-231012_2.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">大豐信用卡綁定澳門通卡、MPay、雲閃付、南光通賺取信用卡優惠</div>
-                    <div class="offer-desc">將大豐信用卡綁定至澳門通卡、MPay、雲閃付或南光通，即可賺取更多信用卡優惠。</div>
-                    <div class="offer-period">📅 2023年</div>
-                </div>
-                <a href="https://www.boci.com.hk/macau/chi/promotion/2023/Merchant%20Offers/MBPM-230721_1.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 澳門立橋銀行</div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">網頁無法顯示</div>
-                    <div class="offer-desc">由於網頁被阻擋，無法獲取澳門立橋銀行的優惠資訊。</div>
-                    <div class="offer-period">📅 N/A</div>
-                </div>
-                <a href="https://www.wlbank.com.mo/promotion.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 華僑銀行澳門</div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">澳卡北「賞」</div>
-                    <div class="offer-desc">於中國內地累計零售簽賬滿人民幣2,000或以上，可獲$50現金回贈！</div>
-                    <div class="offer-period">📅 2026年1月12日至12月31日</div>
-                </div>
-                <a href="https://www.ocbc.com.mo/personal-banking/zh/index.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div>
-        <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.ocbc.com.mo/personal-banking/zh/index.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.ocbc.com.mo/personal-banking/zh/cards/yao_images/travel.jpg" class="offer-image" alt="旅遊產品簽賬多重賞" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">旅遊產品簽賬多重賞</div>
                     <div class="offer-desc">預訂指定旅遊產品累計消費滿$6,800，享5倍積分或2.5%現金回贈、免費旅遊保險及特優簽賬單分期手續費！4 月12 日前可額外獲$50回贈。</div>
                     <div class="offer-period">📅 2026年3月1 日- 2026年5月31日</div>
                 </div>
-                <a href="https://www.ocbc.com.mo/personal-banking/zh/index.html" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div><div class="bank-section"><div class="bank-name">🏦 銀聯國際</div>
+            </a>
+        </div></div></div><div class="bank-section" id="boci"><div class="bank-header"><div class="bank-name">🏦 澳門大豐銀行</div><a href="https://www.boci.com.hk/macau/chi/promotion/boci_prom_spec.htm" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260302_1.pdf" target="_blank" class="card-link">
+                <div class="card-img-wrap"><div class="offer-image-placeholder">🏦</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡 x 特選客戶尊享高達MOP300簽賬額獎賞</div>
+                    <div class="offer-desc">大豐信用卡 x 特選客戶尊享高達MOP300簽賬額獎賞</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260302_2.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260302_2.jpg" class="offer-image" alt="大豐信用卡 x 全年超過450間港澳商戶優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡 x 全年超過450間港澳商戶優惠</div>
+                    <div class="offer-desc">大豐信用卡 x 全年超過450間港澳商戶優惠</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_1.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_1.jpg" class="offer-image" alt="大豐銀聯雙幣信用卡跨境簽賬高達MOP1500簽賬額回贈 + 大豐信用卡 x 長榮航空機票低至8折" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐銀聯雙幣信用卡跨境簽賬高達MOP1500簽賬額回贈 + 大豐信用卡 x 長榮航空機票低至8折</div>
+                    <div class="offer-desc">大豐銀聯雙幣信用卡跨境簽賬高達MOP1500簽賬額回贈 + 大豐信用卡 x 長榮航空機票低至8折</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_2.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_2.jpg" class="offer-image" alt="大豐信用卡 x 豐澤簽賬回贈最高MOP180" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡 x 豐澤簽賬回贈最高MOP180</div>
+                    <div class="offer-desc">大豐信用卡 x 豐澤簽賬回贈最高MOP180</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_3.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_3.jpg" class="offer-image" alt="大豐信用卡 x 空中饗宴訂購套餐高達85折優惠 + Trip.com高達94折優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡 x 空中饗宴訂購套餐高達85折優惠 + Trip.com高達94折優惠</div>
+                    <div class="offer-desc">大豐信用卡 x 空中饗宴訂購套餐高達85折優惠 + Trip.com高達94折優惠</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_4.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2026/Merchant%20Offers/MBPM-260128_4.jpg" class="offer-image" alt="大豐銀聯信用卡 x 內地各城市臻選優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐銀聯信用卡 x 內地各城市臻選優惠</div>
+                    <div class="offer-desc">大豐銀聯信用卡 x 內地各城市臻選優惠</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2025/Merchant%20Offers/MBPM-250605_4.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2025/Merchant%20Offers/MBPM-250605_4.jpg" class="offer-image" alt="大豐信用卡 - 尊享澳門喜粵8號85折禮遇！" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡 - 尊享澳門喜粵8號85折禮遇！</div>
+                    <div class="offer-desc">大豐信用卡 - 尊享澳門喜粵8號85折禮遇！</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2023/Merchant%20Offers/MBPM-231012_2.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2023/Merchant%20Offers/MBPM-231012_2.jpg" class="offer-image" alt="大豐信用卡碼上支付通行全球享高達5%現金回贈" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡碼上支付通行全球享高達5%現金回贈</div>
+                    <div class="offer-desc">大豐信用卡碼上支付通行全球享高達5%現金回贈</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.boci.com.hk/macau/chi/promotion/2021/Merchant%20Offers/MBPM-210127_2.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.boci.com.hk/macau/chi/promotion/2021/Merchant%20Offers/MBPM-210127_2.jpg" class="offer-image" alt="大豐信用卡「簽賬得FUN禮品集」" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">大豐信用卡「簽賬得FUN禮品集」</div>
+                    <div class="offer-desc">大豐信用卡「簽賬得FUN禮品集」</div>
+                    <div class="offer-period">📅 最新優惠</div>
+                </div>
+            </a>
+        </div></div></div><div class="bank-section" id="upi"><div class="bank-header"><div class="bank-name">🏦 銀聯國際</div><a href="https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant?language=cn" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10060081&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260323938136.jpg" class="offer-image" alt="【泰國】六福珠寶 銀聯卡消費最高立減5000泰銖" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【泰國】六福珠寶 銀聯卡消費最高立減5000泰銖</div>
+                    <div class="offer-desc">在泰國六福珠寶使用銀聯卡消費，最高可享立減5000泰銖優惠。</div>
+                    <div class="offer-period">📅 未知</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10060021&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318772842.jpg" class="offer-image" alt="【韓國】GS25便利店優惠活動" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
                     <div class="offer-title">【韓國】GS25便利店優惠活動</div>
-                    <div class="offer-desc">在韓國GS25便利店使用銀聯卡消費，可享專屬優惠。</div>
-                    <div class="offer-period">📅 </div>
+                    <div class="offer-desc">在韓國GS25便利店使用銀聯卡消費，可享特定優惠活動。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060342&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】度小月 - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣度小月餐廳使用銀聯卡消費，可享專屬餐飲優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10050021&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318287378.jpg" class="offer-image" alt="【台灣地區】度小月 - 銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】度小月 - 銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣度小月餐廳使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】摩曼頓運動用品 - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣摩曼頓運動用品店使用銀聯卡消費，可享專屬折扣。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10040121&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318687802.jpg" class="offer-image" alt="【台灣地區】摩曼頓運動用品 - 銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】摩曼頓運動用品 - 銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣摩曼頓運動用品店使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】馥蘭朵墾丁 - 銀聯卡專屬餐飲優惠</div>
-                    <div class="offer-desc">在臺灣馥蘭朵墾丁使用銀聯卡消費，可享專屬餐飲禮遇。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10040031&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/30000000000001.jpg" class="offer-image" alt="【台灣地區】馥蘭朵墾丁 - 銀聯卡專屬住房優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】馥蘭朵墾丁 - 銀聯卡專屬住房優惠</div>
+                    <div class="offer-desc">在台灣馥蘭朵墾丁住宿使用銀聯卡，可享專屬住房優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】馥蘭朵墾丁 - 銀聯卡專屬住房優惠</div>
-                    <div class="offer-desc">在臺灣馥蘭朵墾丁使用銀聯卡預訂住宿，可享專屬住房折扣。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10020151&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/30000000000001.jpg" class="offer-image" alt="【台灣地區】吳寶春麥方店 - 銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】吳寶春麥方店 - 銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣吳寶春麥方店使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】吳寶春麥方店 - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣吳寶春麥方店使用銀聯卡消費，可享專屬優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10020171&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318964818.png" class="offer-image" alt="【台灣地區】瑞醫SWISSPA - 銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】瑞醫SWISSPA - 銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣瑞醫SWISSPA使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】瑞醫SWISSPA - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣瑞醫SWISSPA使用銀聯卡消費，可享專屬療程優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cardholderServ/globalCard/cn?countryId=10020111&type=1" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318377222.jpg" class="offer-image" alt="【台灣地區】瀧厚炙燒熟成牛排-銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】瀧厚炙燒熟成牛排-銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣瀧厚炙燒熟成牛排使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】瀧厚炙燒熟成牛排-銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣瀧厚炙燒熟成牛排使用銀聯卡消費，可享專屬餐飲優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.unionpayintl.com/cn/servicesProducts/index.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://marketing.unionpayintl.com/momisfile/image/20260318501482.jpg" class="offer-image" alt="【台灣地區】養鍋-銀聯卡專屬優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">【台灣地區】養鍋-銀聯卡專屬優惠</div>
+                    <div class="offer-desc">在台灣養鍋使用銀聯卡，可享專屬優惠。</div>
+                    <div class="offer-period">📅 未知</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
+        </div></div></div><div class="bank-section" id="visa"><div class="bank-header"><div class="bank-name">🏦 Visa香港</div><a href="https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/visa-platinum.html#3" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/accor-hotels/171926?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com.hk/content/dam/VCOM/regional/ap/images/team-working-together-400x225.jpeg" class="offer-image" alt="Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。</div>
+                    <div class="offer-desc">Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】養鍋 - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣養鍋使用銀聯卡消費，可享專屬餐飲優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/agoda/174464?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com/images/merchantoffers/2022-02/1645168280523.logo-agoda-400x300.jpg" class="offer-image" alt="透過 Agoda 預訂酒店，享高達7%折扣優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">透過 Agoda 預訂酒店，享高達7%折扣優惠</div>
+                    <div class="offer-desc">使用 Visa 卡透過 Agoda 預訂酒店，可享高達 7% 的折扣優惠。</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
+            </a>
         </div>
         <div class="offer-card">
-            <div class="offer-image-placeholder" style="">暫無圖片</div>
-            <div class="offer-content">
-                <div>
-                    <div class="offer-title">【臺灣地區】如邑堂餅家 - 銀聯卡專屬優惠</div>
-                    <div class="offer-desc">在臺灣如邑堂餅家使用銀聯卡消費，可享專屬糕點優惠。</div>
-                    <div class="offer-period">📅 </div>
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/avalon-waterways-travel-resources/169360?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com/images/merchantoffers/2025-06/1749278056920.logo-AvalonWaterways-400x300.png" class="offer-image" alt="預訂任何 Avalon Waterways 河船行程可享郵輪票價 95 折優惠。" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">預訂任何 Avalon Waterways 河船行程可享郵輪票價 95 折優惠。</div>
+                    <div class="offer-desc">預訂任何 Avalon Waterways 河船行程，並使用 Visa 卡支付，即可享郵輪票價 95 折優惠。</div>
+                    <div class="offer-period">📅 不適用</div>
                 </div>
-                <a href="https://www.unionpayintl.com/cardholderServ/globalCard/hk?countryId=10060382&type=1" class="btn" target="_blank">查看詳情 →</a>
-            </div>
-        </div></div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/axa/174678?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com/images/merchantoffers/2024-09/1725512620025.axa-logo-400x300.jpg" class="offer-image" alt="成功投保一份指定合資格保單，並以Visa卡線上支付首年年度化保費達 HK$10,000 或以上，即可享 HK$100 電子購物禮券一張" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">成功投保一份指定合資格保單，並以Visa卡線上支付首年年度化保費達 HK$10,000 或以上，即可享 HK$100 電子購物禮券一張</div>
+                    <div class="offer-desc">成功投保 AXA 指定合資格保單，並以 Visa 卡線上支付首年年度化保費達 HK$10,000 或以上，即可獲贈 HK$100 電子購物禮券一張。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/banyan-group/172676?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com/images/merchantoffers/2025-11/1763013908860.Banyan_Group_s_logo_-_400x300.jpg" class="offer-image" alt="尊享全球參與酒店最少 2 晚住宿，即可解鎖最佳可訂房價 8 折優惠，並享有專屬禮遇。" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">尊享全球參與酒店最少 2 晚住宿，即可解鎖最佳可訂房價 8 折優惠，並享有專屬禮遇。</div>
+                    <div class="offer-desc">預訂 Banyan Group 全球參與酒店最少 2 晚住宿，即可享最佳可訂房價 8 折優惠及專屬禮遇。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.visa.com.hk/en_hk/visa-offers-and-perks/classpass/153497?locale=zh_HK" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.visa.com/images/merchantoffers/2025-07/1753085652806.logo-classpass-400x300.jpg" class="offer-image" alt="ClassPass 訂閱享額外 10% 積分" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">ClassPass 訂閱享額外 10% 積分</div>
+                    <div class="offer-desc">使用 Visa 卡訂閱 ClassPass，可享額外 10% 積分。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div></div></div><div class="bank-section" id="mastercard"><div class="bank-header"><div class="bank-name">🏦 Mastercard Priceless</div><a href="https://specials.priceless.com/zh-hk/homePage" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Travel?Cid=201811010001&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/ps_dist/img/Travel_home.1b25bf8.jpg" class="offer-image" alt="旅遊禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">旅遊禮遇</div>
+                    <div class="offer-desc">Mastercard 為您帶來 20 項精選旅遊禮遇，讓您的旅程更加精彩。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Culinary?Cid=201811010002&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/mastercard/images/505c757b-39dd-4913-a79a-bc64bc5e2c541541089288514.jpg" class="offer-image" alt="美饌禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美饌禮遇</div>
+                    <div class="offer-desc">Mastercard 呈獻 8 項獨家美饌禮遇，讓您盡享各地美食體驗。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Sports?Cid=201811010004&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/mastercard/images/f034e96b-0a2c-470d-9b1c-2f68a43e4a1f1541089288514.jpg" class="offer-image" alt="運動禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">運動禮遇</div>
+                    <div class="offer-desc">Mastercard 提供 3 項運動相關禮遇，助您保持活力，享受健康生活。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Shopping?Cid=201811010005&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/ps_dist/img/Shopping_home.56c40b7.jpg" class="offer-image" alt="購物禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">購物禮遇</div>
+                    <div class="offer-desc">Mastercard 帶來 11 項購物優惠，讓您盡情選購心儀商品。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Entertainment?Cid=201811010006&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/ps_dist/img/Entertainment_home.afa9ed7.jpg" class="offer-image" alt="優閒娛樂禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">優閒娛樂禮遇</div>
+                    <div class="offer-desc">Mastercard 獻上 1 項優閒娛樂禮遇，讓您放鬆身心，享受美好時光。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://specials.priceless.com/zh-hk/categories/Health_and_Wellness?Cid=201811010007&issuerId=&productId=" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://specials.priceless.com/ps_dist/img/health&wellness_home.fd5e587.png" class="offer-image" alt="身心健康禮遇" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">身心健康禮遇</div>
+                    <div class="offer-desc">Mastercard 推出 5 項身心健康禮遇，關愛您的健康與福祉。</div>
+                    <div class="offer-period">📅 請點擊連結查看詳情</div>
+                </div>
+            </a>
+        </div></div></div><div class="bank-section" id="amex"><div class="bank-header"><div class="bank-name">🏦 美國運通香港</div><a href="https://www.americanexpress.com/zh-hk/" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/zh-hk/benefits/offers/?intlink=hk-en-hp-mt2-cta-all-latestoffer-022022#mainContent" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" class="offer-image" alt="美國運通 GOURMET CLUB 餐飲優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美國運通 GOURMET CLUB 餐飲優惠</div>
+                    <div class="offer-desc">探索美國運通 GOURMET CLUB 帶來的精選餐飲禮遇，讓您的味蕾盡享非凡體驗。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/zh-hk/benefits/offers/?intlink=hk-en-hp-mt2-cta-all-latestoffer-022022#mainContent" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" class="offer-image" alt="美國運通白金卡優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美國運通白金卡優惠</div>
+                    <div class="offer-desc">專為美國運通白金卡會員設計的獨家優惠，涵蓋旅遊、餐飲及生活品味。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/zh-hk/benefits/offers/?intlink=hk-en-hp-mt2-cta-all-latestoffer-022022#mainContent" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" class="offer-image" alt="Travel with Amex 旅遊優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">Travel with Amex 旅遊優惠</div>
+                    <div class="offer-desc">使用美國運通卡預訂酒店、機票，享受專屬旅遊禮遇及折扣。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/zh-hk/benefits/offers/?intlink=hk-en-hp-mt2-cta-all-latestoffer-022022#mainContent" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" class="offer-image" alt="美國運通Explorer® 信用卡優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">美國運通Explorer® 信用卡優惠</div>
+                    <div class="offer-desc">美國運通Explorer® 信用卡持卡人專享的旅遊及日常消費優惠，助您探索世界。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/zh-hk/benefits/offers/?intlink=hk-en-hp-mt2-cta-all-latestoffer-022022#mainContent" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" class="offer-image" alt="所有本地優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">所有本地優惠</div>
+                    <div class="offer-desc">查看所有適用於香港地區的美國運通卡優惠，涵蓋多種消費類別。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://www.americanexpress.com/hk/ch/benefits/service-security/ways-to-pay/interest-free-installment-program.html?inav=hk_ch_menu_myacct_installment_program" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg" class="offer-image" alt="免息分期付款計劃" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">免息分期付款計劃</div>
+                    <div class="offer-desc">美國運通提供免息分期付款計劃，讓您更靈活地管理大額消費。</div>
+                    <div class="offer-period">📅 不適用</div>
+                </div>
+            </a>
+        </div></div></div><div class="bank-section" id="asiamiles"><div class="bank-header"><div class="bank-name">🏦 亞洲萬里通</div><a href="https://www.cathaypacific.com/cx/zh_HK/membership/asia-miles.html" class="more-btn" target="_blank">更多優惠 →</a></div><div class="offers-grid">
+        <div class="offer-card">
+            <a href="https://shop.asiamiles.com/zh/monthly-picks.html" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.cathaypacific.com/content/dam/focal-point/cx/shopping/hk/2603_milesback-monthly-picks/Milesback-mar-900x600-plain.renditionimage.450.300.jpg" class="offer-image" alt="春日煥新造型 盡在里賞匯" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">春日煥新造型 盡在里賞匯</div>
+                    <div class="offer-desc">即日起至2026年3月31日，經里賞匯選購美容或時尚單品，可享高達HKD10 = 9.5里數。</div>
+                    <div class="offer-period">📅 即日起至2026年3月31日</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://c44a7.app.link/2026MAR-CRISTAL-ROOM-ZH" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.cathaypacific.com/content/dam/focal-point/cx/dining/hk/offers/202603_leading-nations/202603_Cristal-Room_2400x1600.renditionimage.450.300.jpg" class="offer-image" alt="Cristal Room by Anne-Sophie Pic 會員專屬嚐味菜單" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">Cristal Room by Anne-Sophie Pic 會員專屬嚐味菜單</div>
+                    <div class="offer-desc">即日起至3月31日，於「國泰-亞洲萬里通」應用程式登記，即可享會員專屬六道菜嚐味菜單及自動賺取高達HKD4 = 2里數。</div>
+                    <div class="offer-period">📅 即日起至3月31日</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://urldefense.com/v3/__http:/www.cathaypacificcarrental.com/special-offers/AU-bonusmiles?country=HK&lang=zt&utm_source=cathay&utm_medium=web&utm_campaign=CXWA26__;!!Hj__v3g!b26w9acA8Y8__mtEUDLv3RCfjPWbLTJjtcVZIC3evzBC7J8nCOekYHnUPcTVLOJyy0gwjigR7XnUQd9KXwaj8-F76yWsCto$" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.cathaypacific.com/content/dam/focal-point/cx/membership/asia-miles/chl_hertz_900x600.renditionimage.450.300.png" class="offer-image" alt="Hertz 助你發掘自駕樂趣" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">Hertz 助你發掘自駕樂趣</div>
+                    <div class="offer-desc">即日起至2026年4月26日，經指定網站預訂Hertz租車可享9折優惠，並賺取額外里數。</div>
+                    <div class="offer-period">📅 預訂日期：2026年3月26日至4月26日，取車日期：2026年3月26日至7月31日</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://c44a7.app.link/2026MAR-LA-RAMBLA-ZH" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.cathaypacific.com/content/dam/focal-point/cx/dining/hk/offers/202603_leading-nations/202603_La-Rambla_2400x1600.renditionimage.450.300.jpg" class="offer-image" alt="La Rambla 獨家9折優惠" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">La Rambla 獨家9折優惠</div>
+                    <div class="offer-desc">即日起至3月31日，於「國泰-亞洲萬里通」應用程式登記，即可於La Rambla尊享獨家9折優惠，並自動賺取高達HKD4 = 2里數。</div>
+                    <div class="offer-period">📅 即日起至3月31日</div>
+                </div>
+            </a>
+        </div>
+        <div class="offer-card">
+            <a href="https://c44a7.app.link/2026MAR-THE-MERCHANTS-ZH" target="_blank" class="card-link">
+                <div class="card-img-wrap"><img src="https://www.cathaypacific.com/content/dam/focal-point/cx/dining/hk/offers/202603_leading-nations/202603_The-Merchants_2400x1600.renditionimage.450.300.jpg" class="offer-image" alt="嘗申滙會員專屬嚐味菜單" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="offer-image-placeholder" style="display:none">暫無圖片</div></div>
+                <div class="card-body">
+                    <div class="offer-title">嘗申滙會員專屬嚐味菜單</div>
+                    <div class="offer-desc">即日起至3月31日，於「國泰-亞洲萬里通」應用程式登記，即可於嘗申滙以HKD680享用會員專屬嚐味菜單，並自動賺取高達HKD4 = 2里數。</div>
+                    <div class="offer-period">📅 即日起至3月31日</div>
+                </div>
+            </a>
+        </div></div></div>
         <div class="footer">
-            <p>© 2026 澳門信用卡優惠自動化報告</p>
+            <p>© 2026 <a href="https://www.smartcardmacao.com/" target="_blank">Smartcard Macao</a> — 澳門信用卡優惠自動化報告</p>
             <p>本報告由 AI 自動生成，詳情請以各銀行官網為準。</p>
         </div>
     </div>
