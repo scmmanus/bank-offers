@@ -271,6 +271,22 @@
     "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=351",
     "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260311115203.jpg"
   },
+  "341bc862e6d351bb8e26b5eab72165c0": {
+    "bank": "BCM澳門商業銀行",
+    "title": "美元高息定存賞",
+    "description": "尊享美元定期存款利率高達3.90%!",
+    "period": null,
+    "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=315",
+    "image_url": "https://www.bcm.com.mo/tc/images/banner.jpg"
+  },
+  "b09adad0656c6026f47e9bf38bb5cf42": {
+    "bank": "BCM澳門商業銀行",
+    "title": "信用卡 - 迎新禮遇",
+    "description": "立即申請信用卡享豐富迎新禮遇！",
+    "period": null,
+    "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=314",
+    "image_url": "https://www.bcm.com.mo/tc/images/banner.jpg"
+  },
   "75ebad87ef95ed4ebd58e3aaab9951b8": {
     "bank": "BCM澳門商業銀行",
     "title": "基金投資交易推廣",
@@ -290,8 +306,8 @@
   "74c1ba03fe7f7388cc34c4ce9a7f376b": {
     "bank": "華僑銀行澳門",
     "title": "旅遊產品簽賬多重賞",
-    "description": "預訂指定旅遊產品累計消費滿$6,800，享5倍積分或2.5%現金回贈、免費旅遊保險及特優簽賬單分期手續費！",
-    "period": "2026年3月1日- 2026年5月31日",
+    "description": "預訂指定旅遊產品累計消費滿$6,800，享5倍積分或2.5%現金回贈、免費旅遊保險及特優簽賬單分期手續費！4 月12 日前可額外獲$50回贈。",
+    "period": "2026年3月1 日- 2026年5月31日",
     "link_url": "https://www.ocbc.com.mo/personal-banking/zh/index.html",
     "image_url": "https://www.ocbc.com.mo/personal-banking/zh/cards/yao_images/travel.jpg"
   },
@@ -415,6 +431,14 @@
     "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026010809203347189/index.shtml",
     "image_url": ""
   },
+  "9e1acadb3947dca0c0acf80202a1e6cd": {
+    "bank": "LUSO澳門國際銀行",
+    "title": "【卡優惠】銀聯高端卡持卡人消費權益：香港迪士尼樂園 1 日門票",
+    "description": "【卡優惠】銀聯高端卡持卡人消費權益：香港迪士尼樂園 1 日門票",
+    "period": "最新優惠",
+    "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026022014501383919/index.shtml",
+    "image_url": ""
+  },
   "ca43b173c43b7adef6bfa63f4dd02b74": {
     "bank": "LUSO澳門國際銀行",
     "title": "【卡優惠】2026年簽賬獲贈環亞機場貴賓室服務權益",
@@ -429,14 +453,6 @@
     "description": "【卡優惠】銀聯信用卡中國大陸精選商戶消費優惠",
     "period": "最新優惠",
     "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2025081410540966221/index.shtml",
-    "image_url": ""
-  },
-  "9e1acadb3947dca0c0acf80202a1e6cd": {
-    "bank": "LUSO澳門國際銀行",
-    "title": "【卡優惠】銀聯高端卡持卡人消費權益：香港迪士尼樂園 1 日門票",
-    "description": "【卡優惠】銀聯高端卡持卡人消費權益：香港迪士尼樂園 1 日門票",
-    "period": "最新優惠",
-    "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026022014501383919/index.shtml",
     "image_url": ""
   },
   "0d41bba327f809cd85240ed07a583a50": {
@@ -509,7 +525,7 @@
     "description": "尊享全球參與酒店最少 2 晚住宿，即可解鎖最佳可訂房價 8 折優惠，並享有專屬禮遇。",
     "period": "不適用",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/banyan-group/172676?locale=zh_HK",
-    "image_url": "https://www.visa.com/images/merchantoffers/2025-11/1763013908860.Banyan_Group_s_logo_-_400x300.jpg"
+    "image_url": "https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
   },
   "f60ead343882e7ee99b1b51251d8ba48": {
     "bank": "Visa香港",
@@ -517,43 +533,43 @@
     "description": "使用您的 Visa 卡付款，即可賺取高達 7% 的 Booking.com 錢包積分。",
     "period": "不適用",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/bookingcom/177866?locale=zh_HK",
-    "image_url": "https://www.visa.com/images/merchantoffers/2015-12/1449203201844.bookingcom.jpg"
+    "image_url": "https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
   },
   "bc75decce1f403912433979cd6697d0b": {
     "bank": "美國運通香港",
     "title": "第50屆香港國際電影節（HKIFF50）",
-    "description": "預留坐位觀看花樣年華—電影音樂會，並在城市售票網售票處購買HKIFF50正價門票專享七折優惠。憑卡購買實體門票更可在香港noc專享食物或飲品限時原價九折優惠。",
-    "period": "不適用於指定日子或項目",
+    "description": "預留坐位觀看花樣年華—電影音樂會，並在城市售票網售票處購買HKIFF50正價門票專享七折優惠。憑合資格美國運通卡購買之 HKIFF50 實體門票正本，並以合資格卡簽賬，即可於香港 noc 專享食物或飲品限時原價九折優惠。",
+    "period": "不適用於指定日子或項目，門票先到先得",
     "link_url": "https://www.americanexpress.com/zh-hk/benefits/membership/experiences/#mainContent",
-    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
-  },
-  "a168139c9b9549040ace9552d2d545d3": {
-    "bank": "美國運通香港",
-    "title": "免息分期付款計劃",
-    "description": "美國運通提供免息分期付款計劃，讓您更靈活地管理大額消費。",
-    "period": "長期有效",
-    "link_url": "https://www.americanexpress.com/hk/ch/benefits/service-security/ways-to-pay/interest-free-installment-program.html?inav=hk_ch_menu_myacct_installment_program",
-    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
+    "image_url": "https://www.americanexpress.com/content/dam/amex/en-hk/benefits/amexexperienceshk/AMEX_Experiences_Logo.png"
   },
   "34156333b94b7e3d470491b546d98770": {
     "bank": "美國運通香港",
     "title": "預訂Fine Hotels + Resorts",
-    "description": "透過美國運通預訂Fine Hotels + Resorts，尊享一系列獨家禮遇及優惠。",
+    "description": "使用美國運通卡預訂全球精選豪華酒店，享受專屬禮遇和服務。",
     "period": "長期有效",
     "link_url": "https://hotel-booking.americanexpress.com/en-hk/fhr/welcome?inav=zh_hk_menu_travel_online_travel_fine_hotels_resorts",
-    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
+    "image_url": "https://www.americanexpress.com/content/dam/amex/en-hk/benefits/amexexperienceshk/AMEX_Experiences_Logo.png"
   },
-  "5605a8c5394ef3b830071c83e6403acf": {
+  "a36056247c22f36d782d4de5ecde498e": {
     "bank": "美國運通香港",
-    "title": "探索所有旅遊保險",
-    "description": "美國運通提供多種旅遊保險方案，為您的旅程提供全面保障。",
+    "title": "預訂The Hotel Collection",
+    "description": "透過美國運通預訂精選酒店，享受額外福利和優惠。",
     "period": "長期有效",
-    "link_url": "https://www.americanexpress.com/zh-hk/insurance/my-protection/travel/?inav=hk_ch_menu_insurance_travel_view_all_travel_insurance",
+    "link_url": "https://hotel-booking.americanexpress.com/en-hk/thc/welcome?inav=zh_hk_menu_travel_online_travel_the_hotel_collection",
+    "image_url": "https://www.americanexpress.com/content/dam/amex/en-hk/benefits/amexexperienceshk/AMEX_Experiences_Logo.png"
+  },
+  "a168139c9b9549040ace9552d2d545d3": {
+    "bank": "美國運通香港",
+    "title": "免息分期付款計劃",
+    "description": "美國運通卡會員可享免息分期付款計劃，靈活管理大額消費。",
+    "period": "長期有效",
+    "link_url": "https://www.americanexpress.com/hk/ch/benefits/service-security/ways-to-pay/interest-free-installment-program.html?inav=hk_ch_menu_myacct_installment_program",
     "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
   },
   "6e8e87b87b1c761ae2a5171bbaa40ad4": {
     "bank": "亞洲萬里通",
-    "title": "Brooks Brothers購物賺取里數",
+    "title": "Brooks Brothers 購物賺取里數",
     "description": "即日起至2026年5月19日，於Brooks Brothers單一消費滿HKD3,800，可賺取1,000里數。",
     "period": "即日起至2026年5月19日",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/brooks-brothers.html",
@@ -561,24 +577,24 @@
   },
   "019ecf543f3cef348350b4f7fc1fc649": {
     "bank": "亞洲萬里通",
-    "title": "機場購物里賞升級 BEAUTY&YOU",
-    "description": "綠卡會員消費滿HKD1,500可賺取HKD6 = 1里數；銀卡會員或以上任何消費可賺取HKD3 = 1里數。",
+    "title": "機場購物里賞升級 BEAUTY&YOU by The Shilla Duty Free",
+    "description": "綠卡會員消費滿HKD1,500可賺取HKD6 = 1里數；銀卡會員或以上憑任何消費即可賺取HKD3 = 1里數。",
     "period": "最新優惠",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/beauty-you.html",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
   },
   "7467192d340beb096f9fa5160ad0ca93": {
     "bank": "亞洲萬里通",
-    "title": "入手Samsung 產品限時尊享額外里數",
-    "description": "即日起至2026年6月30日，透過「連結里賞」使用已綁定的渣打國泰Mastercard®於香港三星專門店淨消費滿HKD 6,000，可賺取高達HKD6 = 3里數。",
+    "title": "入手Samsung產品限時尊享額外里數",
+    "description": "即日起至2026年6月30日，透過「連結里賞」使用已綁定的渣打國泰Mastercard®於香港三星專門店淨消費滿HKD6,000可賺取高達HKD6 = 3里數。",
     "period": "即日起至2026年6月30日",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/samsung.html",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
   },
   "558b42e7fa33af88180295bb455ad6bc": {
     "bank": "亞洲萬里通",
-    "title": "歡渡兒童節 精選品牌盡在里賞匯",
-    "description": "由即日起至2026年4月30日，經里賞匯選購本月精選嬰幼童用品，可享高達HKD10 = 9.5里數。",
+    "title": "歡渡兒童節 里賞匯精選品牌優惠",
+    "description": "即日起至2026年4月30日，經里賞匯選購本月精選嬰幼童用品，一鍵即享高達HKD10 = 9.5里數。",
     "period": "即日起至2026年4月30日",
     "link_url": "https://shop.asiamiles.com/zh/monthly-picks.html?utm_medium=INTERNAL&utm_source=OTHERS_SHOPILLARPAGE&utm_campaign=20260401-HK-MILESBACK-APR-MONTHLY-PICKS",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
@@ -586,7 +602,7 @@
   "1f89626e15e6741169f63a52a67a9726": {
     "bank": "亞洲萬里通",
     "title": "Flat Iron Steak 限時全日套餐",
-    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，可享HKD218限時全日套餐，並自動賺取高達HKD4 = 2里數。",
+    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，即可於Flat Iron Steak以HKD218享用限時全日套餐，並自動賺取高達HKD4 = 2里數。",
     "period": "即日起至4月30日",
     "link_url": "https://c44a7.app.link/20260401-HK-TASTY-BITE_ZH_FLAT-IRON",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
@@ -594,7 +610,7 @@
   "8b121193cade2efcf3dbd9a55f91ab79": {
     "bank": "亞洲萬里通",
     "title": "Picanhas’ 限時全日套餐",
-    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，可享HKD328限時全日套餐，並自動賺取高達HKD4 = 2里數。",
+    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，即可於Picanhas’以HKD328享用限時全日套餐，並自動賺取高達HKD4 = 2里數。",
     "period": "即日起至4月30日",
     "link_url": "https://c44a7.app.link/20260401-HK-TASTY-BITE_ZH_PICANHAS",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
@@ -602,7 +618,7 @@
   "5bf9325d0143dbc4bf8842be54e26716": {
     "bank": "亞洲萬里通",
     "title": "Powder Monkey 啤酒嚐味套餐八折優惠",
-    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，可享啤酒嚐味套餐八折優惠，並自動賺取高達HKD4 = 2里數。",
+    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，即可於Powder Monkey以八折優惠享用啤酒嚐味套餐，並自動賺取高達HKD4 = 2里數。",
     "period": "即日起至4月30日",
     "link_url": "https://c44a7.app.link/20260401-HK-TASTY-BITE_ZH_POWDER-MONKEY",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
@@ -610,7 +626,7 @@
   "a0f35a345ed96dae8e8455dbf9b15599": {
     "bank": "亞洲萬里通",
     "title": "The Lasagna Factory 免費肉丸",
-    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，點選滋味千層麵即送經典肉丸一份，並自動賺取高達HKD4 = 2里數。",
+    "description": "即日起至4月30日，於「國泰-亞洲萬里通」應用程式登記，即可於The Lasagna Factory點選滋味千層麵，即送經典肉丸一份，並自動賺取高達HKD4 = 2里數。",
     "period": "即日起至4月30日",
     "link_url": "https://c44a7.app.link/20260401-HK-TASTY-BITE_ZH_LASAGNA-FACTORY",
     "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
