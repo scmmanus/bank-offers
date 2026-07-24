@@ -47,22 +47,6 @@
     "link_url": "https://offers.bocmacau.com/cms/index",
     "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260624/6655021b1d834dd19ed263d3d4094127.jpg"
   },
-  "588b4fb19fce29ed8df852226c2d7ee2": {
-    "bank": "中國銀行 (澳門)",
-    "title": "片區商戶消費賞",
-    "description": "於活動指定商戶單筆實付金額達MOP50、MOP100或MOP300，即可分別享MOP10、MOP20或MOP50立減優惠。",
-    "period": "2026/06/17-2026/07/19",
-    "link_url": "https://offers.bocmacau.com/cms/index",
-    "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260617/c588837e0c73469691f38421132e6a11.jpg"
-  },
-  "3da803358a73ba17f9581e7ca6ccd43f": {
-    "bank": "中國銀行 (澳門)",
-    "title": "收付易（個人賬戶備案）現金分享大抽獎",
-    "description": "現金分享客戶獨家尊享",
-    "period": "2026/07/15-2026/07/22",
-    "link_url": "https://offers.bocmacau.com/cms/index",
-    "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260630/34dc8bd1bdb04edb82866805ce707dcb.jpg"
-  },
   "fb4752c75e9e467b0aa26970c9ca4b97": {
     "bank": "中國銀行 (澳門)",
     "title": "Chill級 Family童夢工作體驗嘉年華",
@@ -70,6 +54,22 @@
     "period": "2026/06/22-2026/08/23",
     "link_url": "https://offers.bocmacau.com/cms/index",
     "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260618/6c7f0a24be41434fbc0cfe382c07d6c3.JPG"
+  },
+  "1ae5dcef28864af32d14bc1bf0bf7216": {
+    "bank": "中國銀行 (澳門)",
+    "title": "2026關前薈｜樓聲魅影活動",
+    "description": "2026關前薈｜樓聲魅影活動",
+    "period": "2026/07/07-2026/09/06",
+    "link_url": "https://offers.bocmacau.com/cms/index",
+    "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260703/10b57dca54fe4a17a404acdd52cd8ec7.jpg"
+  },
+  "b4b31de031a7a6f532f225bf212b334b": {
+    "bank": "中國銀行 (澳門)",
+    "title": "新濠天地-水舞間",
+    "description": "門票9折優惠",
+    "period": "2026/05/15-2026/12/31",
+    "link_url": "https://offers.bocmacau.com/cms/index",
+    "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20260506/2dd46cb1047b4b2eaabcb86eddae87c4.png"
   },
   "2c0e7191b567af6f410774634c4d3f35": {
     "bank": "工銀澳門",
@@ -231,6 +231,86 @@
     "link_url": "https://cardstyle.icbc.com.mo/#/fontpage/picpage?name=upAW202411",
     "image_url": "https://cardstyle.icbc.com.mo/eshop/images/hshop/cardstyle/upAW202411.jpg"
   },
+  "1eba4c098f109c6083d4832f80908759": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "Trip.com",
+    "description": "酒店94折及機票高達 $200立減",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/bnu-trip.com",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/C8.18%20What's%20on%20square.jpg"
+  },
+  "f926b2dbace9b0be46e4d64c090b3fba": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "MPLUS",
+    "description": "以優惠價MOP988購買馬年英超會籍",
+    "period": "至: 2026-07-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/pages/mplus_2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/mplus%20504x400.png"
+  },
+  "579cb8aa2c111d8a95dd4a548b106890": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "澳門健力士健身會",
+    "description": "MOP 688 — 專屬禮遇等你享！",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/Macao_Fitness_2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/C3.18%20What's%20on%20square-1.jpg"
+  },
+  "aa91ee1cf7bc9221a8f37c407b161b35": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "鷺環海天度假酒店",
+    "description": "85折餐飲優惠",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/grand-coloane-resorts",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Grand%20Coloane%20Resort%20-%20Exterior%20-%20Evening.jpg"
+  },
+  "416cd1e7b086349680aac6d0a9d127f0": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "BNU Mastercard 勁抽驚喜彩蛋",
+    "description": "贏取高達 $388,888簽賬額",
+    "period": "至: 2026-09-30",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/MC_lucky_draw_JUNE2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/KV_504x400mc.jpg"
+  },
+  "4b90dea288403d52f2bfcaff8ed520e2": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "BNU World Mastercard 海外簽賬推廣",
+    "description": "優惠無間，憑卡專享",
+    "period": "至: 2026-09-30",
+    "link_url": "https://www.bnu.com.mo/zh-hant/pages/wmc-spending-offers",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/C7.18%20What's%20on%20square.jpg"
+  },
+  "8e2de2dd0dce7c5eb5c21f1cff02bd80": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "澳門十六浦索菲特酒店 - 餐飲優惠",
+    "description": "8折優惠",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/bnu_sofitel_macau_dining_offers",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/LLLLLLLLI.png"
+  },
+  "45e5aeeb77574c0df465797a2ca60702": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "大阪燒肉",
+    "description": "豁免服務費，高端卡戶更享贈飲",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/pages/futago_yakiniku_2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/504x400%20futago.png"
+  },
+  "7491a287ff2dd553588f184b67e1acd7": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "德利醫療中心(Dali Clinic)",
+    "description": "高達75折優惠",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/beauty_cosmetic_personal%20care",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/Picture1.png"
+  },
+  "77ffe49162f9b777e266f9293171ce6a": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "水療中心 - 澳門雅辰酒店",
+    "description": "所有水療護理85折優惠",
+    "period": "至: 2026-12-31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/artyzen_grand_lapa",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU%20Life/spaaaa.png"
+  },
   "c7d4f903572e5b3e582f10eb9979b855": {
     "bank": "BCM澳門商業銀行",
     "title": "信用卡 - 夏日消費嘉年華BCM 信用卡陪你盡情消費！推廣期",
@@ -247,18 +327,10 @@
     "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=343",
     "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260630183141.jpg"
   },
-  "a04eadc4d4ab9c0839378106a79b0c55": {
-    "bank": "BCM澳門商業銀行",
-    "title": "澳門商業銀行慈善保齡球公開賽2026",
-    "description": "澳門商業銀行慈善保齡球公開賽2026",
-    "period": "最新優惠",
-    "link_url": "https://bcm.com.mo/tc/campaign.php?p_id=372",
-    "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260703153341.jpg"
-  },
   "6d9fb1fd97849b19fa0c223faef0b259": {
     "bank": "BCM澳門商業銀行",
-    "title": "澳門保險 - 休悠樂旅遊保險58折",
-    "description": "澳門保險 - 休悠樂旅遊保險58折",
+    "title": "澳門保險 - 「休悠樂」旅遊保障計劃單次計劃58折",
+    "description": "澳門保險 - 「休悠樂」旅遊保障計劃單次計劃58折",
     "period": "最新優惠",
     "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=369",
     "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260625190720.jpg"
@@ -303,12 +375,20 @@
     "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=315",
     "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260115105347.jpg"
   },
+  "9057469bdb6bdf2864a9a5670c1e2410": {
+    "bank": "BCM澳門商業銀行",
+    "title": "信用卡 - 迎新禮遇",
+    "description": "信用卡 - 迎新禮遇",
+    "period": "最新優惠",
+    "link_url": "https://www.bcm.com.mo/tc/campaign.php?p_id=144",
+    "image_url": "https://www.bcm.com.mo/admin/upload/1tc_20260120111306.jpg"
+  },
   "0cb3642c4758ff09a8925e83b5e8f3ec": {
     "bank": "滙豐澳門",
     "title": "澳門滙豐 信用卡 精采禮遇",
-    "description": "滙豐信用卡持卡人獨家優惠—本地及海外簽賬，最高澳門元800元簽賬回贈。",
+    "description": "憑滙豐信用卡於本地及海外簽賬，即享最高澳門元800元簽賬回贈。",
     "period": "即日起至2026年8月31日",
-    "link_url": "https://www.hsbc.com.mo/zh-mo/credit-cards/offers/#",
+    "link_url": "https://www.hsbc.com.mo/zh-mo/credit-cards/offers/",
     "image_url": "https://www.hsbc.com.mo/content/dam/hsbc/hbap_mo/images/credit-cards/offers/hero-21-9/buying-on-mobile-with-card-pwsimg-5467.jpg"
   },
   "cfae865c65a38b8a8aa04d6ce72a2c6a": {
@@ -486,6 +566,38 @@
     "period": "最新優惠",
     "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2025042915363028512/index.shtml",
     "image_url": "https://www.lusobank.com.mo/libtc/imageDir/2025/04/img_pc_site/2025042915203087319.jpg"
+  },
+  "1c19ddc65b61e258802ddfe4a7305151": {
+    "bank": "銀聯國際",
+    "title": "【香港地區】太古廣場「夢幻夏日」購物禮遇",
+    "description": "香港太古廣場",
+    "period": "2026/07/22-2026/08/15",
+    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1199332497243?type=1",
+    "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260721868068.jpeg"
+  },
+  "a3df188d44869fc3569361e210486625": {
+    "bank": "銀聯國際",
+    "title": "【香港地區】東荟城名店倉SSEBONGRAMA ORIZ Splash 盛夏多重賞",
+    "description": "東荟城名店倉",
+    "period": "2026/07/22-2026/08/22",
+    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1198320564379?type=1",
+    "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260717800627.jpeg"
+  },
+  "91dab7a711f7d9ee570e1cdf04ade8c8": {
+    "bank": "銀聯國際",
+    "title": "【澳門地區】本地持卡人專享 - 全澳線下商戶以銀聯二维碼消費滿額享隨機立減",
+    "description": "二维碼商戶（澳門）",
+    "period": "2026/07/31-2026/12/26",
+    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/11980333277?type=1",
+    "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260717519616.jpeg"
+  },
+  "1ce33aefbe068c4ae7ab399ddb021d4a": {
+    "bank": "銀聯國際",
+    "title": "【澳門地區】旅客專享 - 全澳線下商戶以銀聯二维碼消費滿額享隨機立減",
+    "description": "二维碼商戶（澳門）",
+    "period": "2026/07/31-2026/12/26",
+    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/11979333277?type=1",
+    "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260717232874.jpeg"
   },
   "4eb28916351b702afe7d6c1970f8b532": {
     "bank": "銀聯國際",
@@ -687,14 +799,6 @@
     "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1118423935172?type=1",
     "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260206461441.jpg"
   },
-  "49646fa923a78a15652a138921465f0d": {
-    "bank": "銀聯國際",
-    "title": "【香港地區】搭乘香港車船 享立減優惠",
-    "description": "新大屿山巴士 (屿巴)",
-    "period": "2026/02/12-2026/07/18",
-    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1118227536159?type=1",
-    "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260206465368.jpeg"
-  },
   "34610807fb26748e4e296a67da37b227": {
     "bank": "銀聯國際",
     "title": "中銀銀聯双幣信用卡Samsung Wallet立減活動",
@@ -741,14 +845,6 @@
     "description": "專線小巴 – 绿van",
     "period": "2025/12/31-2026/12/30",
     "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1093536878418?type=1",
-    "image_url": "https://marketing.unionpayintl.com/momisfile/image/30000000000001.jpg"
-  },
-  "853a478d36d8cf370e455f254bfb33ac": {
-    "bank": "銀聯國際",
-    "title": "廣發信用卡境外出行搭乘公交地鐵低至1元起",
-    "description": "港鐵",
-    "period": "2025/12/31-2026/12/30",
-    "link_url": "https://www.unionpayintl.com/cardholderServ/serviceCenter/merchant/1090527516153?type=1",
     "image_url": "https://marketing.unionpayintl.com/momisfile/image/30000000000001.jpg"
   },
   "ec1fd26453f3ef43b9d58d2bc5c4acb0": {
@@ -906,162 +1002,146 @@
   "e1ffb11065c247e2d46b9ec673aacb6c": {
     "bank": "Visa香港",
     "title": "Visa 高端卡持卡人在大中華區雅高酒店連續入住行政房或以上房型 2 晚，可享受 8 折優惠。",
-    "description": "持卡人在相關酒店預訂2晚，可尊享8折優惠。",
-    "period": "即日起至另行通知",
+    "description": "持Visa高端卡在雅高酒店享受專屬折扣，盡享奢華住宿體驗。",
+    "period": "即日至另行通知",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/accor-hotels/171926?locale=zh_HK",
-    "image_url": "https://www.visa.com.hk/content/dam/VCOM/global/navigation/images/supporting-communities-400x225.jpg"
+    "image_url": "https://www.visa.com.hk/content/dam/VCOM/global/navigation/images/visa-developers-400x225.jpg"
   },
   "1a6e0be16e5b6efe05ebfefd06c61824": {
     "bank": "Visa香港",
     "title": "心理測試最高享 40% 折扣及學生簽證最高享 25% 折扣",
-    "description": "參與心理測試和學生簽證申請可享有專屬折扣。",
-    "period": "即日起至另行通知",
+    "description": "參與心理測試或學生簽證服務可獲得專屬折扣優惠。",
+    "period": "2023年全年",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/admitkard/179244?locale=zh_HK",
-    "image_url": "https://visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
+    "image_url": "https://www.visa.com/images/merchantoffers/2026-06/1781851162445.2_logo.jpg"
   },
   "6a89c9ea7a871f073351894a55fea934": {
     "bank": "Visa香港",
     "title": "使用您的 Visa 卡在 Agoda 預訂全球酒店，享有 7% 折扣。",
-    "description": "用Visa卡在 Agoda預訂酒店即可獲得折扣優惠。",
-    "period": "即日起至另行通知",
+    "description": "利用Visa卡在Agoda預訂住宿，享受專屬優惠與更低價格。",
+    "period": "即日至另行通知",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/agoda/177864?locale=zh_HK",
-    "image_url": "https://visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
+    "image_url": "https://www.visa.com/images/merchantoffers/2022-02/1645168280523.logo-agoda-400x300.jpg"
   },
-  "057d0b2e16fc13892a83b9c45019b8b1": {
+  "9db3d3ac6497d1d497102a01e4edc182": {
     "bank": "Visa香港",
-    "title": "尊享全球參與酒店最少 2 晚住宿，即可解鎖 8 折優惠，並享有專屬禮遇。",
-    "description": "入住特定酒店至少2晚，即享8折優惠和禮遇。",
-    "period": "即日起至另行通知",
-    "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/banyan-group/172676?locale=zh_HK",
-    "image_url": "https://visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
+    "title": "憑Visa消費可賺高達HK$400電子優惠券及於指定商戶消費享高達85折優惠。",
+    "description": "Visa消費享額外回贈和商戶折扣，輕鬆省錢。",
+    "period": "即日至另行通知",
+    "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/airside/167426?locale=zh_HK",
+    "image_url": "https://www.visa.com/images/merchantoffers/2025-03/1743043709858.logo-airside-400x300.jpg"
   },
   "90d6274414bde225e13b5a483c5cc165": {
     "bank": "Visa香港",
     "title": "於 Banyan Tree Gallery 享有 85 折優惠。",
-    "description": "在Banyan Tree Gallery購物享受85折折扣。",
-    "period": "即日起至另行通知",
+    "description": "在Banyan Tree Gallery購物享受專屬折扣，精美禮品等你選擇。",
+    "period": "即日至另行通知",
     "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/banyan-tree-gallery/178498?locale=zh_HK",
-    "image_url": "https://visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
-  },
-  "f60ead343882e7ee99b1b51251d8ba48": {
-    "bank": "Visa香港",
-    "title": "使用您的 Visa 卡付款，即可賺取高達 7% 的 Booking.com 錢包積分。",
-    "description": "用Visa卡支付Booking.com，即獲得積分回饋。",
-    "period": "即日起至另行通知",
-    "link_url": "https://www.visa.com.hk/en_hk/visa-offers-and-perks/bookingcom/177866?locale=zh_HK",
-    "image_url": "https://visa.com.hk/zh_HK/pay-with-visa/find-a-card/assets/images/default.png"
-  },
-  "b51ad4e813cc5f8a6e02a6c10d794d5b": {
-    "bank": "Visa香港",
-    "title": "Visa 旅遊現金卡",
-    "description": "專為旅遊者設計的Visa現金卡，方便於全球使用。",
-    "period": "即日起至另行通知",
-    "link_url": "https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/visa-travelmoney.html",
-    "image_url": ""
-  },
-  "35438922406aaf3874055c812251701c": {
-    "bank": "Visa香港",
-    "title": "Visa 白金卡享有全球最大受理網絡及緊急服務保障。",
-    "description": "持Visa白金卡，可享受全球便利和緊急支援。",
-    "period": "即日起至另行通知",
-    "link_url": "https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/visa-platinum.html#skipTo",
-    "image_url": "https://www.visa.com.hk/content/dam/VCOM/global/navigation/images/visa-developers-400x225.jpg"
-  },
-  "a258cff0640f9dbc82b6085e95a8f8cb": {
-    "bank": "Visa香港",
-    "title": "申請 Visa 卡，享受多項專屬優惠。",
-    "description": "立即申請Visa卡，開啟多重優惠與便捷服務。",
-    "period": "即日起至另行通知",
-    "link_url": "https://www.visa.com.hk/zh_HK/pay-with-visa/find-a-card/apply-card.html",
-    "image_url": ""
+    "image_url": "https://www.visa.com/images/merchantoffers/2026-04/1777012980718.Logo__400_x_300_.jpg"
   },
   "1821dd28743699720fa667f8fa990056": {
     "bank": "Mastercard Priceless",
-    "title": "Global Agoda預訂全球飯店可享低至8折",
-    "description": "預訂全球飯店享受折扣優惠。",
-    "period": "適用期間未提供",
+    "title": "Global Agoda 預訂全球飯店可享低至8折",
+    "description": "預訂全球飯店享受超值折扣，讓旅途更加經濟實惠。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Agoda?Oid=202503210003&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/0e0798b9-8df6-46e7-9700-1785ef73442a.jpg"
   },
   "40ed1d9280d64e383734ae2dc3c5d1fe": {
     "bank": "Mastercard Priceless",
-    "title": "Global Hotels.com預訂指定酒店享高達 HK$260折扣",
-    "description": "在Hotels.com預訂酒店享有高額折扣。",
-    "period": "適用期間未提供",
+    "title": "Global Hotels.com 香港預訂指定酒店享高達 HK$260 折扣",
+    "description": "在Hotels.com預訂酒店，即享最高HK$260折扣優惠。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Hotels_com_(%E9%A6%99%E6%B8%AF)?Oid=202509020004&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/c2fae0e3-64a7-4988-8814-caaf90f58ba3.jpg"
   },
   "5aa43800987138b562317726aa0a04ea": {
     "bank": "Mastercard Priceless",
-    "title": "Global Expedia預訂指定酒店享高達87折",
-    "description": "利用Expedia預訂酒店享有折扣優惠。",
-    "period": "適用期間未提供",
+    "title": "Global Expedia 香港預訂指定酒店享高達87折",
+    "description": "通過Expedia預訂香港酒店，享受高達87折優惠。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Expedia_(%E9%A6%99%E6%B8%AF)?Oid=202402060004&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/b1ec6ddc-b5fc-4391-8f95-f5716b75514b.jpg"
   },
   "1731113d237917dd1b7d0cb42dfe76fd": {
     "bank": "Mastercard Priceless",
-    "title": "Global Batik Air享有高達25%的機票折扣優惠",
-    "description": "搭乘Batik Air享受機票折扣。",
-    "period": "適用期間未提供",
+    "title": "Global Batik Air 高達25%的機票折扣",
+    "description": "乘坐Batik Air，享受高達25%的機票折扣，出行更經濟。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Batik_Air?Oid=202505300112&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/dd7a24db-dc19-4dfa-b339-08a32d794399.jpg"
   },
   "c76899a728e4516cff256a296bcf4d22": {
     "bank": "Mastercard Priceless",
-    "title": "澳門GHA DISCOVERY獲取免費快速通道和會員福利",
-    "description": "成為GHA DISCOVERY會員享受專屬福利。",
-    "period": "適用期間未提供",
+    "title": "澳門 GHA DISCOVERY 免費快速通道及會員福利",
+    "description": "享受GHA DISCOVERY的專屬會員福利與獎勵及快速通道服務。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/_GHA_DISCOVERY?Oid=202111090004&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/17b07781-4b45-40e5-acf3-5f9927ea5294.jpg"
   },
   "31a58fe8a54973786495d01776973c4e": {
     "bank": "Mastercard Priceless",
-    "title": "澳門Pinkoi.com享高達HK$80優惠",
-    "description": "在Pinkoi.com享受購物優惠。",
-    "period": "適用期間未提供",
+    "title": "澳門 Pinkoi.com 高達HK$80優惠",
+    "description": "在Pinkoi購物享有高達HK$80的專屬優惠。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Pinkoi_com?Oid=202503310004&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/125696a5-862f-4338-810d-5d7c4a9ba72d.png"
   },
   "0c75177adfefb1490188914da41e8f75": {
     "bank": "Mastercard Priceless",
-    "title": "Global 朗廷卓逸會尊享快速通道和會員禮遇",
-    "description": "成為朗廷卓逸會會員享受專屬禮遇。",
-    "period": "適用期間未提供",
+    "title": "Global 朗廷卓逸會 尊享快速通道與會員禮遇",
+    "description": "成為朗廷卓逸會會員，享受尊享快速通道及專屬禮遇。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/%E6%9C%97%E5%BB%B7%E5%8D%93%E9%80%B8%E6%9C%83?Oid=202402200001&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/953f2492-98cd-414d-b461-51480f81c6d2.jpg"
   },
   "13a0834c69e83f7f3429136c0ff3373a": {
     "bank": "Mastercard Priceless",
-    "title": "Global Mastercard One Night Free尊享免費住宿",
-    "description": "享受預定的免費住宿優惠。",
-    "period": "適用期間未提供",
+    "title": "Global Mastercard One Night Free 免費住宿",
+    "description": "尊享指定酒店的一夜免費住宿優惠。",
+    "period": "即時優惠",
     "link_url": "https://specials.priceless.com/zh-hk/offers/Mastercard_One_Night_Free?Oid=202512110001&issuerId=&productId=",
     "image_url": "https://specials.priceless.com/mastercard/images/443d2df7-3b9e-44cf-9f4a-d4b0c1336d4d.png"
   },
-  "326f2425c6a6418d707a5c30067f6220": {
-    "bank": "Mastercard Priceless",
-    "title": "Global Swiss-Belhotel住宿及餐飲折扣優惠",
-    "description": "尊享住宿及餐飲折扣優惠。",
-    "period": "適用期間未提供",
-    "link_url": "https://specials.priceless.com/zh-hk/offers/Swiss-Belhotel_International_(Swiss-Belexecutive_Card)?Oid=201906260005&issuerId=&productId=",
-    "image_url": "https://specials.priceless.com/mastercard/images/94678fb2-ebd2-4015-973d-d43a5b3f44c6.jpg"
-  },
   "a36056247c22f36d782d4de5ecde498e": {
     "bank": "美國運通香港",
-    "title": "九五折優惠購買香港故宮文化博物館特別展覽門票",
-    "description": "用優惠價購買香港故宮文化博物館展覽門票，享受九五折優待。",
-    "period": "2026年4月15日至10月19日",
+    "title": "九五折優惠購買展覽門票",
+    "description": "購買香港故宮文化博物館特別展覽門票享九五折優惠。",
+    "period": "2026年4月15至10月19日",
     "link_url": "https://hotel-booking.americanexpress.com/en-hk/thc/welcome?inav=zh_hk_menu_travel_online_travel_the_hotel_collection",
     "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
   },
   "34156333b94b7e3d470491b546d98770": {
     "bank": "美國運通香港",
-    "title": "預留坐位觀看花樣年華—電影音樂會",
-    "description": "憑合資格美國運通卡購買HKIFF50正價門票，可享七折優惠，並用卡簽賬享九折飲品優惠。",
-    "period": "2026年日期未詳",
+    "title": "HKIFF50電影門票七折優惠",
+    "description": "憑合資格美國運通卡購買HKIFF50正價門票，即享七折優惠。",
+    "period": "2026年，詳見條款",
     "link_url": "https://hotel-booking.americanexpress.com/en-hk/fhr/welcome?inav=zh_hk_menu_travel_online_travel_fine_hotels_resorts",
     "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack-white.svg"
+  },
+  "5362f6265045af87d73725fc43a70fb5": {
+    "bank": "美國運通香港",
+    "title": "香港網球公開賽優先購票",
+    "description": "持卡人可享受優先購票及場內消費優惠。",
+    "period": "活動期間依賽事安排",
+    "link_url": "https://www.americanexpress.com/hk",
+    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
+  },
+  "a0ed11a8de5babd397b15c8427cf0463": {
+    "bank": "美國運通香港",
+    "title": "美國運通@Work服務",
+    "description": "專為商務用戶提供的專屬帳戶與優惠。",
+    "period": "全年適用",
+    "link_url": "https://www.americanexpress.com/zh-hk/account/at-work/login/?TARGET=https://www.americanexpress.com/zh-hk/at-work/",
+    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
+  },
+  "4260b3dfeef74a18c647ec60ead80b4b": {
+    "bank": "美國運通香港",
+    "title": "申請美國運通卡即享優惠",
+    "description": "成為會員，享受專屬禮遇及優惠。",
+    "period": "全年",
+    "link_url": "https://www.americanexpress.com/hk/register/cn?inav=hk_ch_menu_myacct_regonline",
+    "image_url": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg"
   },
   "58cef39b358c82bab8406409b3ecffb7": {
     "bank": "澳門立橋銀行",
@@ -1143,45 +1223,101 @@
     "link_url": "https://www.wlbank.com.mo/content/contentPage.html?id=7432632225247531008",
     "image_url": "https://www.wlbank.com.mo/webfile/upload/2026/02-26/11-44-560995759711881.jpg"
   },
+  "9188a358076087bf9a9abcb20f935f3c": {
+    "bank": "亞洲萬里通",
+    "title": "餐飲",
+    "description": "憑已綁定國泰會員賬戶的信用卡用餐，可賺取高達HKD4 =3，透過預訂餐廳還可享15折優惠。",
+    "period": "無明確期限",
+    "link_url": "https://www.cathaypacific.com/cx/zh_HK/offers/current/dine-your-way-to-more-miles.html",
+    "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
+  },
+  "851fd2c101c403d9a1e88f22b912851a": {
+    "bank": "亞洲萬里通",
+    "title": "旅遊-租車賺",
+    "description": "於2026年9月14日前使用Europcar租車，賺取2X里數並享低至85折優惠。",
+    "period": "2026年9月14日前",
+    "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/europcar.html",
+    "image_url": "https://www.cathaypacific.com/content/dam/header-footer-lrp/Oneworld.originalimage.svg"
+  },
   "d968159dd0717d5b61de3130924a663a": {
     "bank": "亞洲萬里通",
-    "title": "比斯特系列購物村 2X里數及獨家禮遇",
-    "description": "於歐洲9大比斯特系列購物村購物，新客戶可享2X里數。",
-    "period": "即日起至2026年10月31日",
+    "title": "購物-比斯特系列購物村",
+    "description": "親臨比斯特系列歐洲購物村，尊享雙倍里賞及獨家禮遇，活動至2026年10月31日。",
+    "period": "至2026年10月31日",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/the-bicester-collection.html",
     "image_url": "https://www.cathaypacific.com/content/dam/header-footer-lrp/Oneworld.originalimage.svg"
   },
   "60fdbef58c688c2d5aa49ef93051e1a8": {
     "bank": "亞洲萬里通",
-    "title": "5.5G全球通Privilege服務計劃",
-    "description": "成為新客戶尊享全球數據及多項尊享權益，並賺取最高25,000里數。",
-    "period": "即日起至2026年",
+    "title": "購物-全球數據共享",
+    "description": "購買跨境漫遊流量包或巴士車票，即可靈活將MyLink積分轉換為里數，促進累積。",
+    "period": "無明確期限",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/our-partners/cmhk.html",
-    "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/payment/payment-card-linked-earn-pillar_tc.renditionimage.900.450.jpg"
-  },
-  "dd41bd74fd8be58e6445765d4783259a": {
-    "bank": "亞洲萬里通",
-    "title": "蘇黎世自在家居保險投保獎賞",
-    "description": "投保蘇黎世家居保險可額外賺取500里數並享首年保費折扣。",
-    "period": "即日起至2026年",
-    "link_url": "https://buy.zurich.com.hk/BreezyHome/get-a-quote?lang=zh&cia=mCtKh7RL26sc9tYyHAjzto69odvuRBc&pc=RENTSMART500&utm_source=CX-Partnerpage",
     "image_url": "https://www.cathaypacific.com/content/dam/header-footer-lrp/Oneworld.originalimage.svg"
   },
-  "899e4d0c0bdc3cabda61877ee10c7cd4": {
-    "bank": "亞洲萬里通",
-    "title": "里賞匯夏日好物購買",
-    "description": "於里賞匯選購夏日好物，首次滿HKD1,600可額外獲得500里數。",
-    "period": "即日起至2026年7月31日",
-    "link_url": "https://www.hkexpress.com/zh-hk/Plan/Special-Offers/Cathay-Member_Miles-Plus-Cash_Redemption-Offer?utm_campaign=mpcrebate_20260703_cathay&utm_source=cathayweb&utm_medium=display&utm_content=zh_hk_membership",
-    "image_url": "https://www.cathaypacific.com/content/dam/header-footer-lrp/Oneworld.originalimage.svg"
+  "e748e1d5cd8a7e7a5c3aebddaadf4b1e": {
+    "bank": "MPay澳門通",
+    "title": "去內地/香港食飯行街！MPay 88折月月享",
+    "description": "去內地/香港食飯行街！MPay 88折月月享",
+    "period": "2026/07/24-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1500",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260724/ccbb2cc3738072e48a058e4bda430cc4_202607.jpg"
   },
-  "e04b64fde9eb5af9732e6d2c1275a14c": {
-    "bank": "亞洲萬里通",
-    "title": "餐飲預訂賺取里數",
-    "description": "於「THE MENU by Masterchefs」預訂套餐即可賺取15里數。",
-    "period": "即日起至7月19日",
-    "link_url": "https://themenu.diningcity.hk/themenucathay?lang=zh-HK&acc=themenucathay&source=themenucathay&utm_source=website_cathay",
-    "image_url": "https://www.cathaypacific.com/content/dam/header-footer-lrp/Oneworld.originalimage.svg"
+  "a1ad319cdf41003c5c132e8b3a4cb301": {
+    "bank": "MPay澳門通",
+    "title": "出境遊就用MPay，首筆消費直接半價！",
+    "description": "出境遊就用MPay，首筆消費直接半價！",
+    "period": "2026/07/24-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1499",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260724/09fe9a75f8a1803265e9e796748311d2_202607.jpg"
+  },
+  "c4bc96b0cec893bfefb14f2f3bdb2aa0": {
+    "bank": "MPay澳門通",
+    "title": "上海新天地呢波羊毛一定要薅！",
+    "description": "上海新天地呢波羊毛一定要薅！",
+    "period": "2026/07/24-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1498",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260724/06c761e05cb2d3bef6dc28ca2fe4a9ba_202607.png"
+  },
+  "07e89621479be2f38744685ba13da599": {
+    "bank": "MPay澳門通",
+    "title": "足球卡最後一輪抽奬開獎啦！",
+    "description": "足球卡最後一輪抽奬開獎啦！",
+    "period": "2026/07/23-2026/08/31",
+    "link_url": "https://www.macaupass.com/promotiondetail/1497",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260723/52d3b4b6ab08d22c721ee0e768f2e773_202607.jpg"
+  },
+  "1792cf16f93470339f66656f1747fd38": {
+    "bank": "MPay澳門通",
+    "title": "MPay 餘額轉出至銀行「首筆 0 手續費 + 不佔用免費額度」",
+    "description": "MPay 餘額轉出至銀行「首筆 0 手續費 + 不佔用免費額度」",
+    "period": "2026/07/22-2026/12/31",
+    "link_url": "https://www.macaupass.com/promotiondetail/1496",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260722/c4c40e13f29cab3306260db744df9ce8_202607.jpg"
+  },
+  "7c3c960fbbd85a2c27fac1e19ac227fd": {
+    "bank": "MPay澳門通",
+    "title": "關於2026年MPay餘額可轉出至銀行服務通告",
+    "description": "關於2026年MPay餘額可轉出至銀行服務通告",
+    "period": "2026/07/22-2032/12/31",
+    "link_url": "https://www.macaupass.com/promotiondetail/1495",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260722/154a920a443b716174709a70320fb6d7_202607.jpg"
+  },
+  "49dbb6be9ca77ec3a70060a7ad9cbc0d": {
+    "bank": "MPay澳門通",
+    "title": "MPay餘額入螞蟻，首筆送你加息券！",
+    "description": "MPay餘額入螞蟻，首筆送你加息券！",
+    "period": "2026/07/22-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1494",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260721/cf2cb7411f42f6f01732edd4268e878e_202607.jpg"
+  },
+  "38823463d4dd8f81d4f8df0a6c757259": {
+    "bank": "MPay澳門通",
+    "title": "螞蟻銀行開戶，拎最高MOP1,200+雙重禮",
+    "description": "螞蟻銀行開戶，拎最高MOP1,200+雙重禮",
+    "period": "2026/07/19-2026/07/31",
+    "link_url": "https://www.macaupass.com/promotiondetail/1493",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260719/60044c57d84cb43e12ca38e2bff5a3ed_202607.png"
   },
   "3aef975fb8a6a4da0b3434798a1e7044": {
     "bank": "MPay澳門通",
@@ -1198,69 +1334,5 @@
     "period": "2026/07/17-2026/07/26",
     "link_url": "https://www.macaupass.com/promotiondetail/1490",
     "image_url": "https://mp-website-prd.macaupass.com/uploads/20260717/baeab3d2a4c6961e32b3dfb467170aba_202607.png"
-  },
-  "eed56fb4fc0a2f9db6a1e3b6cf012bde": {
-    "bank": "MPay澳門通",
-    "title": "足球卡第二輪抽奬開獎啦！",
-    "description": "足球卡第二輪抽奬開獎啦！",
-    "period": "2026/07/14-2026/08/31",
-    "link_url": "https://www.macaupass.com/promotiondetail/1487",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260714/f077531b9c96bd948cc929cc9fe16700_202607.jpg"
-  },
-  "efb9fb7a45706a2ddba01c4678a59f24": {
-    "bank": "MPay澳門通",
-    "title": "拎可萊士中國漢堡MOP8無門檻優惠券！",
-    "description": "拎可萊士中國漢堡MOP8無門檻優惠券！",
-    "period": "2026/07/15-2026/07/21",
-    "link_url": "https://www.macaupass.com/promotiondetail/1486",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260714/64166f2007adb426944794768b53cf52_202607.png"
-  },
-  "38ad4401d6060d537d30e10d0d6e582d": {
-    "bank": "MPay澳門通",
-    "title": "橫琴千萬消費券每週搶，7折起暢游橫琴！",
-    "description": "橫琴千萬消費券每週搶，7折起暢游橫琴！",
-    "period": "2026/07/13-2026/08/30",
-    "link_url": "https://www.macaupass.com/promotiondetail/1485",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260713/333fd6d5aefd48881201f11364f90492_202607.jpg"
-  },
-  "1095d4957af4e5b9adbad8724a0d04a0": {
-    "bank": "MPay澳門通",
-    "title": "MPay App | mCard專區全新升級！買澳門通卡‧DIY卡‧查權益，一站直達",
-    "description": "MPay App | mCard專區全新升級！買澳門通卡‧DIY卡‧查權益，一站直達",
-    "period": "2026/07/13-2026/12/31",
-    "link_url": "https://www.macaupass.com/promotiondetail/1484",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260713/0c62c6c508632f055d43ddcc3bcb09f0_202607.png"
-  },
-  "d373809d5566502fbaec1a60c73d4016": {
-    "bank": "MPay澳門通",
-    "title": "足球卡首波黃金開獎啦！",
-    "description": "足球卡首波黃金開獎啦！",
-    "period": "2026/07/10-2026/08/31",
-    "link_url": "https://www.macaupass.com/promotiondetail/1483",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260710/e5173502a42532bab94d58db4c5565b4_202607.jpg"
-  },
-  "0448688fe03a90622a7a3383239d7567": {
-    "bank": "MPay澳門通",
-    "title": "《世界女排聯賽澳門2026–總決賽》赛程时间调整",
-    "description": "《世界女排聯賽澳門2026–總決賽》赛程时间调整",
-    "period": "2026/07/13-2026/07/26",
-    "link_url": "https://www.macaupass.com/promotiondetail/1482",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260709/68c26e307e29cc3d9948c42f0e4c29aa_202607.jpg"
-  },
-  "f844b19319ddc4ea703fe953d82a2da7": {
-    "bank": "MPay澳門通",
-    "title": "澳娛綜合美饌限量5.7折",
-    "description": "澳娛綜合美饌限量5.7折",
-    "period": "2026/07/01-2026/08/31",
-    "link_url": "https://www.macaupass.com/promotiondetail/1480",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260703/7ddf0a04c67d5f38a9d5254127737098_202607.jpg"
-  },
-  "d51829833bcf74ae6f6e2eb03bbfaab9": {
-    "bank": "MPay澳門通",
-    "title": "mCoin X KOI Thé",
-    "description": "mCoin X KOI Thé",
-    "period": "2026/07/01-2026/08/31",
-    "link_url": "https://www.macaupass.com/promotiondetail/1479",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260703/a739f0fa5e5c4e338020f5b17997f212_202607.jpg"
   }
 }
