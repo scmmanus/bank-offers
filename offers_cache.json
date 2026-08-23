@@ -646,5 +646,13 @@
     "period": "持續更新（個別競拍截止日期以官方頁面為準）",
     "link_url": "https://experiences.hilton.com.cn/",
     "image_url": "https://vafloc02.s3.amazonaws.com/isyn/images/f455/img-2891455-f.jpg"
+  },
+  "0a6dd025037531d84f9a17ca359f518b": {
+    "bank": "萬豪旅享家®Moments（中國內地）",
+    "title": "萬豪旅享家®Moments 體驗競價及兌換",
+    "description": "以萬豪旅享家積分競價或兌換中國內地精選體驗，包括文娛、餐飲及運動賽事；個別體驗、所需積分及截止日期以官方頁面為準。",
+    "period": "持續更新（個別體驗截止日期以官方頁面為準）",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments",
+    "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png"
   }
 }
