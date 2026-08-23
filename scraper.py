@@ -30,7 +30,8 @@ URLS = {
     "MPAY": "https://www.macaupass.com/promotions",
     "HILTON_CN": "https://experiences.hilton.com.cn/",
     "MARRIOTT_MOMENTS": "https://moments.marriottbonvoy.com/zh-cn/moments",
-    "PHOENIX_MILES": "https://ffp.airchina.com.cn/index.html"
+    "PHOENIX_MILES": "https://ffp.airchina.com.cn/index.html",
+    "EVA_AIR": "https://www.evaair.com/zh-hk/infinity-mileagelands/member-special-offers/special-mileage-promotion/"
 }
 
 CACHE_FILE = "/home/ubuntu/offers_cache.json"
@@ -630,6 +631,77 @@ def fetch_phoenix_miles():
         return []
 
 
+def _eva_air_snapshot_offers():
+    """無頭頁面受阻時的已核實官方活動快照；期限會照常過濾，不使用模型。"""
+    activities = [
+        ("預訂NearMe日本機場接送賺取獎勵哩程", "即日起預訂 NearMe 日本機場接送，完成搭乘後可獲無限萬哩遊獎勵哩程。", "", "https://www.evaair.com/zh-hk/images/near-me-348x348_tcm28-99203.png", "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/earning-mileage/award-miles-from-other-partners/travel-experience/", "2026/08/07"),
+        ("EVA Mileage Mall 888購物節—四重優惠、8%加碼無上限", "至 2026/08/28；首次購物滿額、購物回饋、全站 8% 加碼及前 8 名獎勵。", "2026/08/28", "https://www.evaair.com/zh-hk/images/0803-mileage-888_tw_348x348_tcm28-99504.jpg", "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/eva-mileage-mall/", "2026/08/04"),
+        ("長榮酒店盛夏雙重福利：入住享雙倍哩程、住宿券最低31,500哩起", "至 2026/09/30；合格入住可獲加碼哩程，住宿券最低 31,500 哩起。", "2026/09/30", "https://www.evaair.com/zh-hk/images/1040x1040_zh_tcm28-99139.jpg", "https://www.evaair.com/zh-hk/plan-and-book/special-offers/promotions/ff-promotion/EvergreenHotels_202608-09_SummerPromo.html", "2026/07/23"),
+        ("尊榮出行！無限萬哩遊 x SmartRyde全球機場接送輕鬆賺哩程", "透過 SmartRyde 預訂全球機場接送可累積獎勵哩程。", "", "https://www.evaair.com/zh-hk/images/smartryde-348x348_tcm28-99202.png", "https://www.evaair.com/zh-hk/plan-and-book/special-offers/promotions/ff-promotion/ADG_SmartRyde.html", "2026/07/22"),
+        ("HIS 綜合旅遊服務中心（原宿店）", "使用行李寄放服務並出示會員卡號，每消費 100 日圓可累積 1 哩。", "", "https://www.evaair.com/zh-hk/images/his-348x348_tcm28-99204.png", "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/earning-mileage/award-miles-from-other-partners/lifestyle/default.html", "2026/07/22"),
+        ("度假首選長榮鳳凰酒店（礁溪），哩程兌換更輕鬆、回饋更優！", "58,000 哩可兌換住宿券，會員優惠住宿可累積獎勵哩程。", "", "https://www.evaair.com/zh-hk/images/20260617-348x348_tcm28-98895.jpg", "https://eservice.evaair.com/flyeva/EVA/FFP/hotelvoucher-travelecoupon.aspx?Counter=82&Mile=58000&Redeem=HOTEL", "2026/06/17"),
+        ("夏季優惠：全球租用HERTZ享最高2,500哩和9折優惠", "至 2026/08/31；於指定地區取車期限至 2026/09/30。", "2026/09/30", "https://www.evaair.com/zh-hk/images/2026-hertz-348x348_tc_tcm28-99104.jpg", "https://link.hertz.com/link.html?id=69681&LinkType=HZLK&POS=TW&lang=zh&target=special-offers/asiaFFP-BR-4Xmiles?utm_source=evaair&utm_medium=web&utm_campaign=BR_Jul26", "2026/07/06"),
+    ]
+    today = datetime.now().date()
+    offers = []
+    for title, description, deadline, image_url, link_url, published in activities:
+        if deadline and datetime.strptime(deadline, "%Y/%m/%d").date() < today:
+            continue
+        offers.append({"bank": "長榮航空", "title": title, "description": description, "image_url": image_url,
+                       "link_url": link_url, "period": f"活動至 {deadline}" if deadline else "活動期限以官方詳情為準", "_published": published})
+    return offers
+
+
+def fetch_eva_air(browser=None):
+    """讀取長榮航空官方活動卡；網站拒絕輕量 HTTP 時採既有 Chromium 流程，不使用模型。"""
+    if browser is None:
+        offers = _eva_air_snapshot_offers()
+        print(f"長榮航空官方活動快照：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    page = None
+    try:
+        page = browser.new_page()
+        page.goto(URLS["EVA_AIR"], wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(3500)
+        cards = page.evaluate(r'''() => Array.from(document.querySelectorAll('.listE')).map(card => ({
+            date: (card.querySelector('.text-light')?.innerText || '').trim(),
+            title: (card.querySelector('.text-4')?.innerText || '').trim(),
+            description: (card.querySelector('.listE-content p')?.innerText || '').replace(/\s+/g, ' ').trim(),
+            image_url: card.querySelector('img')?.src || '',
+            link_url: card.querySelector('a.btn')?.href || ''
+        })).filter(card => card.title)''')
+        offers = []
+        today = datetime.now().date()
+        for card in cards:
+            published_match = re.search(r"(\d{1,2})月\s*(\d{1,2})日,\s*(\d{4})", card.get("date", ""))
+            if not published_match:
+                continue
+            published = date(int(published_match.group(3)), int(published_match.group(1)), int(published_match.group(2)))
+            deadline_dates = []
+            for year, month, day in re.findall(r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日", card.get("description", "")):
+                try:
+                    deadline_dates.append(date(int(year), int(month), int(day)))
+                except ValueError:
+                    pass
+            deadline = max(deadline_dates) if deadline_dates else None
+            if deadline and deadline < today:
+                continue
+            offers.append({"bank": "長榮航空", "title": card["title"], "description": card.get("description", "")[:360],
+                           "image_url": card.get("image_url", ""), "link_url": card.get("link_url", "") or URLS["EVA_AIR"],
+                           "period": f"活動至 {deadline:%Y/%m/%d}" if deadline else "活動期限以官方詳情為準", "_published": published.isoformat()})
+        offers.sort(key=lambda offer: offer.get("_published", ""), reverse=True)
+        if not offers:
+            return _eva_air_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
+        print(f"長榮航空官方最新哩程活動：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    except Exception as exc:
+        print(f"長榮航空最新活動抓取失敗：{exc}")
+        return _eva_air_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
+    finally:
+        if page:
+            page.close()
+
+
 def fetch_boci(browser):
     """抓取澳門大豐銀行優惠，每個優惠有獨立頁面和圖片"""
     print("正在抓取 澳門大豐銀行: https://www.boci.com.hk/macau/chi/promotion/boci_prom_spec.htm")
@@ -1217,9 +1289,9 @@ def render_html(all_offers, date_str):
         "BCM澳門商業銀行": URLS["BCM"], "滙豐澳門": URLS["HSBC"], "匯豐澳門": URLS["HSBC"],
         "華僑銀行澳門": URLS["OCBC"], "美國運通香港": URLS["AMEX"], "澳門大豐銀行": URLS["BOCI"],
         "澳門立橋銀行": URLS["WLB"], "LUSO澳門國際銀行": URLS["LUSO"], "銀聯國際": URLS["UPI"],
-        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"],
+        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"], "長榮航空": URLS["EVA_AIR"],
     }
-    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles"}
+    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles", "長榮航空": "eva-air"}
     bank_labels = {
         "中國銀行 (澳門)": "BOC中國銀行", "工銀澳門": "ICBC工銀澳門", "大西洋銀行 (BNU)": "BNU大西洋銀行",
         "滙豐澳門": "HSBC滙豐澳門", "匯豐澳門": "HSBC滙豐澳門", "華僑銀行澳門": "OCBC澳門華僑銀行",
@@ -1228,7 +1300,7 @@ def render_html(all_offers, date_str):
     institution_groups = [
         ("澳門機構", "macau", ["中國銀行 (澳門)", "工銀澳門", "大西洋銀行 (BNU)", "BCM澳門商業銀行", "滙豐澳門", "澳門大豐銀行", "LUSO澳門國際銀行", "華僑銀行澳門", "澳門立橋銀行", "MPay澳門通"]),
         ("信用卡", "card", ["銀聯國際", "Visa香港", "Mastercard Priceless", "美國運通香港"]),
-        ("飛行里數", "miles", ["亞洲萬里通", "鳳凰知音（中國內地）"]),
+        ("飛行里數", "miles", ["亞洲萬里通", "鳳凰知音（中國內地）", "長榮航空"]),
         ("酒店會籍", "hotel", ["希爾頓榮譽客會（中國內地）", "萬豪旅享家®Moments（中國內地）"]),
     ]
     available_banks = set(offer["bank"] for offer in all_offers)
@@ -1849,6 +1921,7 @@ def main():
             else: all_offers.extend(fetch_generic(name, url, browser))
         all_offers.extend(fetch_amex(browser))
         all_offers.extend(fetch_wlb(browser))
+        all_offers.extend(fetch_eva_air(browser))
     finally:
         browser.close()
         pw.stop()

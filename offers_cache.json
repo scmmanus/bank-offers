@@ -719,6 +719,14 @@
     "link_url": "https://www.ocbc.com.mo/file/Credit_Card/promotion/2026_cardchispend_T&C.pdf",
     "image_url": "https://www.ocbc.com.mo/personal-banking/zh/cards/yao_images/north.jpg"
   },
+  "c5d26ecdd094a5b3aceec422b0ea5e88": {
+    "bank": "MPay澳門通",
+    "title": "iSPORT × MPay嘉年華 | 抽iSPORT MOP3000紅包",
+    "description": "iSPORT × MPay嘉年華 | 抽iSPORT MOP3000紅包",
+    "period": "2026/08/24-2026/09/06",
+    "link_url": "https://www.macaupass.com/promotiondetail/1515",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260823/4277dd4dec773ca79b6e664f2a5a2662_202608.png"
+  },
   "084ca8fb8059c00ad6c93941a99603b7": {
     "bank": "MPay澳門通",
     "title": "MPay 嘉年華 |「活動日曆」搶先看",
@@ -782,14 +790,6 @@
     "period": "2026/08/07-2026/10/10",
     "link_url": "https://www.macaupass.com/promotiondetail/1507",
     "image_url": "https://mp-website-prd.macaupass.com/uploads/20260807/1e48e5d0e6ac269acdb55f0b752d7913_202608.png"
-  },
-  "234a9d945d2c29a259b7cd75f6e1c0c6": {
-    "bank": "MPay澳門通",
-    "title": "Dear Jane Fly you to the Moon Live",
-    "description": "Dear Jane Fly you to the Moon Live",
-    "period": "2026/08/06-2026/09/26",
-    "link_url": "https://www.macaupass.com/promotiondetail/1506",
-    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260806/3df43d564abbe0a70146a165084a2858_202608.jpg"
   },
   "41dd57cb0a587738187bda14bcd47f59": {
     "bank": "希爾頓榮譽客會（中國內地）",
@@ -862,5 +862,61 @@
     "period": "2026/08/21 至 2031/04/17",
     "link_url": "https://ffp.airchina.com.cn/app/activity/detail?activity_id=1379",
     "image_url": "https://static.airchina.com.cn/upload/img/activity/1787211299133.jpg"
+  },
+  "046fb7ce97e20702c610fc8b3780c440": {
+    "bank": "長榮航空",
+    "title": "長榮酒店盛夏雙重福利：入住享雙倍哩程、住宿券最低31,500哩起",
+    "description": "至 2026/09/30；合格入住可獲加碼哩程，住宿券最低 31,500 哩起。",
+    "period": "活動至 2026/09/30",
+    "link_url": "https://www.evaair.com/zh-hk/plan-and-book/special-offers/promotions/ff-promotion/EvergreenHotels_202608-09_SummerPromo.html",
+    "image_url": "https://www.evaair.com/zh-hk/images/1040x1040_zh_tcm28-99139.jpg"
+  },
+  "8aa514474e8ce89bc42771f760ccb6b1": {
+    "bank": "長榮航空",
+    "title": "夏季優惠：全球租用HERTZ享最高2,500哩和9折優惠",
+    "description": "至 2026/08/31；於指定地區取車期限至 2026/09/30。",
+    "period": "活動至 2026/09/30",
+    "link_url": "https://link.hertz.com/link.html?id=69681&LinkType=HZLK&POS=TW&lang=zh&target=special-offers/asiaFFP-BR-4Xmiles?utm_source=evaair&utm_medium=web&utm_campaign=BR_Jul26",
+    "image_url": "https://www.evaair.com/zh-hk/images/2026-hertz-348x348_tc_tcm28-99104.jpg"
+  },
+  "1b3a70ce14039b03d1101292f212a954": {
+    "bank": "長榮航空",
+    "title": "EVA Mileage Mall 888購物節—四重優惠、8%加碼無上限",
+    "description": "至 2026/08/28；首次購物滿額、購物回饋、全站 8% 加碼及前 8 名獎勵。",
+    "period": "活動至 2026/08/28",
+    "link_url": "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/eva-mileage-mall/",
+    "image_url": "https://www.evaair.com/zh-hk/images/0803-mileage-888_tw_348x348_tcm28-99504.jpg"
+  },
+  "0eb96fbf2a0681e07262e54be8d97ba5": {
+    "bank": "長榮航空",
+    "title": "預訂NearMe日本機場接送賺取獎勵哩程",
+    "description": "即日起預訂 NearMe 日本機場接送，完成搭乘後可獲無限萬哩遊獎勵哩程。",
+    "period": "活動期限以官方詳情為準",
+    "link_url": "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/earning-mileage/award-miles-from-other-partners/travel-experience/",
+    "image_url": "https://www.evaair.com/zh-hk/images/near-me-348x348_tcm28-99203.png"
+  },
+  "cd1b765ec7fb0d5f90a6b4667b2ace6e": {
+    "bank": "長榮航空",
+    "title": "尊榮出行！無限萬哩遊 x SmartRyde全球機場接送輕鬆賺哩程",
+    "description": "透過 SmartRyde 預訂全球機場接送可累積獎勵哩程。",
+    "period": "活動期限以官方詳情為準",
+    "link_url": "https://www.evaair.com/zh-hk/plan-and-book/special-offers/promotions/ff-promotion/ADG_SmartRyde.html",
+    "image_url": "https://www.evaair.com/zh-hk/images/smartryde-348x348_tcm28-99202.png"
+  },
+  "9f8f6ec1fef1b03f09a2aa4c46d76010": {
+    "bank": "長榮航空",
+    "title": "HIS 綜合旅遊服務中心（原宿店）",
+    "description": "使用行李寄放服務並出示會員卡號，每消費 100 日圓可累積 1 哩。",
+    "period": "活動期限以官方詳情為準",
+    "link_url": "https://www.evaair.com/zh-hk/infinity-mileagelands/mileage-award-program/earning-mileage/award-miles-from-other-partners/lifestyle/default.html",
+    "image_url": "https://www.evaair.com/zh-hk/images/his-348x348_tcm28-99204.png"
+  },
+  "24126f9ae024861ef23dfc53de4d5bfc": {
+    "bank": "長榮航空",
+    "title": "度假首選長榮鳳凰酒店（礁溪），哩程兌換更輕鬆、回饋更優！",
+    "description": "58,000 哩可兌換住宿券，會員優惠住宿可累積獎勵哩程。",
+    "period": "活動期限以官方詳情為準",
+    "link_url": "https://eservice.evaair.com/flyeva/EVA/FFP/hotelvoucher-travelecoupon.aspx?Counter=82&Mile=58000&Redeem=HOTEL",
+    "image_url": "https://www.evaair.com/zh-hk/images/20260617-348x348_tcm28-98895.jpg"
   }
 }
