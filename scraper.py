@@ -29,7 +29,8 @@ URLS = {
     "ASIAMILES": "https://www.cathaypacific.com/cx/zh_HK/membership/asia-miles.html",
     "MPAY": "https://www.macaupass.com/promotions",
     "HILTON_CN": "https://experiences.hilton.com.cn/",
-    "MARRIOTT_MOMENTS": "https://moments.marriottbonvoy.com/zh-cn/moments"
+    "MARRIOTT_MOMENTS": "https://moments.marriottbonvoy.com/zh-cn/moments",
+    "PHOENIX_MILES": "https://ffp.airchina.com.cn/index.html"
 }
 
 CACHE_FILE = "/home/ubuntu/offers_cache.json"
@@ -487,6 +488,18 @@ def fetch_marriott_moments():
         "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png",
         "link_url": URLS["MARRIOTT_MOMENTS"],
         "period": "持續更新（個別體驗截止日期以官方頁面為準）"
+    }]
+
+
+def fetch_phoenix_miles():
+    """加入鳳凰知音最新可核實官方公告；政策頁無相關主圖時使用標題式資訊卡。"""
+    return [{
+        "bank": "鳳凰知音（中國內地）",
+        "title": "2026年「鳳凰知音」會員保級政策",
+        "description": "2026 年貴賓會員保級依定級里程或定級航段評定；請留意帳戶飛行紀錄及會員有效期，詳細門檻與評定週期以官方公告為準。",
+        "image_url": "",
+        "link_url": "https://ffp.airchina.com.cn/app/notice/details?articleId=253&currentType=ALL",
+        "period": "2026年度（會員有效期及評定週期以官方公告為準）"
     }]
 
 
@@ -1077,9 +1090,9 @@ def render_html(all_offers, date_str):
         "BCM澳門商業銀行": URLS["BCM"], "滙豐澳門": URLS["HSBC"], "匯豐澳門": URLS["HSBC"],
         "華僑銀行澳門": URLS["OCBC"], "美國運通香港": URLS["AMEX"], "澳門大豐銀行": URLS["BOCI"],
         "澳門立橋銀行": URLS["WLB"], "LUSO澳門國際銀行": URLS["LUSO"], "銀聯國際": URLS["UPI"],
-        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"],
+        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"],
     }
-    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments"}
+    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles"}
     banks = list(dict.fromkeys(offer["bank"] for offer in all_offers))
 
     def make_card(offer, fallback_url):
@@ -1684,6 +1697,7 @@ def main():
     all_offers.extend(fetch_mpay())
     all_offers.extend(fetch_hilton_cn())
     all_offers.extend(fetch_marriott_moments())
+    all_offers.extend(fetch_phoenix_miles())
     current_offers = [offer for offer in all_offers if not is_expired(offer.get("period", ""))]
     current_offers = fill_missing_detail_images(current_offers)
     valid_offers = limit_latest_offers_per_institution(sanitize_and_dedupe_offers(current_offers))
