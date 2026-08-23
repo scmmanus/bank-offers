@@ -27,7 +27,8 @@ URLS = {
     "AMEX_FB": "https://www.facebook.com/americanexpresshongkong",
     "WLB_FB": "https://www.facebook.com/profile.php?id=100063756512629",
     "ASIAMILES": "https://www.cathaypacific.com/cx/zh_HK/membership/asia-miles.html",
-    "MPAY": "https://www.macaupass.com/promotions"
+    "MPAY": "https://www.macaupass.com/promotions",
+    "HILTON_CN": "https://experiences.hilton.com.cn/"
 }
 
 CACHE_FILE = "/home/ubuntu/offers_cache.json"
@@ -450,6 +451,30 @@ def fetch_boc(browser=None):
     except Exception as exc:
         print(f"中銀官方資料抓取失敗: {exc}")
         return []
+
+
+def fetch_hilton_cn():
+    """以官方首頁主視覺建立希爾頓中國內地積分競拍卡片；不使用模型或登入狀態。"""
+    page_url = URLS["HILTON_CN"]
+    # 已驗證的官方首頁主視覺；頁面抓取成功時會用最新的主視覺 URL 更新。
+    image_url = "https://vafloc02.s3.amazonaws.com/isyn/images/f455/img-2891455-f.jpg"
+    try:
+        import requests
+        response = requests.get(page_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=20)
+        response.raise_for_status()
+        match = re.search(r'index__carousel__background[^>]+background-image:url\([\'\"]?([^\'\")]+)', response.text, re.I)
+        if match and match.group(1).startswith("https://"):
+            image_url = match.group(1)
+    except Exception as error:
+        print(f"希爾頓中國內地頁面主圖讀取失敗，使用已驗證官方主圖：{error}")
+    return [{
+        "bank": "希爾頓榮譽客會（中國內地）",
+        "title": "希爾頓榮譽客會積分競拍",
+        "description": "以希爾頓榮譽客會積分競拍或兌換中國內地精選體驗；個別競拍所需積分、供應及截止日期以官方頁面為準。",
+        "image_url": image_url,
+        "link_url": page_url,
+        "period": "持續更新（個別競拍截止日期以官方頁面為準）"
+    }]
 
 
 def fetch_boci(browser):
@@ -1039,9 +1064,9 @@ def render_html(all_offers, date_str):
         "BCM澳門商業銀行": URLS["BCM"], "滙豐澳門": URLS["HSBC"], "匯豐澳門": URLS["HSBC"],
         "華僑銀行澳門": URLS["OCBC"], "美國運通香港": URLS["AMEX"], "澳門大豐銀行": URLS["BOCI"],
         "澳門立橋銀行": URLS["WLB"], "LUSO澳門國際銀行": URLS["LUSO"], "銀聯國際": URLS["UPI"],
-        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"],
+        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"],
     }
-    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay"}
+    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn"}
     banks = list(dict.fromkeys(offer["bank"] for offer in all_offers))
 
     def make_card(offer, fallback_url):
@@ -1644,6 +1669,7 @@ def main():
         pw.stop()
     all_offers.extend(fetch_asiamiles())
     all_offers.extend(fetch_mpay())
+    all_offers.extend(fetch_hilton_cn())
     current_offers = [offer for offer in all_offers if not is_expired(offer.get("period", ""))]
     current_offers = fill_missing_detail_images(current_offers)
     valid_offers = limit_latest_offers_per_institution(sanitize_and_dedupe_offers(current_offers))
