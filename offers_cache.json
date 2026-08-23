@@ -639,28 +639,228 @@
     "link_url": "https://offers.bocmacau.com/cms/cupsDetail?contentNo=1895&key=1895ml",
     "image_url": "https://offers.bocmacau.com/resource/cupsMmcWeb/img/20240718/7c041642d7284a7796f7eaae7623c7de.jpg"
   },
-  "f3208f5536928386575e35bf9ea26b23": {
-    "bank": "希爾頓榮譽客會（中國內地）",
-    "title": "希爾頓榮譽客會積分競拍",
-    "description": "以希爾頓榮譽客會積分競拍或兌換中國內地精選體驗；個別競拍所需積分、供應及截止日期以官方頁面為準。",
-    "period": "持續更新（個別競拍截止日期以官方頁面為準）",
-    "link_url": "https://experiences.hilton.com.cn/",
-    "image_url": "https://vafloc02.s3.amazonaws.com/isyn/images/f455/img-2891455-f.jpg"
+  "53b31dbf64770467efc0840fb61786c7": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "葡國美食天地 A Petisqueira",
+    "description": "九折優惠",
+    "period": "至 2027/02/07",
+    "link_url": "https://www.bnu.com.mo/zh-hant/pages/a_petisqueira_bnu_offer",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/WO.png"
   },
-  "0a6dd025037531d84f9a17ca359f518b": {
+  "17b8408ff0aef3aea7b35ae1cb25e2cd": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "簽出里賞「隨時啟航」大抽獎",
+    "description": "解鎖「亞洲萬里通」里數及抽獎機會， 讓您展開下一段精彩旅程",
+    "period": "至 2027/01/25",
+    "link_url": "https://www.bnu.com.mo/personal/credit-debit-cards/BNU_Cathay_Ready_for_Takeoff",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/C13.18 What's on square_Square.jpg"
+  },
+  "616c17a154e96dd26684229362a2fc75": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "Trip.com",
+    "description": "酒店94折及機票高達 $200立減",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/personal/credit-debit-cards/bnu-trip.com",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/C8.18 What's on square.jpg"
+  },
+  "306d70009bb92ab80b3b7c6663f40841": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "澳門健力士健身會",
+    "description": "MOP 688 — 專屬禮遇等你享！",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/personal/credit-debit-cards/Macao_Fitness_2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/C3.18 What's on square-1.jpg"
+  },
+  "aa91ee1cf7bc9221a8f37c407b161b35": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "鷺環海天度假酒店",
+    "description": "85折餐飲優惠",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/grand-coloane-resorts",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/Grand Coloane Resort - Exterior - Evening.jpg"
+  },
+  "77ffe49162f9b777e266f9293171ce6a": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "水療中心 - 澳門雅辰酒店",
+    "description": "所有水療護理85折優惠",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/artyzen_grand_lapa",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/spaaaa.png"
+  },
+  "8e2de2dd0dce7c5eb5c21f1cff02bd80": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "澳門十六浦索菲特酒店 - 餐飲優惠",
+    "description": "8 折優惠",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/bnu_sofitel_macau_dining_offers",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/LLLLLLLLI.png"
+  },
+  "45e5aeeb77574c0df465797a2ca60702": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "大阪燒肉",
+    "description": "豁免服務費，高端卡戶更享贈飲",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/pages/futago_yakiniku_2026",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/504x400 futago.png"
+  },
+  "7491a287ff2dd553588f184b67e1acd7": {
+    "bank": "大西洋銀行 (BNU)",
+    "title": "德利醫療中心(Dali Clinic)",
+    "description": "高達75折優惠",
+    "period": "至 2026/12/31",
+    "link_url": "https://www.bnu.com.mo/zh-hant/personal/credit-debit-cards/beauty_cosmetic_personal%20care",
+    "image_url": "https://www.bnu.com.mo/storage/image-gallery/BNU Life/Picture1.png"
+  },
+  "cfae865c65a38b8a8aa04d6ce72a2c6a": {
+    "bank": "華僑銀行澳門",
+    "title": "澳卡北「賞」",
+    "description": "於中國內地累計零售簽賬滿人民幣2,000或以上，可獲$50現金回贈！",
+    "period": "2026年1月12日至12月31日",
+    "link_url": "https://www.ocbc.com.mo/file/Credit_Card/promotion/2026_cardchispend_T&C.pdf",
+    "image_url": "https://www.ocbc.com.mo/personal-banking/zh/cards/yao_images/north.jpg"
+  },
+  "084ca8fb8059c00ad6c93941a99603b7": {
+    "bank": "MPay澳門通",
+    "title": "MPay 嘉年華 |「活動日曆」搶先看",
+    "description": "MPay 嘉年華 |「活動日曆」搶先看",
+    "period": "2026/08/21-2026/10/04",
+    "link_url": "https://www.macaupass.com/promotiondetail/1514",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260821/54aadde22d5bbd92c684f46181c9fff3_202608.jpg"
+  },
+  "0fd49b19df321dfc35126c923257fecc": {
+    "bank": "MPay澳門通",
+    "title": "2026NBA中國賽官方授權澳門通3D籃球卡盲盒現貨開售！",
+    "description": "2026NBA中國賽官方授權澳門通3D籃球卡盲盒現貨開售！",
+    "period": "2026/08/20-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1513",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260819/7b9f467a8254b88a337e55a456b1cca5_202608.jpg"
+  },
+  "6499e47a39bff70791915f4f02020ffe": {
+    "bank": "MPay澳門通",
+    "title": "8月專享！MPay新用戶享巴士費返現最高MOP10！",
+    "description": "8月專享！MPay新用戶享巴士費返現最高MOP10！",
+    "period": "2026/08/17-2026/08/31",
+    "link_url": "https://www.macaupass.com/promotiondetail/1512",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260817/d0f10254dfd6719df40392e4afe11e71_202608.png"
+  },
+  "27fccb4f3e9f2bf4ac26f2d6ee718fa3": {
+    "bank": "MPay澳門通",
+    "title": "澳門人北上食飯着數！福田餐飲消費券免費攞，最高減¥100！",
+    "description": "澳門人北上食飯着數！福田餐飲消費券免費攞，最高減¥100！",
+    "period": "2026/08/13-2026/11/29",
+    "link_url": "https://www.macaupass.com/promotiondetail/1511",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260813/863f3ae3b8f2128fbf773c51c8ff614a_202608.png"
+  },
+  "6643be3d386a402a9d639a50aa11376c": {
+    "bank": "MPay澳門通",
+    "title": "澳門人着數，深圳羅湖消費券日日派",
+    "description": "澳門人着數，深圳羅湖消費券日日派",
+    "period": "2026/08/12-2026/11/29",
+    "link_url": "https://www.macaupass.com/promotiondetail/1510",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260812/6211e8ee0ab742c0dc2af2922fe66e15_202608.jpg"
+  },
+  "864db19e58bc76793077d9173c2b7bb2": {
+    "bank": "MPay澳門通",
+    "title": "【淘寶 88VIP呈獻 – NBA中國賽2026】熱血重燃",
+    "description": "【淘寶 88VIP呈獻 – NBA中國賽2026】熱血重燃",
+    "period": "2026/08/12-2026/10/11",
+    "link_url": "https://www.macaupass.com/promotiondetail/1509",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260812/160421592d6a0ebe02fd7ccf6e25874b_202608.jpg"
+  },
+  "4c908f5f942ebbaa4235671ae26a403d": {
+    "bank": "MPay澳門通",
+    "title": "澳門人出境遊必睇，MPay打車優惠免費領！",
+    "description": "澳門人出境遊必睇，MPay打車優惠免費領！",
+    "period": "2026/08/10-2026/09/30",
+    "link_url": "https://www.macaupass.com/promotiondetail/1508",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260810/087cf4675d63a7cbab8333325cc128d9_202608.png"
+  },
+  "0eb936bc41796ccaf62082cb7fdb770e": {
+    "bank": "MPay澳門通",
+    "title": "「澳門銀河」榮譽呈獻：「追」張靚穎世界巡迴演唱會-澳門收官站",
+    "description": "「澳門銀河」榮譽呈獻：「追」張靚穎世界巡迴演唱會-澳門收官站",
+    "period": "2026/08/07-2026/10/10",
+    "link_url": "https://www.macaupass.com/promotiondetail/1507",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260807/1e48e5d0e6ac269acdb55f0b752d7913_202608.png"
+  },
+  "234a9d945d2c29a259b7cd75f6e1c0c6": {
+    "bank": "MPay澳門通",
+    "title": "Dear Jane Fly you to the Moon Live",
+    "description": "Dear Jane Fly you to the Moon Live",
+    "period": "2026/08/06-2026/09/26",
+    "link_url": "https://www.macaupass.com/promotiondetail/1506",
+    "image_url": "https://mp-website-prd.macaupass.com/uploads/20260806/3df43d564abbe0a70146a165084a2858_202608.jpg"
+  },
+  "41dd57cb0a587738187bda14bcd47f59": {
+    "bank": "希爾頓榮譽客會（中國內地）",
+    "title": "「墨山镜水·桃源非遗」桂林陽朔騰昇希爾頓花园酒店旅拍套餐",
+    "description": "希爾頓榮譽客會官方體驗｜25,000 積分起｜競拍截止 2026/8/25",
+    "period": "體驗日期：2026/10/31；競拍截止：2026/8/25",
+    "link_url": "https://experiences.hilton.com.cn/defaultlink/isynmv1/aucd/6344073",
+    "image_url": "https://vafloc02.s3.amazonaws.com/isyn/images/f578/img-4807578-m.jpg"
+  },
+  "051dac4a28e5243f92a923b7abeb1478": {
+    "bank": "希爾頓榮譽客會（中國內地）",
+    "title": "「墨山镜水·桃源2晚慢享」桂林陽朔騰昇希爾頓花园 | 非遗旅拍+節氣晚餐套餐",
+    "description": "希爾頓榮譽客會官方體驗｜51,000 積分起｜競拍截止 2026/8/25",
+    "period": "體驗日期：2026/10/31；競拍截止：2026/8/25",
+    "link_url": "https://experiences.hilton.com.cn/2--/isynmv1/aucd/6344097",
+    "image_url": "https://vafloc02.s3.amazonaws.com/isyn/images/f847/img-4807847-m.jpg"
+  },
+  "c35e5660bec30c809dd53e3c60a2ad01": {
+    "bank": "希爾頓榮譽客會（中國內地）",
+    "title": "成都大熊猫繁育研究基地|希爾頓會員訂製通道+瀏覽車+訂製讲解体验套餐 2026年9月12日9:...",
+    "description": "希爾頓榮譽客會官方體驗｜7,000 積分起｜競拍截止 2026/9/1",
+    "period": "體驗日期：2026/9/12；競拍截止：2026/9/1",
+    "link_url": "https://experiences.hilton.com.cn/chengdu-research-base-of-giant-panda-breeding--hilton/isynmv1/aucd/6392067",
+    "image_url": "https://vafloc02.s3.amazonaws.com/isyn/images/f001/img-4832001-m.jpg"
+  },
+  "bf438a2d3f775f9159f145b73c55e187": {
     "bank": "萬豪旅享家®Moments（中國內地）",
-    "title": "萬豪旅享家®Moments 體驗競價及兌換",
-    "description": "以萬豪旅享家積分競價或兌換中國內地精選體驗，包括文娛、餐飲及運動賽事；個別體驗、所需積分及截止日期以官方頁面為準。",
-    "period": "持續更新（個別體驗截止日期以官方頁面為準）",
-    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments",
+    "title": "10月16日四分之一決賽：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽",
+    "description": "中國上海官方積分競價體驗｜套餐起拍價 30,000 積分",
+    "period": "體驗日期：2026/10/16",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments/22169/auction/116524",
+    "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/20a80c22d5a3e3be7ee3b953846634f338534b3080b3c7ed923e475758b1e051.png"
+  },
+  "2e138c4962713ab44928e095cb196622": {
+    "bank": "萬豪旅享家®Moments（中國內地）",
+    "title": "10月11日日場：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽",
+    "description": "中國上海官方積分競價體驗｜套餐起拍價 30,000 積分",
+    "period": "體驗日期：2026/10/11",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments/22167/auction/116512",
     "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png"
   },
-  "c40d8cc4a8bd9d7a2586d896f8a5ac68": {
-    "bank": "鳳凰知音（中國內地）",
-    "title": "2026年「鳳凰知音」會員保級政策",
-    "description": "2026 年貴賓會員保級依定級里程或定級航段評定；請留意帳戶飛行紀錄及會員有效期，詳細門檻與評定週期以官方公告為準。",
-    "period": "2026年度（會員有效期及評定週期以官方公告為準）",
-    "link_url": "https://ffp.airchina.com.cn/app/notice/details?articleId=253&currentType=ALL",
+  "ec2f5b04fef5689f96cc22569c9eb91b": {
+    "bank": "萬豪旅享家®Moments（中國內地）",
+    "title": "10月11日夜場：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽",
+    "description": "中國上海官方積分競價體驗｜套餐起拍價 30,000 積分",
+    "period": "體驗日期：2026/10/11",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments/22168/auction/116518",
     "image_url": ""
+  },
+  "cd0ee9eeea3538bba8fc8cf65b018980": {
+    "bank": "萬豪旅享家®Moments（中國內地）",
+    "title": "10月11日日場：上海勞力士大師賽空中包廂觀賽及牽手兒童體驗",
+    "description": "中國上海官方積分競價體驗｜套餐起拍價 40,000 積分",
+    "period": "體驗日期：2026/10/11",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments/22203/auction/116634",
+    "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/6abe8b36fdf0d46873e0b245fab25143d7d2e4f8202e83a2fb57c91f7d3c38ad.png"
+  },
+  "18e6c9cae4b04fb22715a2cf58f4bdbc": {
+    "bank": "萬豪旅享家®Moments（中國內地）",
+    "title": "10月11日夜場：上海勞力士大師賽空中包廂觀賽及牽手兒童體驗",
+    "description": "中國上海官方積分競價體驗｜套餐起拍價 40,000 積分",
+    "period": "體驗日期：2026/10/11",
+    "link_url": "https://moments.marriottbonvoy.com/zh-cn/moments/22204/auction/116636",
+    "image_url": ""
+  },
+  "36b0ec7c407f13cfed4a3b6315bc771f": {
+    "bank": "鳳凰知音（中國內地）",
+    "title": "中國農業銀行積分兑里程",
+    "description": "鳳凰知音官方合作夥伴優惠，詳情及參與資格以活動頁面為準。",
+    "period": "2026/08/21 至 2031/04/17",
+    "link_url": "https://ffp.airchina.com.cn/app/activity/detail?activity_id=1379",
+    "image_url": "https://static.airchina.com.cn/upload/img/activity/1787211299133.jpg"
   }
 }

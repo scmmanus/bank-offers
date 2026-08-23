@@ -397,6 +397,53 @@ def fetch_asiamiles():
         return []
 
 
+def fetch_bnu():
+    """從 BNU Life 官方頁的公開內嵌資料擷取當期優惠，不使用瀏覽器或模型。"""
+    try:
+        import html as _html
+        import requests as _requests
+        from urllib.parse import urljoin
+        response = _requests.get(URLS["BNU"], headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131 Safari/537.36",
+            "Accept-Language": "zh-Hant,zh;q=0.9,en;q=0.8"
+        }, timeout=30)
+        response.raise_for_status()
+        decoded = _html.unescape(response.text)
+        records_match = re.search(r'"data":(\[\{"id":.*?\}\]),"links"', decoded)
+        records = json.loads(records_match.group(1)) if records_match else []
+        today = datetime.now().date()
+        offers = []
+        for item in records:
+            end_raw = str(item.get("to_date") or "")
+            start_raw = str(item.get("from_date") or "")
+            try:
+                end_date = datetime.fromisoformat(end_raw.replace("Z", "+00:00")).date() if end_raw else None
+                start_date = datetime.fromisoformat(start_raw.replace("Z", "+00:00")).date() if start_raw else None
+            except ValueError:
+                end_date, start_date = None, None
+            if end_date and end_date < today:
+                continue
+            title = str(item.get("title") or "").strip()
+            if not title:
+                continue
+            period = f"{start_date:%Y/%m/%d} 至 {end_date:%Y/%m/%d}" if start_date and end_date else (f"至 {end_date:%Y/%m/%d}" if end_date else "最新優惠")
+            offers.append({
+                "bank": "大西洋銀行 (BNU)", "title": title,
+                "description": str(item.get("description") or title).strip(),
+                "image_url": urljoin("https://www.bnu.com.mo", str(item.get("image_url") or "")),
+                "link_url": urljoin("https://www.bnu.com.mo", str(item.get("url") or "")),
+                "period": period, "_order": end_raw
+            })
+        offers.sort(key=lambda item: item.get("_order", ""), reverse=True)
+        for offer in offers:
+            offer.pop("_order", None)
+        print(f"大西洋銀行 BNU Life 官方優惠：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    except Exception as exc:
+        print(f"大西洋銀行 BNU Life 抓取失敗：{exc}")
+        return []
+
+
 def fetch_generic(bank_name, url, browser, scroll_times=4):
     """通用頁面抓取：候選連結與圖片保持一對一，不輸入獨立整頁圖片清單。"""
     print(f"正在抓取 {bank_name}: {url}")
@@ -455,52 +502,132 @@ def fetch_boc(browser=None):
         return []
 
 
+def to_traditional(text):
+    """以常用字詞表將三個官方來源的簡體活動標題轉為繁體，不需模型呼叫。"""
+    value = str(text or "")
+    replacements = [
+        ("希尔顿", "希爾頓"), ("凤凰", "鳳凰"), ("会员", "會員"), ("积分", "積分"),
+        ("兑换", "兌換"), ("优惠", "優惠"), ("中国", "中國"), ("银行", "銀行"),
+        ("农业", "農業"), ("兴业", "興業"), ("银联", "銀聯"), ("消费", "消費"),
+        ("奖励", "獎勵"), ("国际", "國際"), ("租车", "租車"), ("结束", "結束"),
+        ("莅临", "蒞臨"), ("观赏", "觀賞"), ("场", "場"), ("大师赛", "大師賽"),
+        ("阳朔", "陽朔"), ("腾", "騰"), ("节气", "節氣"), ("浏览", "瀏覽"),
+        ("定制", "訂製"), ("牵手", "牽手"), ("车", "車"), ("里程", "里程"),
+        ("贵宾", "貴賓"), ("详细", "詳細"), ("活动", "活動")
+    ]
+    for source, target in replacements:
+        value = value.replace(source, target)
+    return value
+
+
 def fetch_hilton_cn():
-    """以官方首頁主視覺建立希爾頓中國內地積分競拍卡片；不使用模型或登入狀態。"""
-    page_url = URLS["HILTON_CN"]
-    # 已驗證的官方首頁主視覺；頁面抓取成功時會用最新的主視覺 URL 更新。
-    image_url = "https://vafloc02.s3.amazonaws.com/isyn/images/f455/img-2891455-f.jpg"
+    """以希爾頓中國官方 HTML 的精選卡片讀取實際競拍／兌換活動，不需模型或瀏覽器。"""
     try:
         import requests
-        response = requests.get(page_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=20)
+        from bs4 import BeautifulSoup
+        response = requests.get(URLS["HILTON_CN"], headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131 Safari/537.36",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
+        }, timeout=30)
         response.raise_for_status()
-        match = re.search(r'index__carousel__background[^>]+background-image:url\([\'\"]?([^\'\")]+)', response.text, re.I)
-        if match and match.group(1).startswith("https://"):
-            image_url = match.group(1)
-    except Exception as error:
-        print(f"希爾頓中國內地頁面主圖讀取失敗，使用已驗證官方主圖：{error}")
-    return [{
-        "bank": "希爾頓榮譽客會（中國內地）",
-        "title": "希爾頓榮譽客會積分競拍",
-        "description": "以希爾頓榮譽客會積分競拍或兌換中國內地精選體驗；個別競拍所需積分、供應及截止日期以官方頁面為準。",
-        "image_url": image_url,
-        "link_url": page_url,
-        "period": "持續更新（個別競拍截止日期以官方頁面為準）"
-    }]
+        soup = BeautifulSoup(response.text, "html.parser")
+        offers = []
+        for card in soup.select('a[id^="auctionFocusItem"]'):
+            title_node = card.find(["h1", "h2", "h3", "h4", "h5", "h6"])
+            title = to_traditional(title_node.get_text(" ", strip=True) if title_node else "")
+            text = card.get_text(" ", strip=True)
+            end_match = re.search(r"结束\s*(\d{4}年\d{1,2}月\d{1,2}日)", text)
+            experience_match = re.search(r"(?:中国|Chengdu[^|]*)\s*\|\s*(\d{4}年\d{1,2}月\d{1,2}日)", text)
+            points_match = re.search(r"([\d,]+)\s*积分", text)
+            if not title or not end_match:
+                continue
+            end_date = datetime.strptime(end_match.group(1), "%Y年%m月%d日").date()
+            if end_date < datetime.now().date():
+                continue
+            experience = experience_match.group(1).replace("年", "/").replace("月", "/").replace("日", "") if experience_match else "以官方頁面為準"
+            deadline = end_match.group(1).replace("年", "/").replace("月", "/").replace("日", "")
+            image = card.find("img")
+            href = card.get("href", "")
+            offers.append({
+                "bank": "希爾頓榮譽客會（中國內地）", "title": title,
+                "description": "希爾頓榮譽客會官方體驗" + (f"｜{points_match.group(1)} 積分起" if points_match else "") + f"｜競拍截止 {deadline}",
+                "image_url": image.get("src", "") if image else "",
+                "link_url": URLS["HILTON_CN"].rstrip("/") + href if href.startswith("/") else href,
+                "period": f"體驗日期：{experience}；競拍截止：{deadline}"
+            })
+        print(f"希爾頓中國內地官方最新體驗：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    except Exception as exc:
+        print(f"希爾頓中國內地最新體驗抓取失敗：{exc}")
+        return []
 
 
 def fetch_marriott_moments():
-    """加入萬豪旅享家 Moments 中國內地官方體驗入口；避免追蹤個別短期競價以降低維護成本。"""
-    return [{
-        "bank": "萬豪旅享家®Moments（中國內地）",
-        "title": "萬豪旅享家®Moments 體驗競價及兌換",
-        "description": "以萬豪旅享家積分競價或兌換中國內地精選體驗，包括文娛、餐飲及運動賽事；個別體驗、所需積分及截止日期以官方頁面為準。",
-        "image_url": "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png",
-        "link_url": URLS["MARRIOTT_MOMENTS"],
-        "period": "持續更新（個別體驗截止日期以官方頁面為準）"
-    }]
+    """收錄已核實的 Marriott Moments 當期中國內地積分競拍；到期後會由期限過濾排除。"""
+    image_base = "https://d18v8sntwdxsei.cloudfront.net/marriott/moments/images/event/medium/"
+    activities = [
+        ("10月11日日場：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽", "30,000", "2026/10/11", "22167/auction/116512", "48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png"),
+        ("10月11日夜場：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽", "30,000", "2026/10/11", "22168/auction/116518", "48e26139fac4eb8dda8fe9c0862043c723b86786c538039b7c4bbe7de0d354a0.png"),
+        ("10月11日日場：上海勞力士大師賽空中包廂觀賽及牽手兒童體驗", "40,000", "2026/10/11", "22203/auction/116634", "6abe8b36fdf0d46873e0b245fab25143d7d2e4f8202e83a2fb57c91f7d3c38ad.png"),
+        ("10月11日夜場：上海勞力士大師賽空中包廂觀賽及牽手兒童體驗", "40,000", "2026/10/11", "22204/auction/116636", "6abe8b36fdf0d46873e0b245fab25143d7d2e4f8202e83a2fb57c91f7d3c38ad.png"),
+        ("10月16日四分之一決賽：蒞臨旗忠網球中心空中包廂，觀賞上海勞力士大師賽", "30,000", "2026/10/16", "22169/auction/116524", "20a80c22d5a3e3be7ee3b953846634f338534b3080b3c7ed923e475758b1e051.png"),
+    ]
+    offers = []
+    for title, points, event_date, path, image_name in activities:
+        if datetime.strptime(event_date, "%Y/%m/%d").date() < datetime.now().date():
+            continue
+        offers.append({"bank": "萬豪旅享家®Moments（中國內地）", "title": title,
+                       "description": f"中國上海官方積分競價體驗｜套餐起拍價 {points} 積分",
+                       "image_url": image_base + image_name,
+                       "link_url": f"https://moments.marriottbonvoy.com/zh-cn/moments/{path}",
+                       "period": f"體驗日期：{event_date}"})
+    print(f"Marriott Moments 中國內地官方最新體驗：{len(offers)} 項")
+    return offers[:MAX_OFFERS_PER_INSTITUTION]
 
 
 def fetch_phoenix_miles():
-    """加入鳳凰知音最新可核實官方公告；政策頁無相關主圖時使用標題式資訊卡。"""
-    return [{
-        "bank": "鳳凰知音（中國內地）",
-        "title": "2026年「鳳凰知音」會員保級政策",
-        "description": "2026 年貴賓會員保級依定級里程或定級航段評定；請留意帳戶飛行紀錄及會員有效期，詳細門檻與評定週期以官方公告為準。",
-        "image_url": "",
-        "link_url": "https://ffp.airchina.com.cn/app/notice/details?articleId=253&currentType=ALL",
-        "period": "2026年度（會員有效期及評定週期以官方公告為準）"
-    }]
+    """直接讀取鳳凰知音公開活動接口，保留近期發布且尚未結束的合作優惠。"""
+    try:
+        import requests
+        response = requests.post(
+            "https://ffp.airchina.com.cn/app/activity/findReleasedActivityList",
+            data={"type": "1", "show_cx_activity": "checked", "release_order": "desc", "preferential_type": "1",
+                  "offset": "0", "page_size": "30", "company_type": "", "user_id": ""},
+            headers={"User-Agent": "Mozilla/5.0", "Referer": "https://ffp.airchina.com.cn/app/activity/search?preferential_type=1"}, timeout=30
+        )
+        response.raise_for_status()
+        activities = response.json()
+        today = datetime.now().date()
+        offers = []
+        for activity in activities if isinstance(activities, list) else []:
+            start_raw, end_raw = activity.get("start_time", ""), activity.get("end_time", "")
+            try:
+                start_date = datetime.strptime(start_raw[:10], "%Y-%m-%d").date()
+                end_date = datetime.strptime(end_raw[:10], "%Y-%m-%d").date()
+            except (TypeError, ValueError):
+                continue
+            # 排除雖重新發布但原始活動已屬多年以前的長期資料，保留近兩年才開始的當期優惠。
+            if end_date < today or start_date.year < today.year - 1:
+                continue
+            activity_id = activity.get("activity_id")
+            if not activity_id or not activity.get("title"):
+                continue
+            poster = str(activity.get("web_poster") or "")
+            image_url = poster if poster.startswith("https://") else f"https://static.airchina.com.cn{poster}" if poster.startswith("/") else ""
+            offers.append({
+                "bank": "鳳凰知音（中國內地）", "title": to_traditional(activity["title"]),
+                "description": "鳳凰知音官方合作夥伴優惠，詳情及參與資格以活動頁面為準。",
+                "image_url": image_url, "link_url": f"https://ffp.airchina.com.cn/app/activity/detail?activity_id={activity_id}",
+                "period": f"{start_date:%Y/%m/%d} 至 {end_date:%Y/%m/%d}", "_release": activity.get("release_time", "")
+            })
+        offers.sort(key=lambda item: item.get("_release", ""), reverse=True)
+        for offer in offers:
+            offer.pop("_release", None)
+        print(f"鳳凰知音官方最新有效合作優惠：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    except Exception as exc:
+        print(f"鳳凰知音最新活動抓取失敗：{exc}")
+        return []
 
 
 def fetch_boci(browser):
@@ -1093,7 +1220,26 @@ def render_html(all_offers, date_str):
         "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"],
     }
     anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles"}
-    banks = list(dict.fromkeys(offer["bank"] for offer in all_offers))
+    bank_labels = {
+        "中國銀行 (澳門)": "BOC中國銀行", "工銀澳門": "ICBC工銀澳門", "大西洋銀行 (BNU)": "BNU大西洋銀行",
+        "滙豐澳門": "HSBC滙豐澳門", "匯豐澳門": "HSBC滙豐澳門", "華僑銀行澳門": "OCBC澳門華僑銀行",
+        "Mastercard Priceless": "Mastercard香港", "MPay澳門通": "MPay"
+    }
+    institution_groups = [
+        ("澳門機構", "macau", ["中國銀行 (澳門)", "工銀澳門", "大西洋銀行 (BNU)", "BCM澳門商業銀行", "滙豐澳門", "澳門大豐銀行", "LUSO澳門國際銀行", "華僑銀行澳門", "澳門立橋銀行", "MPay澳門通"]),
+        ("信用卡", "card", ["銀聯國際", "Visa香港", "Mastercard Priceless", "美國運通香港"]),
+        ("飛行里數", "miles", ["亞洲萬里通", "鳳凰知音（中國內地）"]),
+        ("酒店會籍", "hotel", ["希爾頓榮譽客會（中國內地）", "萬豪旅享家®Moments（中國內地）"]),
+    ]
+    available_banks = set(offer["bank"] for offer in all_offers)
+    bank_group = {bank: group_key for _, group_key, members in institution_groups for bank in members}
+    ordered_banks = []
+    for _, _, members in institution_groups:
+        for bank in members:
+            if bank not in ordered_banks:
+                ordered_banks.append(bank)
+    ordered_banks.extend(bank for bank in dict.fromkeys(offer["bank"] for offer in all_offers) if bank not in ordered_banks)
+    banks = ordered_banks
 
     def make_card(offer, fallback_url):
         bank = escape(str(offer.get("bank", "")))
@@ -1110,16 +1256,29 @@ def render_html(all_offers, date_str):
             placeholder = f'<div class="offer-image-placeholder offer-image-generated"><span>{bank}</span><strong>{title}</strong><small>查看官方優惠詳情</small></div>'
         return f"""<article class="offer-card"><a href="{link}" target="_blank" rel="noopener noreferrer" class="card-link"><div class="card-img-wrap">{image_html}{placeholder}</div><div class="card-body"><div class="offer-title">{title}</div><div class="offer-desc">{desc}</div><div class="offer-period">日期：{period}</div></div></a></article>"""
 
-    nav_buttons = ''.join(f'<a href="#{anchor_map.get(bank, f"bank{index}")}" class="nav-btn">{escape(bank)}</a>' for index, bank in enumerate(banks))
+    nav_groups = []
+    for group_title, group_key, members in institution_groups:
+        buttons = ''.join(
+            f'<a href="#{anchor_map.get(bank, f"bank{banks.index(bank)}")}" class="nav-btn nav-{group_key}">{escape(bank_labels.get(bank, bank))}</a>'
+            for bank in members
+        )
+        nav_groups.append(f'<div class="nav-group nav-group-{group_key}"><span class="nav-group-title">{escape(group_title)}</span><div class="nav-group-buttons">{buttons}</div></div>')
+    extra_banks = [bank for bank in banks if bank not in bank_group]
+    if extra_banks:
+        extra_buttons = ''.join(f'<a href="#{anchor_map.get(bank, f"bank{banks.index(bank)}")}" class="nav-btn nav-extra">{escape(bank_labels.get(bank, bank))}</a>' for bank in extra_banks)
+        nav_groups.append(f'<div class="nav-group nav-group-extra"><span class="nav-group-title">其他</span><div class="nav-group-buttons">{extra_buttons}</div></div>')
+    nav_buttons = ''.join(nav_groups)
     sections = []
     for index, bank in enumerate(banks):
         anchor = anchor_map.get(bank, f"bank{index}")
         fallback = bank_urls.get(bank, "#")
-        cards = ''.join(make_card(offer, fallback) for offer in all_offers if offer["bank"] == bank) or '<p class="no-offers">暫無可顯示的優惠資料。</p>'
-        sections.append(f'<section class="bank-section" id="{anchor}"><header class="bank-header"><h2>{escape(bank)}</h2><a href="{escape(fallback, quote=True)}" target="_blank" rel="noopener noreferrer" class="more-btn">更多優惠</a></header><div class="offers-grid">{cards}</div></section>')
+        bank_offers = [offer for offer in all_offers if offer["bank"] == bank][:MAX_OFFERS_PER_INSTITUTION]
+        cards = ''.join(make_card(offer, fallback) for offer in bank_offers) or '<p class="no-offers">暫無可顯示的優惠資料。</p>'
+        group_key = bank_group.get(bank, "extra")
+        sections.append(f'<section class="bank-section section-{group_key}" id="{anchor}"><header class="bank-header"><h2>{escape(bank_labels.get(bank, bank))}</h2><a href="{escape(fallback, quote=True)}" target="_blank" rel="noopener noreferrer" class="more-btn">更多優惠</a></header><div class="offers-grid">{cards}</div></section>')
     body = ''.join(sections)
     return f"""<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>澳門銀行信用卡優惠報告 - {escape(date_str)}</title><style>
-:root{{--ink:#2d2d3a;--muted:#656579;--line:#e7e2f0;--page:#f8f6ff;--purple:#5b4a9e;--blue:#2e86ab;--orange:#d96c1a}}*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;padding:20px 14px;background:var(--page);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);line-height:1.55}}.container{{max-width:1120px;margin:auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 22px rgba(63,42,117,.12)}}.masthead{{padding:34px 24px;color:#fff;text-align:center;background:linear-gradient(135deg,#5b4a9e,#2e86ab 55%,#a23b72)}}.masthead h1{{margin:0;font-size:29px}}.masthead p{{margin:8px 0 0;opacity:.9}}.nav-bar{{position:sticky;top:0;z-index:10;display:flex;gap:8px;flex-wrap:wrap;padding:13px 18px;background:rgba(255,255,255,.96);border-bottom:2px solid var(--line);backdrop-filter:blur(8px)}}.nav-btn,.more-btn{{display:inline-block;border:1px solid var(--purple);border-radius:99px;padding:6px 13px;color:var(--purple);font-size:14px;font-weight:700;text-decoration:none}}.nav-btn:hover,.more-btn:hover{{color:#fff;background:var(--purple)}}.bank-section{{padding:28px 24px;border-bottom:2px solid var(--line)}}.bank-header{{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}}.bank-header h2{{margin:0;padding-left:12px;border-left:5px solid var(--blue);font-size:21px}}.offers-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}.offer-card{{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:#fff;transition:transform .2s,box-shadow .2s}}.offer-card:hover{{transform:translateY(-2px);box-shadow:0 6px 18px rgba(58,40,103,.14)}}.card-link{{display:block;height:100%;color:inherit;text-decoration:none}}.card-img-wrap{{aspect-ratio:4/3;overflow:hidden;background:#efebf8}}.offer-image{{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}}.offer-image-placeholder{{display:flex;width:100%;height:100%;padding:16px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,#eee9f8,#e4f1f7);color:var(--purple);text-align:center}}.offer-image-placeholder[hidden]{{display:none}}.offer-image-placeholder span{{font-weight:800;font-size:16px}}.offer-image-placeholder strong{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;max-width:100%;font-size:15px;line-height:1.45}}.offer-image-placeholder small{{font-size:12px;opacity:.75}}.offer-image-generated{{background:linear-gradient(135deg,#e3edf9,#f5e9f3)}}.card-body{{padding:13px 14px 15px}}.offer-title{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-bottom:7px;font-weight:800;font-size:16px;line-height:1.4}}.offer-desc{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--muted);font-size:14px}}.offer-period{{margin-top:9px;color:var(--orange);font-size:13px;font-weight:700}}.no-offers{{grid-column:1/-1;color:var(--muted)}}.footer{{padding:22px;text-align:center;color:var(--muted);font-size:13px}}#back-to-top{{position:fixed;top:50%;right:19px;display:flex;width:50px;height:50px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(74,59,137,.38)}}@media(max-width:760px){{.offers-grid{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}@media(max-width:460px){{body{{padding:0}}.container{{border-radius:0}}.bank-section{{padding:24px 15px}}.offers-grid{{grid-template-columns:1fr}}.masthead h1{{font-size:24px}}.bank-header h2{{font-size:19px}}}}
+:root{{--ink:#2d2d3a;--muted:#656579;--line:#e7e2f0;--page:#f8f6ff;--purple:#5b4a9e;--blue:#2e86ab;--orange:#d96c1a}}*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;padding:20px 14px;background:var(--page);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);line-height:1.55}}.container{{max-width:1120px;margin:auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 22px rgba(63,42,117,.12)}}.masthead{{padding:34px 24px;color:#fff;text-align:center;background:linear-gradient(135deg,#5b4a9e,#2e86ab 55%,#a23b72)}}.masthead h1{{margin:0;font-size:29px}}.masthead p{{margin:8px 0 0;opacity:.9}}.nav-bar{{position:sticky;top:0;z-index:10;display:flex;gap:10px;flex-wrap:wrap;padding:13px 18px;background:rgba(255,255,255,.96);border-bottom:2px solid var(--line);backdrop-filter:blur(8px)}}.nav-group{{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:5px 8px;border-radius:12px}}.nav-group-title{{padding:3px 7px;border-radius:7px;background:rgba(45,45,58,.08);color:var(--ink);font-size:12px;font-weight:900;letter-spacing:.04em}}.nav-group-buttons{{display:flex;gap:6px;flex-wrap:wrap}}.nav-btn,.more-btn{{display:inline-block;border:1px solid transparent;border-radius:99px;padding:6px 13px;color:#fff;font-size:14px;font-weight:800;text-decoration:none;box-shadow:0 2px 5px rgba(42,38,69,.14);transition:transform .18s,filter .18s}}.nav-btn:hover,.more-btn:hover{{color:#fff;filter:brightness(.92);transform:translateY(-1px)}}.nav-macau{{background:linear-gradient(135deg,#3165b3,#438bc7)}}.nav-card{{background:linear-gradient(135deg,#a23b72,#d6695d)}}.nav-miles{{background:linear-gradient(135deg,#118c7e,#42a98b)}}.nav-hotel{{background:linear-gradient(135deg,#a06420,#d3a63b)}}.nav-extra{{background:linear-gradient(135deg,#5b4a9e,#8068be)}}.more-btn{{background:linear-gradient(135deg,var(--purple),var(--blue))}}.bank-section{{padding:28px 24px;border-bottom:2px solid var(--line);scroll-margin-top:180px}}.bank-header{{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}}.bank-header h2{{margin:0;padding-left:12px;border-left:5px solid var(--blue);font-size:21px}}.section-card .bank-header h2{{border-color:#c95665}}.section-miles .bank-header h2{{border-color:#22977f}}.section-hotel .bank-header h2{{border-color:#b47e2f}}.offers-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}.offer-card{{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:#fff;transition:transform .2s,box-shadow .2s}}.offer-card:hover{{transform:translateY(-2px);box-shadow:0 6px 18px rgba(58,40,103,.14)}}.card-link{{display:block;height:100%;color:inherit;text-decoration:none}}.card-img-wrap{{aspect-ratio:4/3;overflow:hidden;background:#efebf8}}.offer-image{{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}}.offer-image-placeholder{{display:flex;width:100%;height:100%;padding:16px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,#eee9f8,#e4f1f7);color:var(--purple);text-align:center}}.offer-image-placeholder[hidden]{{display:none}}.offer-image-placeholder span{{font-weight:800;font-size:16px}}.offer-image-placeholder strong{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;max-width:100%;font-size:15px;line-height:1.45}}.offer-image-placeholder small{{font-size:12px;opacity:.75}}.offer-image-generated{{background:linear-gradient(135deg,#e3edf9,#f5e9f3)}}.card-body{{padding:13px 14px 15px}}.offer-title{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-bottom:7px;font-weight:800;font-size:16px;line-height:1.4}}.offer-desc{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--muted);font-size:14px}}.offer-period{{margin-top:9px;color:var(--orange);font-size:13px;font-weight:700}}.no-offers{{grid-column:1/-1;color:var(--muted)}}.footer{{padding:22px;text-align:center;color:var(--muted);font-size:13px}}#back-to-top{{position:fixed;top:50%;right:19px;display:flex;width:50px;height:50px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(74,59,137,.38)}}@media(max-width:760px){{.offers-grid{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}@media(max-width:460px){{body{{padding:0}}.container{{border-radius:0}}.bank-section{{padding:24px 15px}}.offers-grid{{grid-template-columns:1fr}}.masthead h1{{font-size:24px}}.bank-header h2{{font-size:19px}}}}
 </style></head><body><main class="container"><header class="masthead"><h1>澳門銀行信用卡優惠報告</h1><p>{escape(date_str)} 更新</p></header><nav class="nav-bar" aria-label="銀行快速跳轉">{nav_buttons}</nav>{body}<footer class="footer">資料由各機構公開頁面整理；優惠詳情及資格以官方公告為準。</footer></main><a href="#" id="back-to-top" aria-label="回到頁首">↑</a><script>document.getElementById('back-to-top').addEventListener('click',e=>{{e.preventDefault();window.scrollTo({{top:0,behavior:'smooth'}})}});</script></body></html>"""
 
 
@@ -1679,7 +1838,7 @@ def main():
     try:
         all_offers.extend(fetch_boc(browser))
         all_offers.extend(fetch_icbc(browser))
-        all_offers.extend(fetch_generic("大西洋銀行 (BNU)", URLS["BNU"], browser))
+        all_offers.extend(fetch_bnu())
         for name, url in [("BCM澳門商業銀行", URLS["BCM"]), ("滙豐澳門", URLS["HSBC"]), ("華僑銀行澳門", URLS["OCBC"]), ("澳門大豐銀行", URLS["BOCI"]), ("LUSO澳門國際銀行", URLS["LUSO"]), ("銀聯國際", URLS["UPI"]), ("Visa香港", URLS["VISA"]), ("Mastercard Priceless", URLS["MC"])]:
             if name == "澳門大豐銀行": all_offers.extend(fetch_boci(browser))
             elif name == "LUSO澳門國際銀行": all_offers.extend(fetch_luso(browser))
