@@ -31,7 +31,8 @@ URLS = {
     "HILTON_CN": "https://experiences.hilton.com.cn/",
     "MARRIOTT_MOMENTS": "https://moments.marriottbonvoy.com/zh-cn/moments",
     "PHOENIX_MILES": "https://ffp.airchina.com.cn/index.html",
-    "EVA_AIR": "https://www.evaair.com/zh-hk/infinity-mileagelands/member-special-offers/special-mileage-promotion/"
+    "EVA_AIR": "https://www.evaair.com/zh-hk/infinity-mileagelands/member-special-offers/special-mileage-promotion/",
+    "TRIPCOM_AFFILIATE": "https://www.chinesean.com/affiliate/clickBanner.do?wId=61731&pId=10754&targetURL=https%3A%2F%2Fhk.trip.com%2Fsale%2Fdeals%2F%3Flocale%3Dzh-HK%26curr%3DHKD%26allianceid%3D310721%26SID%3D789738%26utm_campaign%3DCHINESEANID%26trip_sub1%3D10754_CHINESEANTXID"
 }
 
 CACHE_FILE = "/home/ubuntu/offers_cache.json"
@@ -702,6 +703,62 @@ def fetch_eva_air(browser=None):
             page.close()
 
 
+def _tripcom_snapshot_offers():
+    """導向頁受阻時使用的已核實 Trip.com 首頁精選；所有點擊保留 ChineseAN 聯盟歸因。"""
+    activities = [
+        ("中銀Visa信用卡 X Trip.com勁減高達 HK$700 優惠", "憑中銀信用卡及指定優惠碼預訂機票、酒店、機票+酒店套票即減高達 HK$700。", "https://dimg04.tripcdn.com/images/0a13q12000snzqun9A826.png"),
+        ("2026 Mastercard 機票及酒店優惠！", "Mastercard 聯同 Trip.com 提供機票／酒店高達 HK$200 優惠。", "https://dimg04.tripcdn.com/images/0a12l12000t20haukF91A.jpg"),
+        ("輕奢啟程 解鎖專屬於您的奢華旅程", "一站式探索商務艙、奢華酒店等高端旅遊體驗。", "https://dimg04.tripcdn.com/images/0a11i12000t2b4f1y19F5.jpg"),
+        ("探索橫琴文化旅遊", "橫琴文化旅遊主題活動。", "https://dimg04.tripcdn.com/images/0a13w12000tbe31bkADEA.jpg"),
+        ("Let's Hainan", "海南旅遊主題活動。", "https://dimg04.tripcdn.com/images/0a12o12000s7ena28E9C4.jpg"),
+        ("#VibeTravelling 搵啱旅行關鍵字", "依旅行風格探索適合的行程體驗。", "https://dimg04.tripcdn.com/images/0a16x12000tebv5twDA2E.jpg"),
+        ("玩盡暑假 1+1", "完成兩項親子任務可賺取 1,700 Coins。", "https://dimg04.tripcdn.com/images/0a16612000t1yyxguCAC1.png"),
+        ("超值機票優惠合集", "熱門航班及快閃機票優惠。", "https://dimg04.tripcdn.com/images/0a14h12000siyq0m7E55D.png"),
+        ("新開幕酒店優惠低至8折", "新開幕酒店體驗優惠。", "https://dimg04.tripcdn.com/images/1zp0112000t1ummnh56A9.png"),
+    ]
+    return [{"bank": "Trip.com", "title": title, "description": description, "image_url": image_url,
+             "link_url": URLS["TRIPCOM_AFFILIATE"], "period": "當期旅遊優惠｜以 Trip.com 頁面為準"} for title, description, image_url in activities]
+
+
+def fetch_tripcom(browser=None):
+    """從 ChineseAN 導向的 Trip.com 優惠頁讀取首批精選卡；卡片一律使用聯盟連結跳轉。"""
+    if browser is None:
+        offers = _tripcom_snapshot_offers()
+        print(f"Trip.com 聯盟優惠快照：{len(offers)} 項")
+        return offers[:MAX_OFFERS_PER_INSTITUTION]
+    page = None
+    try:
+        page = browser.new_page()
+        page.goto(URLS["TRIPCOM_AFFILIATE"], wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(3500)
+        cards = page.evaluate(r'''() => Array.from(document.querySelectorAll('a')).map(a => {
+            const image = a.querySelector('img');
+            const lines = (a.innerText || '').split(/\n+/).map(x => x.trim()).filter(Boolean);
+            return {title: lines[0] || image?.alt || '', description: lines.slice(1).join(' ').trim(), image_url: image?.src || ''};
+        }).filter(card => card.title && card.image_url && /tripcdn\.com|trip\.com/i.test(card.image_url))''')
+        offers, seen = [], set()
+        for card in cards:
+            title = str(card.get("title") or "").strip()
+            if not title or title in seen:
+                continue
+            seen.add(title)
+            offers.append({"bank": "Trip.com", "title": title, "description": str(card.get("description") or "Trip.com 當期旅遊優惠").strip()[:220],
+                           "image_url": card.get("image_url", ""), "link_url": URLS["TRIPCOM_AFFILIATE"],
+                           "period": "當期旅遊優惠｜以 Trip.com 頁面為準"})
+            if len(offers) >= MAX_OFFERS_PER_INSTITUTION:
+                break
+        if not offers:
+            return _tripcom_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
+        print(f"Trip.com ChineseAN 聯盟優惠：{len(offers)} 項")
+        return offers
+    except Exception as exc:
+        print(f"Trip.com 聯盟優惠抓取失敗：{exc}")
+        return _tripcom_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
+    finally:
+        if page:
+            page.close()
+
+
 def fetch_boci(browser):
     """抓取澳門大豐銀行優惠，每個優惠有獨立頁面和圖片"""
     print("正在抓取 澳門大豐銀行: https://www.boci.com.hk/macau/chi/promotion/boci_prom_spec.htm")
@@ -1289,9 +1346,9 @@ def render_html(all_offers, date_str):
         "BCM澳門商業銀行": URLS["BCM"], "滙豐澳門": URLS["HSBC"], "匯豐澳門": URLS["HSBC"],
         "華僑銀行澳門": URLS["OCBC"], "美國運通香港": URLS["AMEX"], "澳門大豐銀行": URLS["BOCI"],
         "澳門立橋銀行": URLS["WLB"], "LUSO澳門國際銀行": URLS["LUSO"], "銀聯國際": URLS["UPI"],
-        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"], "長榮航空": URLS["EVA_AIR"],
+        "Visa香港": URLS["VISA"], "Mastercard Priceless": URLS["MC"], "亞洲萬里通": URLS["ASIAMILES"], "MPay澳門通": URLS["MPAY"], "希爾頓榮譽客會（中國內地）": URLS["HILTON_CN"], "萬豪旅享家®Moments（中國內地）": URLS["MARRIOTT_MOMENTS"], "鳳凰知音（中國內地）": URLS["PHOENIX_MILES"], "長榮航空": URLS["EVA_AIR"], "Trip.com": URLS["TRIPCOM_AFFILIATE"],
     }
-    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles", "長榮航空": "eva-air"}
+    anchor_map = {"中國銀行 (澳門)": "boc", "工銀澳門": "icbc", "大西洋銀行 (BNU)": "bnu", "BCM澳門商業銀行": "bcm", "滙豐澳門": "hsbc", "匯豐澳門": "hsbc", "華僑銀行澳門": "ocbc", "澳門大豐銀行": "boci", "LUSO澳門國際銀行": "luso", "銀聯國際": "upi", "Visa香港": "visa", "Mastercard Priceless": "mastercard", "美國運通香港": "amex", "澳門立橋銀行": "wlb", "亞洲萬里通": "asiamiles", "MPay澳門通": "mpay", "希爾頓榮譽客會（中國內地）": "hilton-cn", "萬豪旅享家®Moments（中國內地）": "marriott-moments", "鳳凰知音（中國內地）": "phoenix-miles", "長榮航空": "eva-air", "Trip.com": "tripcom"}
     bank_labels = {
         "中國銀行 (澳門)": "BOC中國銀行", "工銀澳門": "ICBC工銀澳門", "大西洋銀行 (BNU)": "BNU大西洋銀行",
         "滙豐澳門": "HSBC滙豐澳門", "匯豐澳門": "HSBC滙豐澳門", "華僑銀行澳門": "OCBC澳門華僑銀行",
@@ -1302,6 +1359,7 @@ def render_html(all_offers, date_str):
         ("信用卡", "card", ["銀聯國際", "Visa香港", "Mastercard Priceless", "美國運通香港"]),
         ("飛行里數", "miles", ["亞洲萬里通", "鳳凰知音（中國內地）", "長榮航空"]),
         ("酒店會籍", "hotel", ["希爾頓榮譽客會（中國內地）", "萬豪旅享家®Moments（中國內地）"]),
+        ("旅遊優惠", "travel", ["Trip.com"]),
     ]
     available_banks = set(offer["bank"] for offer in all_offers)
     bank_group = {bank: group_key for _, group_key, members in institution_groups for bank in members}
@@ -1350,7 +1408,7 @@ def render_html(all_offers, date_str):
         sections.append(f'<section class="bank-section section-{group_key}" id="{anchor}"><header class="bank-header"><h2>{escape(bank_labels.get(bank, bank))}</h2><a href="{escape(fallback, quote=True)}" target="_blank" rel="noopener noreferrer" class="more-btn">更多優惠</a></header><div class="offers-grid">{cards}</div></section>')
     body = ''.join(sections)
     return f"""<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>澳門銀行信用卡優惠報告 - {escape(date_str)}</title><style>
-:root{{--ink:#2d2d3a;--muted:#656579;--line:#e7e2f0;--page:#f8f6ff;--purple:#5b4a9e;--blue:#2e86ab;--orange:#d96c1a}}*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;padding:20px 14px;background:var(--page);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);line-height:1.55}}.container{{max-width:1120px;margin:auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 22px rgba(63,42,117,.12)}}.masthead{{padding:34px 24px;color:#fff;text-align:center;background:linear-gradient(135deg,#5b4a9e,#2e86ab 55%,#a23b72)}}.masthead h1{{margin:0;font-size:29px}}.masthead p{{margin:8px 0 0;opacity:.9}}.nav-bar{{position:sticky;top:0;z-index:10;display:flex;gap:10px;flex-wrap:wrap;padding:13px 18px;background:rgba(255,255,255,.96);border-bottom:2px solid var(--line);backdrop-filter:blur(8px)}}.nav-group{{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:5px 8px;border-radius:12px}}.nav-group-title{{padding:3px 7px;border-radius:7px;background:rgba(45,45,58,.08);color:var(--ink);font-size:12px;font-weight:900;letter-spacing:.04em}}.nav-group-buttons{{display:flex;gap:6px;flex-wrap:wrap}}.nav-btn,.more-btn{{display:inline-block;border:1px solid transparent;border-radius:99px;padding:6px 13px;color:#fff;font-size:14px;font-weight:800;text-decoration:none;box-shadow:0 2px 5px rgba(42,38,69,.14);transition:transform .18s,filter .18s}}.nav-btn:hover,.more-btn:hover{{color:#fff;filter:brightness(.92);transform:translateY(-1px)}}.nav-macau{{background:linear-gradient(135deg,#3165b3,#438bc7)}}.nav-card{{background:linear-gradient(135deg,#a23b72,#d6695d)}}.nav-miles{{background:linear-gradient(135deg,#118c7e,#42a98b)}}.nav-hotel{{background:linear-gradient(135deg,#a06420,#d3a63b)}}.nav-extra{{background:linear-gradient(135deg,#5b4a9e,#8068be)}}.more-btn{{background:linear-gradient(135deg,var(--purple),var(--blue))}}.bank-section{{padding:28px 24px;border-bottom:2px solid var(--line);scroll-margin-top:180px}}.bank-header{{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}}.bank-header h2{{margin:0;padding-left:12px;border-left:5px solid var(--blue);font-size:21px}}.section-card .bank-header h2{{border-color:#c95665}}.section-miles .bank-header h2{{border-color:#22977f}}.section-hotel .bank-header h2{{border-color:#b47e2f}}.offers-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}.offer-card{{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:#fff;transition:transform .2s,box-shadow .2s}}.offer-card:hover{{transform:translateY(-2px);box-shadow:0 6px 18px rgba(58,40,103,.14)}}.card-link{{display:block;height:100%;color:inherit;text-decoration:none}}.card-img-wrap{{aspect-ratio:4/3;overflow:hidden;background:#efebf8}}.offer-image{{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}}.offer-image-placeholder{{display:flex;width:100%;height:100%;padding:16px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,#eee9f8,#e4f1f7);color:var(--purple);text-align:center}}.offer-image-placeholder[hidden]{{display:none}}.offer-image-placeholder span{{font-weight:800;font-size:16px}}.offer-image-placeholder strong{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;max-width:100%;font-size:15px;line-height:1.45}}.offer-image-placeholder small{{font-size:12px;opacity:.75}}.offer-image-generated{{background:linear-gradient(135deg,#e3edf9,#f5e9f3)}}.card-body{{padding:13px 14px 15px}}.offer-title{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-bottom:7px;font-weight:800;font-size:16px;line-height:1.4}}.offer-desc{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--muted);font-size:14px}}.offer-period{{margin-top:9px;color:var(--orange);font-size:13px;font-weight:700}}.no-offers{{grid-column:1/-1;color:var(--muted)}}.footer{{padding:22px;text-align:center;color:var(--muted);font-size:13px}}#back-to-top{{position:fixed;top:50%;right:19px;display:flex;width:50px;height:50px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(74,59,137,.38)}}@media(max-width:760px){{.offers-grid{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}@media(max-width:460px){{body{{padding:0}}.container{{border-radius:0}}.bank-section{{padding:24px 15px}}.offers-grid{{grid-template-columns:1fr}}.masthead h1{{font-size:24px}}.bank-header h2{{font-size:19px}}}}
+:root{{--ink:#2d2d3a;--muted:#656579;--line:#e7e2f0;--page:#f8f6ff;--purple:#5b4a9e;--blue:#2e86ab;--orange:#d96c1a}}*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;padding:20px 14px;background:var(--page);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);line-height:1.55}}.container{{max-width:1120px;margin:auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 22px rgba(63,42,117,.12)}}.masthead{{padding:34px 24px;color:#fff;text-align:center;background:linear-gradient(135deg,#5b4a9e,#2e86ab 55%,#a23b72)}}.masthead h1{{margin:0;font-size:29px}}.masthead p{{margin:8px 0 0;opacity:.9}}.nav-bar{{position:sticky;top:0;z-index:10;display:flex;gap:10px;flex-wrap:wrap;padding:13px 18px;background:rgba(255,255,255,.96);border-bottom:2px solid var(--line);backdrop-filter:blur(8px)}}.nav-group{{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:5px 8px;border-radius:12px}}.nav-group-title{{padding:3px 7px;border-radius:7px;background:rgba(45,45,58,.08);color:var(--ink);font-size:12px;font-weight:900;letter-spacing:.04em}}.nav-group-buttons{{display:flex;gap:6px;flex-wrap:wrap}}.nav-btn,.more-btn{{display:inline-block;border:1px solid transparent;border-radius:99px;padding:6px 13px;color:#fff;font-size:14px;font-weight:800;text-decoration:none;box-shadow:0 2px 5px rgba(42,38,69,.14);transition:transform .18s,filter .18s}}.nav-btn:hover,.more-btn:hover{{color:#fff;filter:brightness(.92);transform:translateY(-1px)}}.nav-macau{{background:linear-gradient(135deg,#3165b3,#438bc7)}}.nav-card{{background:linear-gradient(135deg,#a23b72,#d6695d)}}.nav-miles{{background:linear-gradient(135deg,#118c7e,#42a98b)}}.nav-hotel{{background:linear-gradient(135deg,#a06420,#d3a63b)}}.nav-travel{{background:linear-gradient(135deg,#2d5ca6,#6a81cf)}}.nav-extra{{background:linear-gradient(135deg,#5b4a9e,#8068be)}}.more-btn{{background:linear-gradient(135deg,var(--purple),var(--blue))}}.bank-section{{padding:28px 24px;border-bottom:2px solid var(--line);scroll-margin-top:180px}}.bank-header{{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}}.bank-header h2{{margin:0;padding-left:12px;border-left:5px solid var(--blue);font-size:21px}}.section-card .bank-header h2{{border-color:#c95665}}.section-miles .bank-header h2{{border-color:#22977f}}.section-hotel .bank-header h2{{border-color:#b47e2f}}.section-travel .bank-header h2{{border-color:#466ec0}}.offers-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}.offer-card{{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:#fff;transition:transform .2s,box-shadow .2s}}.offer-card:hover{{transform:translateY(-2px);box-shadow:0 6px 18px rgba(58,40,103,.14)}}.card-link{{display:block;height:100%;color:inherit;text-decoration:none}}.card-img-wrap{{aspect-ratio:4/3;overflow:hidden;background:#efebf8}}.offer-image{{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}}.offer-image-placeholder{{display:flex;width:100%;height:100%;padding:16px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,#eee9f8,#e4f1f7);color:var(--purple);text-align:center}}.offer-image-placeholder[hidden]{{display:none}}.offer-image-placeholder span{{font-weight:800;font-size:16px}}.offer-image-placeholder strong{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;max-width:100%;font-size:15px;line-height:1.45}}.offer-image-placeholder small{{font-size:12px;opacity:.75}}.offer-image-generated{{background:linear-gradient(135deg,#e3edf9,#f5e9f3)}}.card-body{{padding:13px 14px 15px}}.offer-title{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-bottom:7px;font-weight:800;font-size:16px;line-height:1.4}}.offer-desc{{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--muted);font-size:14px}}.offer-period{{margin-top:9px;color:var(--orange);font-size:13px;font-weight:700}}.no-offers{{grid-column:1/-1;color:var(--muted)}}.footer{{padding:22px;text-align:center;color:var(--muted);font-size:13px}}#back-to-top{{position:fixed;top:50%;right:19px;display:flex;width:50px;height:50px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(74,59,137,.38)}}@media(max-width:760px){{.offers-grid{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}@media(max-width:460px){{body{{padding:0}}.container{{border-radius:0}}.bank-section{{padding:24px 15px}}.offers-grid{{grid-template-columns:1fr}}.masthead h1{{font-size:24px}}.bank-header h2{{font-size:19px}}}}
 </style></head><body><main class="container"><header class="masthead"><h1>澳門銀行信用卡優惠報告</h1><p>{escape(date_str)} 更新</p></header><nav class="nav-bar" aria-label="銀行快速跳轉">{nav_buttons}</nav>{body}<footer class="footer">資料由各機構公開頁面整理；優惠詳情及資格以官方公告為準。</footer></main><a href="#" id="back-to-top" aria-label="回到頁首">↑</a><script>document.getElementById('back-to-top').addEventListener('click',e=>{{e.preventDefault();window.scrollTo({{top:0,behavior:'smooth'}})}});</script></body></html>"""
 
 
@@ -1922,6 +1980,7 @@ def main():
         all_offers.extend(fetch_amex(browser))
         all_offers.extend(fetch_wlb(browser))
         all_offers.extend(fetch_eva_air(browser))
+        all_offers.extend(fetch_tripcom(browser))
     finally:
         browser.close()
         pw.stop()

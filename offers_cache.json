@@ -918,5 +918,13 @@
     "period": "活動期限以官方詳情為準",
     "link_url": "https://eservice.evaair.com/flyeva/EVA/FFP/hotelvoucher-travelecoupon.aspx?Counter=82&Mile=58000&Redeem=HOTEL",
     "image_url": "https://www.evaair.com/zh-hk/images/20260617-348x348_tcm28-98895.jpg"
+  },
+  "475fc650ed38b54316ea346785e58739": {
+    "bank": "Trip.com",
+    "title": "中銀Visa信用卡 X Trip.com勁減高達 HK$700 優惠",
+    "description": "憑中銀信用卡及指定優惠碼預訂機票、酒店、機票+酒店套票即減高達 HK$700。",
+    "period": "當期旅遊優惠｜以 Trip.com 頁面為準",
+    "link_url": "https://www.chinesean.com/affiliate/clickBanner.do?wId=61731&pId=10754&targetURL=https%3A%2F%2Fhk.trip.com%2Fsale%2Fdeals%2F%3Flocale%3Dzh-HK%26curr%3DHKD%26allianceid%3D310721%26SID%3D789738%26utm_campaign%3DCHINESEANID%26trip_sub1%3D10754_CHINESEANTXID",
+    "image_url": "https://dimg04.tripcdn.com/images/0a13q12000snzqun9A826.png"
   }
 }
