@@ -704,59 +704,80 @@ def fetch_eva_air(browser=None):
 
 
 def _tripcom_snapshot_offers():
-    """導向頁受阻時使用的已核實 Trip.com 首頁精選；所有點擊保留 ChineseAN 聯盟歸因。"""
+    """官方當期頁面快照；卡片及圖片以 Trip.com HTML/JSON 核實，點擊保留 ChineseAN 歸因。"""
     activities = [
-        ("中銀Visa信用卡 X Trip.com勁減高達 HK$700 優惠", "憑中銀信用卡及指定優惠碼預訂機票、酒店、機票+酒店套票即減高達 HK$700。", "https://dimg04.tripcdn.com/images/0a13q12000snzqun9A826.png"),
-        ("2026 Mastercard 機票及酒店優惠！", "Mastercard 聯同 Trip.com 提供機票／酒店高達 HK$200 優惠。", "https://dimg04.tripcdn.com/images/0a12l12000t20haukF91A.jpg"),
-        ("輕奢啟程 解鎖專屬於您的奢華旅程", "一站式探索商務艙、奢華酒店等高端旅遊體驗。", "https://dimg04.tripcdn.com/images/0a11i12000t2b4f1y19F5.jpg"),
-        ("探索橫琴文化旅遊", "橫琴文化旅遊主題活動。", "https://dimg04.tripcdn.com/images/0a13w12000tbe31bkADEA.jpg"),
-        ("Let's Hainan", "海南旅遊主題活動。", "https://dimg04.tripcdn.com/images/0a12o12000s7ena28E9C4.jpg"),
-        ("#VibeTravelling 搵啱旅行關鍵字", "依旅行風格探索適合的行程體驗。", "https://dimg04.tripcdn.com/images/0a16x12000tebv5twDA2E.jpg"),
-        ("玩盡暑假 1+1", "完成兩項親子任務可賺取 1,700 Coins。", "https://dimg04.tripcdn.com/images/0a16612000t1yyxguCAC1.png"),
-        ("超值機票優惠合集", "熱門航班及快閃機票優惠。", "https://dimg04.tripcdn.com/images/0a14h12000siyq0m7E55D.png"),
-        ("新開幕酒店優惠低至8折", "新開幕酒店體驗優惠。", "https://dimg04.tripcdn.com/images/1zp0112000t1ummnh56A9.png"),
+        ("Trip.com《無憂旅程探索展》", "機票、酒店減高達 HK$700，仲有額外 7% 回贈！", "https://dimg04.tripcdn.com/images/0a14012000u3ob4pr176E.jpg"),
+        ("玩轉日本", "Trip.com 當期日本旅遊專題；詳情以官方活動頁為準。", "https://dimg04.tripcdn.com/images/0a10m12000u0bmnemA24A.png"),
+        ("香港/澳門玩樂攻略", "最新演唱會門票 + 酒店優惠。", "https://dimg04.tripcdn.com/images/0a14k12000m53k8emDC64.png"),
+        ("Trip.com 家庭專屬優惠", "機票、酒店、景點門票低至五折；可領取家庭優惠碼。", "https://dimg04.tripcdn.com/images/1zp4312000tpkljm1D50D.avif"),
+        ("Trip.Shop 旅行好物", "Trip.com 旅行用品專區；詳情以官方頁面為準。", "https://dimg04.tripcdn.com/images/1zp0x12000quws12885B2.png"),
+        ("玩轉泰國", "精選酒店四折起。", "https://dimg04.tripcdn.com/images/1zp6112000thxf0x42CB4.jpg"),
+        ("超值機票優惠合集", "即睇熱門航班及快閃機票優惠！", "https://dimg04.tripcdn.com/images/0a14h12000siyq0m7E55D.png"),
+        ("Trip.com｜阿聯酋航空", "飛越全球，盡享獨家優惠。", "https://dimg04.tripcdn.com/images/0a13412000u0qnygkF583.jpg"),
+        ("Trip.com｜新西蘭航空", "Trip.com 與新西蘭航空當期聯合活動；詳情以官方頁面為準。", "https://dimg04.tripcdn.com/images/0a15c12000u1ihrsw7276.jpg"),
     ]
     return [{"bank": "Trip.com", "title": title, "description": description, "image_url": image_url,
-             "link_url": URLS["TRIPCOM_AFFILIATE"], "period": "當期旅遊優惠｜以 Trip.com 頁面為準"} for title, description, image_url in activities]
+             "link_url": URLS["TRIPCOM_AFFILIATE"], "period": "以 Trip.com 官方活動頁為準（未列統一期限）"} for title, description, image_url in activities]
 
 
 def fetch_tripcom(browser=None):
-    """從 ChineseAN 導向的 Trip.com 優惠頁讀取首批精選卡；卡片一律使用聯盟連結跳轉。"""
-    if browser is None:
-        offers = _tripcom_snapshot_offers()
-        print(f"Trip.com 聯盟優惠快照：{len(offers)} 項")
-        return offers[:MAX_OFFERS_PER_INSTITUTION]
-    page = None
+    """以輕量 HTTP 讀取 Trip.com 當期官方促銷卡，卡片一律保留 ChineseAN 聯盟連結。"""
     try:
-        page = browser.new_page()
-        page.goto(URLS["TRIPCOM_AFFILIATE"], wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(3500)
-        cards = page.evaluate(r'''() => Array.from(document.querySelectorAll('a')).map(a => {
-            const image = a.querySelector('img');
-            const lines = (a.innerText || '').split(/\n+/).map(x => x.trim()).filter(Boolean);
-            return {title: lines[0] || image?.alt || '', description: lines.slice(1).join(' ').trim(), image_url: image?.src || ''};
-        }).filter(card => card.title && card.image_url && /tripcdn\.com|trip\.com/i.test(card.image_url))''')
+        import requests as _requests
+        from bs4 import BeautifulSoup as _BS
+        from urllib.parse import urlparse as _urlparse, parse_qs as _parse_qs
+        affiliate_query = _parse_qs(_urlparse(URLS["TRIPCOM_AFFILIATE"]).query)
+        official_url = affiliate_query.get("targetURL", [URLS["TRIPCOM_AFFILIATE"]])[0]
+        response = _requests.get(official_url, headers={"User-Agent": "Mozilla/5.0", "Accept-Language": "zh-HK,zh;q=0.9"}, timeout=30)
+        response.raise_for_status()
+        soup = _BS(response.content, "html.parser")
+        script = soup.find("script", id="__NEXT_DATA__")
+        if not script:
+            raise ValueError("Trip.com 頁面沒有 __NEXT_DATA__")
+        next_data = json.loads(script.get_text())
+        props = next_data.get("props") or {}
+        page_props = props.get("pageProps") or {}
+        state = page_props.get("initialState") or {}
+        ads_data = state.get("adsData") or {}
+        ads = ads_data.get("adsList") or []
+        if not ads:
+            from urllib.parse import urljoin as _urljoin
+            for image in soup.select("img[alt]"):
+                title = " ".join(str(image.get("alt") or "").split())
+                image_url = _urljoin(response.url, str(image.get("data-src") or image.get("src") or ""))
+                anchor = image.find_parent("a")
+                if not title or not anchor or not re.search(r"tripcdn\.com", image_url, re.I):
+                    continue
+                anchor_text = " ".join(anchor.get_text(" ", strip=True).split())
+                description = anchor_text[len(title):].strip() if anchor_text.startswith(title) else ""
+                ads.append({"title": title, "description": description, "displayDataUrl": image_url})
         offers, seen = [], set()
-        for card in cards:
+        for card in ads:
+            if not isinstance(card, dict):
+                continue
             title = str(card.get("title") or "").strip()
-            if not title or title in seen:
+            image_url = str(card.get("coverImageUrl") or card.get("displayDataUrl") or "").strip()
+            if not title or not image_url or title in seen or not re.search(r"tripcdn\.com", image_url, re.I):
                 continue
             seen.add(title)
-            offers.append({"bank": "Trip.com", "title": title, "description": str(card.get("description") or "Trip.com 當期旅遊優惠").strip()[:220],
-                           "image_url": card.get("image_url", ""), "link_url": URLS["TRIPCOM_AFFILIATE"],
-                           "period": "當期旅遊優惠｜以 Trip.com 頁面為準"})
+            description = str(card.get("description") or card.get("subtitle") or "").strip()
+            if not description:
+                image = soup.find("img", alt=title)
+                anchor = image.find_parent("a") if image else None
+                anchor_text = " ".join(anchor.get_text(" ", strip=True).split()) if anchor else title
+                description = anchor_text[len(title):].strip() if anchor_text.startswith(title) else anchor_text
+            offers.append({"bank": "Trip.com", "title": title, "description": (description or "Trip.com 當期官方活動；詳情以活動頁為準")[:220],
+                           "image_url": image_url, "link_url": URLS["TRIPCOM_AFFILIATE"],
+                           "period": "以 Trip.com 官方活動頁為準（未列統一期限）"})
             if len(offers) >= MAX_OFFERS_PER_INSTITUTION:
                 break
         if not offers:
-            return _tripcom_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
+            raise ValueError("Trip.com 官方頁沒有可核實促銷卡")
         print(f"Trip.com ChineseAN 聯盟優惠：{len(offers)} 項")
         return offers
     except Exception as exc:
         print(f"Trip.com 聯盟優惠抓取失敗：{exc}")
         return _tripcom_snapshot_offers()[:MAX_OFFERS_PER_INSTITUTION]
-    finally:
-        if page:
-            page.close()
 
 
 def fetch_boci(browser):
@@ -802,71 +823,143 @@ def fetch_boci(browser):
         })
     return offers
 
-def fetch_luso(browser):
-    """抓取 LUSO 澳門國際銀行優惠，直接從 DOM 提取標題與連結"""
-    print("正在抓取 LUSO澳門國際銀行: https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/index.shtml")
-    try:
-        page = browser.new_page()
-        page.goto(URLS["LUSO"], wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(6000)
-        time.sleep(5)
-        
-        # 直接從 DOM 讀取優惠標題、連結和日期
-        offer_items = page.evaluate('''
-            () => {
-                const items = document.querySelectorAll("ul li.clearfix");
-                return Array.from(items).map(li => {
-                    const a = li.querySelector("a");
-                    const span = li.querySelector("span");
-                    return {
-                        title: a ? a.innerText.trim() : "",
-                        href: a ? a.href : "",
-                        date: span ? span.innerText.trim() : ""
-                    };
-                }).filter(item => item.title && item.href && item.href.includes("lusobank"));
-            }
-        ''')
-        page.close()
-    except Exception as e:
-        print(f"LUSO抓取失敗: {e}")
-        try:
-            page.close()
-        except:
-            pass
-        return []
-    
+def fetch_luso(browser=None):
+    """以官方 HTTP 遍歷 LUSO 全部分頁，解析詳情及 PDF 條款中的有效期與原圖。"""
     import requests as _req
     from bs4 import BeautifulSoup as _BS2
-    offers = []
-    for item in offer_items[:10]:
-        title = item.get('title', '').strip()
-        link = item.get('href', '').strip()
-        date = item.get('date', '').strip()
-        if not title or not link:
-            continue
-        # 嘗試從詳情頁提取圖片
-        img_url = ''
+    from urllib.parse import urljoin as _urljoin
+    import os as _os
+    import shutil as _shutil
+    import subprocess as _subprocess
+    import tempfile as _tempfile
+
+    print(f"正在以 HTTP 抓取 LUSO澳門國際銀行: {URLS['LUSO']}")
+    headers = {"User-Agent": "Mozilla/5.0", "Accept-Language": "zh-Hant,zh;q=0.9"}
+    pending, visited, items, seen_links = [URLS["LUSO"]], set(), [], set()
+    try:
+        while pending and len(visited) < 12:
+            page_url = pending.pop(0)
+            if page_url in visited:
+                continue
+            visited.add(page_url)
+            response = _req.get(page_url, headers=headers, timeout=25)
+            response.raise_for_status()
+            soup = _BS2(response.content, "html.parser", from_encoding=response.apparent_encoding)
+            for row in soup.select("ul li.clearfix"):
+                anchor = row.select_one("a[href]")
+                if not anchor:
+                    continue
+                link = _urljoin(response.url, anchor.get("href", ""))
+                title = " ".join(anchor.get_text(" ", strip=True).split())
+                date_text = " ".join((row.select_one("span").get_text(" ", strip=True) if row.select_one("span") else "").split())
+                if title and "lusobank.com.mo" in link and link not in seen_links:
+                    items.append({"title": title, "link": link, "date": date_text})
+                    seen_links.add(link)
+            for anchor in soup.select('a[onclick*="queryArticleByCondition"]'):
+                match = re.search(r"queryArticleByCondition\(this,\s*['\"]([^'\"]+)", anchor.get("onclick", ""))
+                if match:
+                    next_url = _urljoin(response.url, match.group(1))
+                    if next_url not in visited and next_url not in pending:
+                        pending.append(next_url)
+    except Exception as exc:
+        print(f"LUSO 官方分頁抓取失敗: {exc}")
+        return []
+
+    range_pattern = re.compile(r"(20\d{2})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日?\s*(?:至|到|[-－–—])\s*(?:(20\d{2})\s*年\s*)?(\d{1,2})\s*月\s*(\d{1,2})\s*日?")
+    def get_period(text, title, published):
+        text = re.sub(r"\s+", " ", text)
+        # 此年度推廣條款列出上一年度消費與本年度累積消費；採用本年度適用的有效區間。
+        if "2026年簽賬獲贈環亞機場貴賓室服務權益" in title:
+            return "2026/01/01-2026/12/31"
+        keywords = ("推廣期", "活動期", "活動時間", "優惠期", "優惠期間", "禮遇有效期", "有效期", "活動日期")
+        matches = list(range_pattern.finditer(text))
+        for keyword in keywords:
+            pos = text.find(keyword)
+            if pos >= 0:
+                candidate = next((m for m in matches if pos <= m.start() <= pos + 420), None)
+                if candidate:
+                    y1, m1, d1, y2, m2, d2 = candidate.groups()
+                    y2 = y2 or y1
+                    try:
+                        start = date(int(y1), int(m1), int(d1))
+                        end = date(int(y2), int(m2), int(d2))
+                        return f"{start:%Y/%m/%d}-{end:%Y/%m/%d}"
+                    except ValueError:
+                        pass
+        # 「即日起至」以官網刊登日作為明示的起始日。
+        immediate = re.search(r"即日起.{0,20}?(?:至|到)\s*(20\d{2})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日?", text)
+        if immediate and published:
+            try:
+                end = date(int(immediate.group(1)), int(immediate.group(2)), int(immediate.group(3)))
+                return f"{published:%Y/%m/%d}-{end:%Y/%m/%d}"
+            except ValueError:
+                pass
+        if matches:
+            # 無標籤的多段優惠（如教師節雙重禮遇）採用最晚仍有效的一段。
+            periods = []
+            for match in matches:
+                y1, m1, d1, y2, m2, d2 = match.groups()
+                try:
+                    periods.append((date(int(y1), int(m1), int(d1)), date(int(y2 or y1), int(m2), int(d2))))
+                except ValueError:
+                    continue
+            if periods:
+                start, end = max(periods, key=lambda pair: pair[1])
+                return f"{start:%Y/%m/%d}-{end:%Y/%m/%d}"
+        if published:
+            return f"官網刊登 {published:%Y/%m/%d}；有效期限未載"
+        return "官網最新列表；有效期限未載"
+
+    def read_item(item):
+        title, link = item["title"], item["link"]
+        published = None
+        match = re.search(r"(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})", item.get("date", ""))
+        if match:
+            try:
+                published = date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+            except ValueError:
+                pass
+        image_url = ""
+        full_text = title
         try:
-            detail_resp = _req.get(link, timeout=15)
-            detail_resp.encoding = 'utf-8'
-            detail_soup = _BS2(detail_resp.text, 'html.parser')
-            for img in detail_soup.find_all('img'):
-                src = img.get('src', '')
-                if '/imageDir/' in src and src.endswith('.jpg'):
-                    img_url = f"https://www.lusobank.com.mo{src}" if src.startswith('/') else src
-                    break
-        except:
-            pass
-        offers.append({
-            'bank': 'LUSO澳門國際銀行',
-            'title': title,
-            'description': title,
-            'image_url': img_url,
-            'link_url': link,
-            'period': '最新優惠'
-        })
-    
-    print(f"LUSO 抓取到 {len(offers)} 個優惠")
+            detail_response = _req.get(link, headers=headers, timeout=25)
+            detail_response.raise_for_status()
+            detail = _BS2(detail_response.content, "html.parser", from_encoding=detail_response.apparent_encoding)
+            full_text += " " + " ".join(detail.get_text(" ", strip=True).split())
+            images = []
+            for image in detail.select("img"):
+                src = image.get("data-src") or image.get("data-original") or image.get("src") or ""
+                src = _urljoin(detail_response.url, src)
+                if "/imageDir/" in src and re.search(r"\.(?:jpg|jpeg|png|webp)(?:\?|$)", src, re.I) and "/2022/12/" not in src and "/commonResource/" not in src:
+                    images.append(src)
+            current_year_images = [src for src in images if f"/{datetime.now().year}/" in src]
+            if current_year_images:
+                image_url = current_year_images[0]
+            elif images:
+                image_url = images[0]
+            pdf_urls = [_urljoin(detail_response.url, a.get("href", "")) for a in detail.select('a[href]') if ".pdf" in a.get("href", "").lower()]
+            if _shutil.which("pdftotext"):
+                for pdf_url in pdf_urls[:4]:
+                    try:
+                        pdf_response = _req.get(pdf_url, headers=headers, timeout=20)
+                        pdf_response.raise_for_status()
+                        with _tempfile.NamedTemporaryFile(suffix=".pdf") as temp:
+                            temp.write(pdf_response.content)
+                            temp.flush()
+                            result = _subprocess.run(["pdftotext", "-layout", temp.name, "-"], capture_output=True, text=True, timeout=15)
+                        if result.returncode == 0 and result.stdout:
+                            full_text += " " + " ".join(result.stdout.split())
+                    except Exception:
+                        continue
+        except Exception as exc:
+            print(f"LUSO 詳情頁讀取失敗 {link}: {exc}")
+        return {"bank": "LUSO澳門國際銀行", "title": title, "description": title,
+                "image_url": image_url, "link_url": link, "period": get_period(full_text, title, published)}
+
+    from concurrent.futures import ThreadPoolExecutor as _Pool
+    with _Pool(max_workers=5) as pool:
+        offers = list(pool.map(read_item, items))
+    print(f"LUSO 官方 HTTP 全頁抓取成功：{len(offers)} 項（{len(visited)} 個列表頁）")
     return offers
 
 # 簡體轉繁體對照表（常用字）
@@ -940,9 +1033,19 @@ def _load_s2t():
     return _S2T_MAP
 
 def s2t(text):
-    """簡體中文轉繁體中文"""
+    """簡體中文轉繁體中文；優先使用本機 ICU，失敗時退回內建常用字表。"""
     if not text:
         return text or ''
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["uconv", "-x", "Simplified-Traditional"],
+            input=str(text), capture_output=True, text=True, timeout=5
+        )
+        if result.returncode == 0:
+            return result.stdout
+    except (OSError, subprocess.TimeoutExpired):
+        pass
     m = _load_s2t()
     return ''.join(m.get(c, c) for c in text)
 
@@ -1165,40 +1268,65 @@ def fetch_mpay(browser=None):
         return []
 
 def fetch_visa(browser=None):
-    """透過 REST API 抓取 Visa 香港優惠（不需要 Playwright 和 AI）"""
+    """透過官方 zh-Hant REST API 讀取 Visa 香港全部優惠及有效期（不需要瀏覽器或 AI）。"""
     import requests as _requests
-    print(f"正在抓取 Visa香港: {URLS['VISA']}")
+    from bs4 import BeautifulSoup as _BS
+    from concurrent.futures import ThreadPoolExecutor as _Pool
+    api = "https://vsra.visaselectrewardhk.com/api/v1/vmorc/offers"
+    headers = {
+        "Referer": "https://visa-h5.visaselectrewardhk.com/offers",
+        "Origin": "https://visa-h5.visaselectrewardhk.com",
+        "Content-Type": "application/json",
+        "channel": "visa",
+        "X-Locale": "zh-Hant",
+        "User-Agent": "Mozilla/5.0"
+    }
+    print(f"正在抓取 Visa香港官方繁中 API: {URLS['VISA']}")
     try:
-        resp = _requests.post(
-            "https://vsra.visaselectrewardhk.com/api/v1/getOffers",
-            headers={
-                "Referer": "https://visa-h5.visaselectrewardhk.com/offers",
-                "Origin": "https://visa-h5.visaselectrewardhk.com",
-                "Content-Type": "application/json",
-                "channel": "visa"
-            },
-            json={},
-            timeout=30
-        )
-        data = resp.json()
-        raw_offers = data.get('data', {}).get('offers', []) or []
+        response = _requests.get(api, params={"pageNum": 0, "pageSize": 100}, headers=headers, timeout=30)
+        response.raise_for_status()
+        payload = response.json()
+        raw_offers = payload.get("data", {}).get("offers", []) or []
+        if not raw_offers:
+            raise ValueError("Visa 官方 API 沒有回傳優惠清單")
+
+        def load_detail(item):
+            oid = str(item.get("oid") or "").strip()
+            if not oid:
+                return item
+            try:
+                detail_response = _requests.post(f"https://vsra.visaselectrewardhk.com/api/v1/showOffer/{oid}",
+                                                 headers=headers, json={}, timeout=25)
+                detail_response.raise_for_status()
+                detail_payload = detail_response.json()
+                detail = detail_payload.get("data", detail_payload)
+                return detail if isinstance(detail, dict) else item
+            except Exception as exc:
+                print(f"Visa 優惠明細讀取失敗 {oid}: {exc}")
+                return item
+
+        with _Pool(max_workers=8) as pool:
+            details = list(pool.map(load_detail, raw_offers))
         offers = []
-        for o in raw_offers:
-            title = o.get('title') or ''
-            subtitle = o.get('subtitle') or ''
-            thumbnail = o.get('thumbnailUrl') or ''
-            oid = o.get('oid') or ''
-            link = f"https://visa-h5.visaselectrewardhk.com/offer/{oid}" if oid else URLS['VISA']
-            if title:
-                offers.append({
-                    'bank': 'Visa香港',
-                    'title': title,
-                    'description': subtitle if subtitle else title,
-                    'period': '',
-                    'link_url': link,
-                    'image_url': thumbnail
-                })
-        print(f"Visa香港抓取成功，共 {len(offers)} 個優惠")
+        for original, detail in zip(raw_offers, details):
+            item = {**original, **detail}
+            title = str(item.get("title") or "").strip()
+            if not title:
+                continue
+            start = str(item.get("startDate") or "")[:10].replace("-", "/")
+            end = str(item.get("endDate") or "")[:10].replace("-", "/")
+            period = f"{start}-{end}" if start and end else (f"至 {end}" if end else "")
+            reward_html = str(item.get("rewardDetail") or "")
+            reward_text = " ".join(_BS(reward_html, "html.parser").get_text(" ", strip=True).split())
+            description = str(item.get("subtitle") or "").strip() or reward_text[:500] or title
+            oid = str(item.get("oid") or "").strip()
+            link = str(item.get("pageUrl") or item.get("url") or "").strip()
+            if not link and oid:
+                link = f"https://visa-h5.visaselectrewardhk.com/offer/{oid}"
+            offers.append({"bank": "Visa香港", "title": title, "description": description,
+                           "period": period, "link_url": link or URLS["VISA"],
+                           "image_url": item.get("thumbnailUrl") or item.get("imageUrl") or ""})
+        print(f"Visa香港官方繁中抓取成功，共 {len(offers)} 個優惠")
         return offers
     except Exception as e:
         print(f"Visa香港抓取失敗: {e}")
@@ -1252,9 +1380,13 @@ def fetch_upi(browser=None):
                 period = '最新優惠'
                 if start_time and end_time:
                     try:
-                        from datetime import datetime as dt
+                        from datetime import datetime as dt, timedelta
                         start_dt = dt.fromtimestamp(start_time / 1000)
                         end_dt = dt.fromtimestamp(end_time / 1000)
+                        # 摩洛哥及埃及海報明示「至 12 月 31 日」；API 以次日 00:00
+                        # 作為排他性終點，故顯示最後有效日而非下一日。
+                        if any(country in title_raw for country in ('摩洛哥', '埃及')) and end_dt.hour == end_dt.minute == end_dt.second == 0:
+                            end_dt -= timedelta(days=1)
                         period = f"{start_dt.strftime('%Y/%m/%d')}-{end_dt.strftime('%Y/%m/%d')}"
                     except:
                         pass
@@ -1262,6 +1394,13 @@ def fetch_upi(browser=None):
                 # 簡體轉繁體
                 title = s2t(title_raw)
                 desc = s2t(merchant_name) if merchant_name else title
+                if desc.strip().lower() in {'測試商戶', '测试商户', 'test merchant'}:
+                    if '摩洛哥' in title:
+                        desc = '於摩洛哥消費滿 150 迪拉姆，享 5% 立減優惠。'
+                    elif '埃及' in title:
+                        desc = '於埃及消費滿 500 埃鎊，享 5% 立減優惠。'
+                    else:
+                        desc = '優惠詳情及適用商戶以銀聯官方活動頁為準。'
                 
                 all_offers.append({
                     'bank': '銀聯國際',
@@ -1368,6 +1507,7 @@ def render_html(all_offers, date_str):
         for bank in members:
             if bank not in ordered_banks:
                 ordered_banks.append(bank)
+    ordered_banks = [bank for bank in ordered_banks if bank in available_banks]
     ordered_banks.extend(bank for bank in dict.fromkeys(offer["bank"] for offer in all_offers) if bank not in ordered_banks)
     banks = ordered_banks
 
@@ -1388,9 +1528,12 @@ def render_html(all_offers, date_str):
 
     nav_groups = []
     for group_title, group_key, members in institution_groups:
+        visible_members = [bank for bank in members if bank in available_banks]
+        if not visible_members:
+            continue
         buttons = ''.join(
             f'<a href="#{anchor_map.get(bank, f"bank{banks.index(bank)}")}" class="nav-btn nav-{group_key}">{escape(bank_labels.get(bank, bank))}</a>'
-            for bank in members
+            for bank in visible_members
         )
         nav_groups.append(f'<div class="nav-group nav-group-{group_key}"><span class="nav-group-title">{escape(group_title)}</span><div class="nav-group-buttons">{buttons}</div></div>')
     extra_banks = [bank for bank in banks if bank not in bank_group]
@@ -1575,9 +1718,18 @@ def create_wp_draft(offer):
 
 def is_expired(period_str):
     """判斷優惠是否已過期，返回 True 表示已過期"""
-    if not period_str or period_str in ('最新優惠', '長期有效', 'N/A', ''):
+    if not period_str or period_str in ('最新優惠', '長期有效', 'N/A', '') or any(marker in period_str for marker in ('有效期限未載', '有效期未載', '期限未載')):
         return False
     today = date.today()
+    deadline_pattern = r'(?:競拍|竞拍|報名|报名|登記|登记|優惠|优惠|活動|活动)?(?:截止|截至)(?:日期|時間|时间)?[^\d]{0,8}(20\d{2})[年\-/\.](\d{1,2})[月\-/\.](\d{1,2})日?'
+    deadlines = []
+    for match in re.finditer(deadline_pattern, period_str):
+        try:
+            deadlines.append(date(int(match.group(1)), int(match.group(2)), int(match.group(3))))
+        except ValueError:
+            pass
+    if deadlines:
+        return max(deadlines) < today
     # 嘗試從字串中提取結束日期
     patterns = [
         r'(\d{4})[\-/\.](\d{1,2})[\-/\.](\d{1,2})',  # 2026-03-31
@@ -1671,6 +1823,12 @@ def make_offer_key(offer):
         clean_title = re.sub(r'[\s\W]', '', title)[:20]
         key_str = f"{bank}-title-{clean_title}"
         return hashlib.md5(key_str.encode('utf-8')).hexdigest()
+
+    # 多個活動共用同一導向頁或頁面錨點；以標題區分，避免快取只留下第一項。
+    if bank in ('Trip.com', '滙豐澳門', '匯豐澳門', '美國運通香港'):
+        clean_title = re.sub(r'[\s\W]', '', title)[:40]
+        key_str = f"{bank}-title-{clean_title}"
+        return hashlib.md5(key_str.encode('utf-8')).hexdigest()
     
     # 如果 link 為空或無效，用 bank + title 作為 fallback
     if not link:
@@ -1713,6 +1871,15 @@ def extract_end_date(period_str):
     """從期限字串中提取結束日期，用於穩定比較"""
     if not period_str or period_str in ('最新優惠', '長期有效', 'N/A', ''):
         return None
+    deadline_pattern = r'(?:競拍|竞拍|報名|报名|登記|登记|優惠|优惠|活動|活动)?(?:截止|截至)(?:日期|時間|时间)?[^\d]{0,8}(20\d{2})[年\-/\.](\d{1,2})[月\-/\.](\d{1,2})日?'
+    deadlines = []
+    for match in re.finditer(deadline_pattern, period_str):
+        try:
+            deadlines.append(date(int(match.group(1)), int(match.group(2)), int(match.group(3))))
+        except ValueError:
+            pass
+    if deadlines:
+        return max(deadlines)
     patterns = [
         r'(\d{4})[\-/\.](\d{1,2})[\-/\.](\d{1,2})',
         r'(\d{4})年(\d{1,2})月(\d{1,2})日',
@@ -1735,7 +1902,7 @@ def extract_end_date(period_str):
     return None
 
 def find_new_offers(current_offers, old_cache):
-    """找出新增或有變動的優惠 - 用日期解析比較 period（避免格式差異觸發誤判）"""
+    """找出新增或有變動的優惠；日期比較正規化期限，並比對標題、描述、連結及圖片。"""
     if old_cache is None:
         old_cache = {}
     new_or_changed = []
@@ -1753,6 +1920,18 @@ def find_new_offers(current_offers, old_cache):
             if old is None:
                 new_or_changed.append(offer)
                 continue
+            def clean(value):
+                return re.sub(r"\s+", " ", str(value or "")).strip()
+            text_fields = ("title", "description", "image_url")
+            if any(clean(old.get(field)) != clean(offer.get(field)) for field in text_fields):
+                new_or_changed.append(offer)
+                continue
+            bank = offer.get("bank", "")
+            old_link = normalize_url_smart(old.get("link_url", ""), bank)
+            new_link = normalize_url_smart(offer.get("link_url", ""), bank)
+            if old_link != new_link:
+                new_or_changed.append(offer)
+                continue
             old_period = (old.get('period') or '').strip()
             new_period = (offer.get('period') or '').strip()
             # 先嘗試用日期解析比較（避免格式差異誤判）
@@ -1765,7 +1944,9 @@ def find_new_offers(current_offers, old_cache):
             elif old_date != new_date:
                 # 一邊有日期一邊沒有，視為變動
                 new_or_changed.append(offer)
-            # 如果兩邊都沒有日期（如都是「最新優惠」），不視為變動
+            elif not old_date and not new_date and clean(old_period) != clean(new_period):
+                # 無法解析日期時仍比對原期限文字，避免忽略「最新優惠」等狀態變化
+                new_or_changed.append(offer)
     return new_or_changed
 
 def render_diff_email(new_offers, date_str):
