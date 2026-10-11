@@ -349,7 +349,7 @@
     "description": "【卡優惠】Haagen-Dazs雪糕月餅券積分換領優惠",
     "period": "最新優惠",
     "link_url": "https://www.lusobank.com.mo/libtc/gryw/xyk/yhhd/zxyhhd/2026073015495868316/index.shtml",
-    "image_url": ""
+    "image_url": "https://www.lusobank.com.mo/libtc/imageDir/2026/07/img_pc_site/2026073015052270283.png"
   },
   "3e15ddb9be1b9f764aefa70140a3b85c": {
     "bank": "LUSO澳門國際銀行",
@@ -432,76 +432,85 @@
     "image_url": "https://marketing.unionpayintl.com/momisfile/image/20260917759930.jpg"
   },
   "f235a4f82f11df0d7a025ac59f6341fb": {
-    "bank": "Visa香港",
-    "title": "Agoda",
-    "description": "Stay 3 Nights Pay 2 Nights, capped at USD150 per transaction across all participating worldwide properties",
-    "period": "最新優惠",
+    "oid": "vmorc_173296",
+    "title": "Agoda：入住3晚只需支付2晚",
+    "description": "入住3晚只需支付2晚，全球參與酒店每筆交易上限為USD150。",
     "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_173296",
+    "bank": "Visa香港",
+    "period": "最新優惠",
     "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784794670_thumbnail_6a61ce2e78c5b.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
   },
-  "b4d20a5c0d2819fbab4d59bbc283ce3f": {
-    "bank": "Visa香港",
-    "title": "Visa Airport Dining",
-    "description": "Enjoy up to 20% savings at selected airport dining locations at Hong Kong International Airport.",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_174164",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784861618_thumbnail_6a62d3b29366a.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
-  "a1f3b864d1a0838da96eb7871938753a": {
-    "bank": "Visa香港",
-    "title": "6-Month Introductory ALL Accor+ Explorer Membership with your Visa Infinite Card",
-    "description": "6-Month Introductory ALL Accor+ Explorer Membership with your Visa Infinite Card",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/offer_1788180401_6a9577b10b15c",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1788180686_detail_image_6a9578ce590c2.png?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
-  "5aa39c830d4f0f9c5f97d8bbd2767b48": {
-    "bank": "Visa香港",
-    "title": "Hertz",
-    "description": "Unlock instant Elite Status and discounts",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_177990",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784795552_thumbnail_6a61d1a015a6b.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
-  "52fc8ca405c4d3d5e69c61722598372c": {
-    "bank": "Visa香港",
-    "title": "Harrods",
-    "description": "Complimentary Harrods Rewards Black Tier with your Visa Infinite Private Card.",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_179008",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784797636_thumbnail_6a61d9c4dd53f.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
-  "b298eec166019700345eb6ae9a37fe32": {
-    "bank": "Visa香港",
-    "title": "Banyan Tree Gallery",
-    "description": "Enjoy a complimentary status match to Voyager, a premium withBanyan membership tier, and a one-night stay at any participating Banyan Group hotel or resort with your Visa Infinite Privilege and Visa Infinite Private Card",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_179172",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784797695_thumbnail_6a61d9ffe68eb.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
-  "9ccb2b073acb004770c976d91340ba50": {
-    "bank": "Visa香港",
-    "title": "YQ (meet & assist) service",
-    "description": "Enjoy discounts on airport meet and assist services at over 500 airports worldwide",
-    "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_115045",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784793635_thumbnail_6a61ca2325174.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
-  },
   "50e7a24e73becde645bf19a4803db8dd": {
-    "bank": "Visa香港",
-    "title": "Monocle",
-    "description": "20% off Print & Digital Monocle annual subscription with your Visa Infinite card",
-    "period": "最新優惠",
+    "oid": "vmorc_179174",
+    "title": "Monocle年度訂閱8折優惠",
+    "description": "使用Visa Infinite卡，享Monocle紙本及數碼版年度訂閱8折優惠。",
     "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_179174",
+    "bank": "Visa香港",
+    "period": "最新優惠",
     "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784797711_thumbnail_6a61da0fe8dae.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
   },
-  "7eb233c5c18ed7b760b42a8432385e34": {
+  "044e11b83541778bcf851559bdc47fdc": {
+    "oid": "vmorc_178872",
+    "title": "HoteLux Elite會員資格匹配",
+    "description": "可匹配至HoteLux Elite會員資格。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_178872",
     "bank": "Visa香港",
-    "title": "Visa Luxury Hotel Collection",
-    "description": "Enjoy a premium collection of benefits",
     "period": "最新優惠",
-    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_114996",
-    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784793371_thumbnail_6a61c91bed38e.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784797588_thumbnail_6a61d9943112d.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "9a606e4cda937585f4918e714778a181": {
+    "oid": "vmorc_178502",
+    "title": "CircleDNA Premium DNA檢測套裝52%折扣",
+    "description": "CircleDNA Premium DNA檢測套裝享52%折扣（原價US$629）。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_178502",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784797514_thumbnail_6a61d94ad2d61.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "b773816e0e8f142f2974ffd3c74b4d0e": {
+    "oid": "vmorc_172620",
+    "title": "Ascott Star Rewards白金會籍快速升級",
+    "description": "可快速升級為期一年的Ascott Star Rewards白金卡會員。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_172620",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784794516_thumbnail_6a61cd94c049f.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "b4d20a5c0d2819fbab4d59bbc283ce3f": {
+    "oid": "vmorc_174164",
+    "title": "Visa香港國際機場指定餐飲優惠",
+    "description": "於香港國際機場指定餐飲地點尊享高達8折優惠。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_174164",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784861618_thumbnail_6a62d3b29366a.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "9ccb2b073acb004770c976d91340ba50": {
+    "oid": "vmorc_115045",
+    "title": "YQ全球機場迎送及禮賓服務折扣",
+    "description": "於全球超過500個機場享受迎送及禮賓服務折扣優惠。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_115045",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784793635_thumbnail_6a61ca2325174.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "d7cfdce1a5a4a01d0aef7019a67a849c": {
+    "oid": "vmorc_168752",
+    "title": "Trip.com酒店及機票折扣",
+    "description": "憑Visa預訂酒店最高享5%折扣，預訂機票最高享2%折扣。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_168752",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784794458_thumbnail_6a61cd5a99875.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
+  },
+  "e8ad8666be33e9488ad3fe0c4c69c82f": {
+    "oid": "vmorc_150837",
+    "title": "IHG亞太地區酒店住宿20%優惠",
+    "description": "憑Visa付款，享亞太地區IHG酒店住宿20%優惠。",
+    "link_url": "https://visa-h5.visaselectrewardhk.com/offer/vmorc_150837",
+    "bank": "Visa香港",
+    "period": "最新優惠",
+    "image_url": "https://vsrahkcdn.visaselectrewardhk.com/prod/images/offer/1784793672_thumbnail_6a61ca481e627.jpg?x-oss-process=image/resize,w_1125,m_lfit,limit_1/resize,h_16000,m_lfit,limit_1/quality,q_90/format,webp"
   },
   "5bad6b62375fe000e02fb6bbaf126383": {
     "bank": "澳門立橋銀行",
@@ -901,7 +910,7 @@
     "description": "預訂新加坡「機票+迪士尼探險號」套票或單訂遊輪，2026/12/31或之前出發的航程，可賺高達港幣4元=1里。",
     "period": "優惠至 2026/12/31",
     "link_url": "https://www.cathaypacific.com/cx/zh_HK/offers/current/disney-adventure-cruise.html",
-    "image_url": ""
+    "image_url": "https://www.cathaypacific.com/content/dam/focal-point/cx/holidays/hk/2024_disney_cruise/Room.renditionimage.900.450.jpg"
   },
   "9188a358076087bf9a9abcb20f935f3c": {
     "bank": "亞洲萬里通",
